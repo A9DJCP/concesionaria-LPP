@@ -1,0 +1,45 @@
+.logoLPP{
+    width:20%;
+    margin:1% 1%;
+}
+
+
+.componenteMenu {
+    margin:5%;
+    background-color: #390b83; 
+    margin:0; 
+    width:100%;
+    color:rgb(247, 214, 23);
+}
+
+
+.componenteMenu h1{
+    font-family: "copperplate", fantasy;
+    letter-spacing:0.1rem;
+}
+
+.boton-acordeon{
+    margin:1% 5%;
+    width:90%;
+    font-weight:bold !important;
+}
+
+#posventa{
+    background-color:rgb(25, 4, 58);
+}
+
+.component-div {
+   margin: 0% 2%; 
+   padding:2%;
+}
+
+#contratos{
+    background-color:rgb(8, 1, 18);
+}
+
+#abm{
+    width:100%;
+    float:center;
+    margin-bottom:1%;
+    margin-top:1%;
+}

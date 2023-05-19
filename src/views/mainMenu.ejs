@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Concesionaria LPP Main Menu
+    </title>
+    <link rel="stylesheet" href="/css/mainMenu.css">
+
+    <%- include('partials/head') %>
+</head>
+
+<body>
+    <%- include('partials/navigation') %>
+
+        <!--Main Content-->
+        <header class="container vh-50 d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <h1 class="display-1 my-5 text-uppercase fw-bold">Concesionaria LPP</h1>
+                <img src="/img/logoLPP.png" alt="logoLPP" class="w-25 logoLPP">
+                <a href="/about" class="btn btn-primary w-25" style="margin-bottom:1%">Acerca de Concesionaria LPP</a>
+            </div>
+        </header>
+
+        <!--Acordeon: https://getbootstrap.com/docs/5.3/components/accordion/-->
+        <div id="compras" class="componenteMenu">
+            <div class="d-flex align-items-center component-div">
+                <h1>COMPRAS DE AUTOMÓVILES</h1>
+                <div class="accordion vh-80 w-75" id="accordionPanelsStayOpenExample" data-bs-theme="dark">
+                    <div class="accordion-item ">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                COMPRA DE AUTOMÓVILES 0 KILÓMETROS
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body ">
+                                <strong>Compra de Automóvil 0KM.</strong> Corresponde al circuito 1 del
+                                sistema. Redirige al menú de compra de autos
+                                0km que permite:
+                                procesar solicitud de compra de automóvil 0km, procesar aceptación de orden de compra,
+                                procesar pago de seña (recibo),
+                                procesar pedido en proceso (registro de doc. de fabricación), procesar recepción de auto
+                                0km, procesar plan de pago, procesar órden de retiro y procesar confección de seguro.
+                            </div>
+                            <a href="/c1" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Compra
+                                de
+                                Automóvil
+                                0KM</a>
+                        </div>
+
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                COBRO DE CUOTAS
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <strong>Cobro de Cuotas.</strong> Corresponde al circuito 9 del sistema. Redirige al
+                                menu del cobro de cuotas que permite procesar la administración de cuotas y procesar la
+                                recepción de pago de una cuota.
+                            </div>
+                            <a href="/c9" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Cobro de
+                                Cuotas</a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseThree">
+                                COMPRA DE AUTOMÓVILES USADOS
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <strong>Compra de Automóviles Usados</strong> Corresponde al circuito 6&7 del sistema.
+                                Redigire al menú de ventas de automóviles de autos usados, que permite:
+                                procesar solicitud de compra de auto usado, procesar confirmación de compra, procesar
+                                recepción de pago del automóvil usado, procesar solicitud de retiro de auto usado
+                                vendido, procesar retiro de automóvil usado vendido, procesar pago al ex propietario.
+                            </div>
+                            <a href="/c6" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Compra
+                                de Automóviles Usados</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="posventa" class="componenteMenu">
+            <div class="d-flex align-items-center component-div">
+                <div class="accordion vh-80 w-75" id="accordionPanelsStayOpenExample" data-bs-theme="dark">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                RECLAMO PARA REPARACIÓN DE AUTOMÓVIL 0KM
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body ">
+                                <strong>Reclamos para Automóviles 0KM.</strong> Corresponde al circuito 2 del
+                                sistema. Redirige al menú de reclamos para automóviles 0 km, que permite: procesar
+                                solicitud de reparación de automóvil 0km, procesar informe de accesorios y procesar
+                                entrega de automóvil reparado.
+                            </div>
+                            <a href="/c2" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Reclamo
+                                para reparación de automóvil 0km</a>
+                        </div>
+
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                VENTA DE ACCESORIOS
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <strong>Venta de Accesorios.</strong> Corresponde al circuito 3 del sistema. Redirige al
+                                menu de venta de accesorios, que permite: procesar solicitud de agregado de accesorio,
+                                procesar aceptación del presupeusto, procesar cobro de la instalación y procesar entrega
+                                del automóvil.
+                            </div>
+                            <a href="/c3" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Venta de
+                                Accesorios</a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseThree">
+                                REPARACIONES FUERA DE GARANTÍA
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <strong>Reparaciones fuera de Garantía</strong> Corresponde al circuito 4 del sistema.
+                                Redigire al menú de reparaciones fuera de garantía, que permite: procesar solicitud de
+                                reparación para automóvil fuera de garantía, procesar informe de reparaciones, procesar
+                                aceptación del presupuesto de reparación, procesar recepción del pago, procesar retiro
+                                del automóvil reparado.
+                            </div>
+                            <a href="/c4" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de
+                                Reparaciones fuera de garantía</a>
+                        </div>
+                    </div>
+                </div>
+                <h1 style="float:right; margin: 2% 2% 2% 10%">SERVICIOS DE POSVENTA</h1>
+            </div>
+
+        </div>
+        <div id="contratos" class="componenteMenu">
+            <div class="d-flex align-items-center component-div">
+                <h1>Contrataciones de Automóviles Usados</h1>
+                <div class="accordion vh-80 w-75" id="accordionPanelsStayOpenExample" data-bs-theme="dark">
+                    <div class="accordion-item ">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseOne">
+                                CONTRATACIÓN DE AUTOS USADOS
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body ">
+                                <strong>Contratación de Autos Usados.</strong> Corresponde al circuito 5 del
+                                sistema. Redirige al menú de contrataciones de autos usados, que permite: procesar
+                                solicitud de contrato, procesar registro de contrato, procesar contrato firmado
+                            </div>
+                            <a href="/c5" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de
+                                Contratación de Autos Usados</a>
+                        </div>
+
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                aria-controls="panelsStayOpen-collapseTwo">
+                                CIERRE DE CONTRATOS NO EXITOSO
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <strong>Cierre de Contratos no Exitoso.</strong> Corresponde al circuito 8 del sistema.
+                                Redirige al
+                                menu de cierre de contratos no exitosos, que permite: procesar informes de vigencia,
+                                procesar retiro de automóvil usado, procesar entrega del automóvil usado sin vender.
+                            </div>
+                            <a href="/c8" class="btn btn-warning btn-lg btn-block boton-acordeon">Ir al menú de Cierre
+                                de Contratos No Exitosos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="abm" class="d-flex justify-content-center align-items-center" data-bs-theme="dark">
+            <div class="card">
+                <h1 class="card-header"><strong>SECCIÓN DE ABM</strong></h1>
+                <div class="card-body" style="background-color:white;color:black;">
+                    <h5 class="card-title">ALTAS, BAJAS Y MODIFICACIONES</h5>
+                    <p class="card-text">La sección de ABM permite realizar cambios a los datos registrados en forma
+                        asincrónica e independiente a los circuitos principales.</p>
+                    <div style="text-align:center">
+                        <a href="/abm" class="btn btn-primary">Ir al menú principal del ABM</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('partials/footer') %>
+</body>
+
+</html>

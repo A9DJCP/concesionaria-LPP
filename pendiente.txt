@@ -1,0 +1,2 @@
+Queda pendiente ver la ultima parte de Deploy en Heroku (pide metodo de pago):
+https://www.youtube.com/watch?v=OVESuyVoPkI&ab_channel=Fazt
