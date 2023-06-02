@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LLP</title>
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+
+  <%- include('../../partials/navigation') %>
+    <style>
+      @media (min-width: 1000px) {
+        .container {
+          width: 80%;
+
+        }
+      }
+    </style>
+    <!-- Contenido principal -->
+    <div class="container-fluid  h-75" style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+
+
+      <div class="row container mx-auto   pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);"
+        style="width: 60%;">
+        <div class="col-12 col-xl-12">
+          <h3 class="text-center text-light">Accesorios registrados en la consesionaria LPP del automovil ingresado</h3>
+          <div class="caja w-95  border border-light" style="height: 400px;">
+            <p></p>
+          </div>
+        </div>
+
+        <div class="col py-3 ">
+          <div class="col-12 "><a class="btn btn-danger col-12" href="seleccionarReparaciones.html"> Selecionar
+              Reparaciones</a></div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="  py-3" style="background-color: #000000e8;">
+      <div class="container">
+        <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+        </ul>
+        <p class="text-center text-light">© 2022 Company, Inc</p>
+      </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

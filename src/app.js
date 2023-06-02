@@ -3,21 +3,71 @@ import express from "express";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import routes from "./routes/routes.js";
+import authentication from "./routes/authentication.js";
+import links from "./routes/links.js";
+
 //import cors from "cors"; Esto se usa en la api que hicimos con flavio pero no se para que todavia
 
+//IMPORTS DE mysql-nodejs
+import morgan from "morgan";
+import { engine } from "express-handlebars";
+import session from "express-session";
+import validator from "express-validator";
+import passport from "passport";
+import flash from "connect-flash";
+import bodyParser from "body-parser";
+
+import expressMysqlSession from "express-mysql-session";
+const MySQLStore = expressMysqlSession(session);
+
+import { database } from "./keys.js";
+
+// Initializations
 const app = express();
+import * as LibPassport from "./lib/passport.js";
 
-//app.use(cors());
-//app.use(express.json()); Estas dos lineas se usan en la api que hicimos con flavio
-
+//Settings
 const __dirname = dirname(fileURLToPath(import.meta.url)); //Guardo la ruta absoluta de direccion actual
+app.set("port", process.env.PORT || 3000);
 app.set("views", join(__dirname, "views")); //Sirve para decirle a express donde tenemos la carpeta de las vistas.
-//La funcion join concatena __dirname con views usando el operador de path dependiendo del SO donde se ejecute. En windows seria '\'
+
 app.set("view engine", "ejs"); //Sirve para poder añadir logica de programaciond entro del html
 
-app.use(routes); //Le indico a app que utilice las rutas del archivo routes.js
+// Middlewares
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(
+	session({
+		secret: "faztmysqlnodemysql",
+		resave: false,
+		saveUninitialized: false,
+		store: new MySQLStore(database),
+	})
+);
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(validator());
+
+// Global variables
+app.use((req, res, next) => {
+	app.locals.message = req.flash("message");
+	app.locals.success = req.flash("success");
+	app.locals.user = req.user;
+	next();
+});
+
+// Routes
+app.use(routes);
+app.use(authentication);
+app.use("/links", links);
+
+// Public
 app.use(express.static(join(__dirname, "public")));
 
-app.listen(3000);
-
-console.log("Server is listening on port", 3000);
+// Starting
+app.listen(app.get("port"), () => {
+	console.log("Server is in port", app.get("port"));
+});

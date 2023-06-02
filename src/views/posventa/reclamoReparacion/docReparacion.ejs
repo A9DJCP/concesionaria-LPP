@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mi sitio web de autos</title>
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+
+  <%- include('../../partials/navigation') %>
+
+    <style>
+      @media only screen and (min-width: 360px) and (max-width: 768px) {
+
+        .containerFactura {
+          width: 95%;
+        }
+      }
+
+      @media only screen and (min-width: 800px) and (max-width: 2000px) {
+
+        .containerFactura {
+          width: 65%;
+
+        }
+      }
+
+      .containerFactura {
+        background-color: aliceblue;
+        color: black;
+        padding: 10px 20px;
+
+      }
+
+      .containerFactura .row {
+        border: #202020e8 1px solid;
+
+      }
+
+      .row .col-1 h5 {
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        border: #000000e8 1px solid;
+        padding: 10px;
+      }
+    </style>
+
+    <!-- Contenido principal -->
+    <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+      <div class="containerFactura    mx-auto">
+
+        <div class="row   h-100 ">
+          <div class="col-6 col-sm-4 p-1 m-0  col-xl-2  ">
+            <img src="/icon.png" alt="logo" height="100px">
+          </div>
+          <div class="col-6  d-flex justify-content-center flex-column   align-items-center">
+
+            <Strong class="text-center ">LPP consecionaria de autos</Strong>
+          </div>
+          <div class="col-12 col-xl-4   p-1 m-0  d-flex" style="height: 100px;">
+            <div class="col p-1 m-0  border border-dark">
+              <p>Presupuesto reparacion:</p>
+              <hr class=" m-0 bg-dark">
+              <p>NO</p>
+            </div>
+            <div class="col p-1 m-0 border border-dark">
+              <p>Refiere al auto:</p>
+              <hr class="m-0 bg-dark">
+              <p>NO</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row   ">
+          <h4 class="col-12 justify-content-center text-center border border-dark  text-center">Datos de la reparacion
+          </h4> <br>
+          <div class="col-12  col-sm-10 col-xl-11 py-2 ">
+
+            <strong>Fecha de reparacion: <span>_ _ _</span></strong>
+            <br>
+            <strong>Fecha maxima de entrega del automovil reparado: <span>_ _ _</span></strong>
+            <br>
+            <strong>Monto total: $ <span>_ _ _</span></strong>
+
+            <p>Son: <span>_ _ _</span></p>
+          </div>
+        </div>
+
+
+        <div class="row ">
+          <div class="col col-xl-11 py-2 text-center">
+            <p>La reparacion <span>_ _ _ _ _ _ _</span> corresponde al automovil <span>_ _ _ _ _ _ _</span><br> cuyo
+              propetario es el cliente <span>_ _ _ _ _ _ _ _ _ _</span><br>
+              (documento: <span>_ _ _ _ _ _ __ </span>)</p>
+          </div>
+        </div>
+        <div class="row   border-dark border-danger  ">
+          <h4 class="col-12 justify-content-center text-center  border border-dark">Detalle de las reparaciones
+            individuales incluidad</h4>
+
+          <div class="col-6  border border-dark  text-center" style="height: 50px;"> prueba 1 </div>
+          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
+          <div class="col-6  border border-dark  text-center " style="height: 50px;"> prueba 1 </div>
+          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
+          <div class="col-6  border border-dark  text-center " style="height: 50px;"> prueba 1 </div>
+          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
+          <div class="col-6  border border-dark  text-center" style="height: 50px;"> prueba 1 </div>
+          <div class="col-6  border border-dark  text-center " style="height: 50px;">prueba 1</div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="  py-3" style="background-color: #000000e8;">
+      <div class="container">
+        <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+        </ul>
+        <p class="text-center text-light">© 2022 Company, Inc</p>
+      </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

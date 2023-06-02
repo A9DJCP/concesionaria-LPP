@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mi sitio web de autos</title>
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+  <%- include('../../partials/navigation') %>
+
+
+    <!-- Contenido principal -->
+    <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+
+      <div class="row justify-content-center py-5 h-100  ">
+
+        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Procesar solicitud reparacion</h5>
+              <p class="card-text">Procesar solicitud reparacion de automovil 0KM.</p>
+              <a id="continueB1Button" href="/c2/b1/procRep0km" class="btn btn-danger ">Continuar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Procesar accesorios</h5>
+              <p class="card-text">Procesar informe de accesorios.</p>
+              <div class="row row-cols-lg-auto g-3 align-items-center input-group">
+                <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                  placeholder="Código de Fábrica del Automóvil" style="width:40%">
+              </div>
+
+              <a id="continueB2Button" href="/c2/b2/procInfAcces" class="btn btn-danger"
+                style="margin-top:1%">Continuar</a>
+
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Entrega automovil</h5>
+              <p class="card-text">Procesar entrega de automóvil reparado.</p>
+              <a id="continueB3Button" href="entregaAtomovil.html" class="btn btn-danger ">Continuar</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="  py-3" style="background-color: #000000e8;">
+      <div class="container">
+        <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
+          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
+        </ul>
+        <p class="text-center text-light">© 2022 Company, Inc</p>
+      </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
