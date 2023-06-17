@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="encabezado">
+            <h1 id="titulo">LPP Concesionaria de Autos</h1>
+            <img id="logo" src="logo.png" alt="Logo">
+            <button id="pdf">Descargar Recibo</button>
+        </div>
+        <table id="factura">
+            <tr>
+                <th class="espacio"></th>
+                <th class="espacio"></th>
+                <th>Recibo</th>
+            </tr>
+            <tr>
+                <th class="espacio"></th>
+                <td class="espacio"></td>
+                <td><b>No.</b><input type="text"></td>
+            </tr>
+        </table>
+        <table id="fecha">
+            <tr>
+                <th>Fecha de Emisión</th>
+                <td><input type="date"></td>
+                <th class="espacio"></th>
+                <th class="espacio"></th>
+            </tr>
+        </table>
+        <table id="cliente">
+            <tr>
+                <th>He recibido de</th>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <th>Importe</th>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        <table id="condiciones">
+            <tr>
+                <th>En concepto del primer pago a realizar en forma de "seña" del automovil.</th>
+            </tr>
+        </table>
+        <table id="producto">
+            <tr>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Color</th>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+            </tr>
+        </table>
+        <table id="estado">
+            <tr>
+                <th>Estado: Pendiente / Pagado</th>
+            </tr>
+        </table>
+        <table id="compra" cellspacing="15">
+            <tr>
+                <th>O. Compra No.</th>
+                <td><input type="text"></td>
+                <td class="renglon"><input type="text"></td>
+                <td class="texto">de</td>
+                <td class="renglon"><input type="text"></td>
+                <td class="texto">de</td>
+                <td class="renglon"><input type="text"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

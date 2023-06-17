@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reclamos para Automóviles 0 KM</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+  <%- include('../../partials/navigation') %>
+
+
+    <!-- Contenido principal -->
+    <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+
+      <div class="row justify-content-center py-5 h-100  ">
+        <!--BOTON 1-->
+        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Procesar solicitud reparacion</h5>
+              <p class="card-text">Procesar solicitud reparacion de automovil 0KM.</p>
+              <a id="continueB1Button" href="/c2/b1/procRep0km" class="btn btn-danger ">Continuar</a>
+            </div>
+          </div>
+        </div>
+
+        <!--BOTON 2-->
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Procesar accesorios</h5>
+              <p class="card-text">Procesar informe de accesorios.</p>
+              <form action="/c2/b2/procInfAcces" method="GET">
+
+                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                  <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
+                  <input type="text" name="codF" class="form-control" id="codFInput"
+                    placeholder="Código de Fábrica del Automóvil" style="width:40%">
+                </div>
+
+                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="Continuar">
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--BOTON 3-->
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Entrega automovil</h5>
+              <p class="card-text">Procesar entrega de automóvil reparado.</p>
+
+
+
+
+              <form name="myForm" action="/entregaAutomovil" method="post">
+                <div class="form-group row ">
+                  <label for="inputNRep" class="col-sm-6 col-xl-4  col-form-label">Número de documentacion de
+                    reparacion</label>
+                  <div class="col-sm-6 col-xl-8  ">
+                    <input type="number" min="0" name="nRep" class="form-control" id="inputNRep"
+                      placeholder="Número de Documentación de Reparación">
+                  </div>
+                </div>
+
+                <div class="form-group text-center py-4">
+                  <div class="col-sm-12">
+                    <input id="botonNRep" type="submit" class="btn btn-warning mx-2 mt-2" value="Continuar" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <% if (msg!==null) { %>
+      <script>
+        alert('<%= msg %>')
+      </script>
+      <% } %>
+
+
+
+
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+</body>
+
+</html>

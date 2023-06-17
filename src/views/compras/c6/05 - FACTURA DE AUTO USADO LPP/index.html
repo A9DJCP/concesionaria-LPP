@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var n;
+    var responde;
+    var fecha;
+    var nombre;
+    var apellido;
+    var tipoDocumento;
+    var numDocumento;
+    var dirección;
+    var mail;
+    var teléfono;
+    var descripción;
+    var subtotal;
+    var iva;
+    var total;
+
+
+
+    function generarDocumento() {
+
+      n = document.getElementById("n").value;
+      responde = document.getElementById("responde").value;
+      fecha = document.getElementById("fecha").value;
+      nombre = document.getElementById("nombre").value;
+      apellido = document.getElementById("apellido").value;
+      tipoDocumento = document.getElementById("tipoDocumento").value;
+      numDocumento = document.getElementById("numDocumento").value;
+      dirección = document.getElementById("dirección").value;
+      mail = document.getElementById("mail").value;
+      teléfono = document.getElementById("teléfono").value;
+      descripción = document.getElementById("descripción").value;
+      subtotal = document.getElementById("subtotal").value;
+      iva = document.getElementById("iva").value;
+      total = document.getElementById("total").value;
+
+
+      document.write("Factura de Auto Usado N°:" + '&nbsp;' + n + "<br>" + "<br>" + "<br>");
+      document.write("Responde al presuesto de auto usado N°:" + '&nbsp;' + responde + "<br>" + "<br>" + "<br>");
+      document.write("Ciudad y Fecha, CABA:" + '&nbsp;' + ciudadFecha + "<br>" + "<br>");
+      document.write("Nombre: " + '&nbsp;' + nombre + "<br>" + "<br>");
+      document.write("Apellido: " + '&nbsp;' + apellido + "<br>" + "<br>");
+      document.write("Tipo de Documento:" + '&nbsp;' + tipoDocumento + "<br>" + "<br>");
+      document.write("Número de Documento:" + '&nbsp;' + numDocumento + "<br>" + "<br>");
+      document.write("Dirección:" + '&nbsp;' + dirección + "<br>" + "<br>");
+      document.write("Mail:" + '&nbsp;' + mail + "<br>" + "<br>");
+      document.write("Teléfono:" + '&nbsp;' + teléfono + "<br>" + "<br>");
+      document.write("Descripción del producto:" + '&nbsp;' + descripción + "<br>" + "<br>");
+      document.write("Sub total ($): " + '&nbsp;' + subtotal + "<br>" + "<br>");
+      document.write("I.V.A Inscripto_%: " + '&nbsp;' + iva + "<br>" + "<br>");
+      document.write("Total ($): " + '&nbsp;' + total + "<br>" + "<br>");
+
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    input {
+      font-size: 12px;
+      background: rgb(241, 243, 241);
+      border: solid 1px rgb(22, 22, 22);
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      float: right;
+      margin-right: 310px;
+      width: 200px;
+      outline: 1px solid rgb(41, 39, 39);
+    }
+
+    #otroElemento {
+      font-size: 12px;
+      padding-left: 240px;
+    }
+  </style>
+
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      width: auto;
+      border: solid 10px LightSteelBlue;
+      font-size: 15px;
+      padding-left: 15px;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      width: 100%;
+      max-width: 600px;
+
+    }
+
+    input {
+      font-size: 12px;
+      background: rgb(241, 243, 241);
+      border: solid 1px rgb(22, 22, 22);
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      float: right;
+      margin-right: 15px;
+      width: 200px;
+      outline: 1px solid rgb(41, 39, 39);
+    }
+
+    #otroElemento {
+      font-size: 12px;
+      padding-left: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <ol>
+      <div id="otroElemento">
+        <b>
+          Factura de Auto Usado N° <input type="number" name="n" id="n" placeholder="Escribir número aqui..." /><br>
+          <br></b>
+        <b>
+          Responde al presupuesto de auto usado N° <input type="number" name="n" id="n"
+            placeholder="Escribir número aqui..." /><br>
+          <br></b>
+        <b>
+          FECHA <input type="datetime-local" name="fecha" id="fecha" placeholder=" " /><br>
+          <br></b>
+      </div>
+      <ol>
+        <fieldset style="text-align: center;">DATOS DEL CLIENTE</fieldset><br>
+        <div id="otroElemento">
+
+          Nombre <input type="text" name="nombre" id="nombre" placeholder=" " /><br><br>
+          Apellido <input type="text" name="apellido" id="apellido" placeholder=" " /><br><br>
+
+          Tipo de Documento <input type="text" name="tipoDocumento" id="tipoDocumento" placeholder=" " /><br><br>
+          Número de Documento <input type="text" name="numDocumento" id="numDocumento" placeholder=" " /><br><br>
+
+          Dirección <input type="text" name="dirección" id="dirección" placeholder=" " /><br><br>
+
+          Mail <input type="text" name="mail" id="mail" placeholder=" " /><br><br>
+          Teléfono <input type="text" name="teléfono" id="teléfono" placeholder=" " /><br><br>
+        </div>
+
+      </ol>
+
+      <ol>
+        <fieldset style="text-align: center;">Condiciones de venta: PAGO AL CONTADO EN EFECTIVO</fieldset><br>
+
+        <div id="otroElemento">
+          <a><b>Cantidad: 1</b></a><br>
+          Descripción del producto <br><textarea class="textarea" name="descripción" id="" cols="65" rows="2"
+            placeholder=" " pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="349" required></textarea><br><br>
+          Sub total ($) <input type="number" name="subtotal" id="subtotal" placeholder=" " /><br><br>
+          I.V.A Inscripto_% <input type="number" name="iva" id="iva" placeholder=" " /><br><br>
+          Total ($) <input type="number" name="total" id="total" placeholder=" " /><br><br>
+        </div>
+      </ol>
+    </ol>
+  </div>
+  <ol>
+    <div>
+      <input type="button" name="IMPRIMIR" onclick="generarDocumento()" value="IMPRIMIR" />
+    </div>
+  </ol>
+</body>
+
+</html>

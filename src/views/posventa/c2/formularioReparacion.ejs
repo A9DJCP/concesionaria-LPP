@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mi sitio web de autos</title>
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+
+  <%- include('../../partials/navigation') %>
+
+
+
+    <style>
+      @media (min-width: 1000px) {
+        .container {
+          width: 50%;
+        }
+      }
+    </style>
+    <!-- Contenido principal -->
+    <div class="container-fluid h-100 " style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+      <a class="btn btn-danger mx-2 mt-2" href="/c2">Regresar</a>
+
+
+      <div class="col">
+
+        <form name="myForm" action="/verReclamosDisponibles" method="post"
+          class="container mx-auto justify-content-center p-5 text-center mx-auto text-light"
+          style="background-color: rgba(0, 0, 0, 0.671); ">
+          <h1>Datos del automovil</h1>
+          <br>
+          <div class="form-group row ">
+            <label for="inputMatricula3" class="col-sm-6 col-xl-4  col-form-label">Matricula</label>
+            <div class="col-sm-6 col-xl-8  ">
+              <input type="text" name="matricula" class="form-control" id="inputMatricula" placeholder="Matricula">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Marca</label>
+            <div class="col-sm-6 col-xl-8">
+              <input type="text" name="marca" class="form-control" id="inputMarca" placeholder="Marca">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Modelo</label>
+            <div class="col-sm-6 col-xl-8">
+              <input type="text" class="form-control" id="inputModelo" name="modelo" placeholder="Modelo">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input" class="col-sm-6 col-xl-4 col-form-label">Codigo de fabrica</label>
+            <div class="col-sm-6 col-xl-8">
+              <input type="text" class="form-control" id="inputCodF" name="codfabrica" placeholder="Codigo fabrica">
+            </div>
+          </div>
+
+          <br>
+
+          <h1>Datos del seguro</h1>
+          <br>
+          <div class="form-group row">
+            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Numero seguro</label>
+            <div class="col-sm-6 col-xl-8">
+              <input type="text" class="form-control" id="inputNumSeguro" name="numseguro"
+                placeholder="Numero de seguro">
+            </div>
+          </div>
+
+          <div class="form-group text-center py-4">
+            <div class="col-sm-12 ">
+              <input id="botonVerReclamos" type="submit" class="btn btn-warning mx-2 mt-2"
+                value="Ver Reclamos disponibles" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <% if(enable===true) {%>
+
+      <div class="col">
+        <div class="container  py-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
+          <h3 class="text-center text-light">Condiciones de reclamo disponibles para el tipo de seguro</h3>
+          <ol>
+            <% for(let i=0; i<desc.length; i++) {%>
+
+              <li>
+                <%= desc[i] %>
+              </li>
+              <% } %>
+          </ol>
+        </div>
+      </div>
+
+      <div class="col" style="align-items:center; text-align:center;">
+        <div class="container  py-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
+          <form name="myForm" action="/posventa/c2/ingresarAuto" method="post">
+            <input type="submit" class="btn btn-success mx-2 mt-2" value="Registrar ingreso del automóvil para
+            su
+            análisis">
+            </input>
+          </form>
+        </div>
+      </div>
+      <% } %>
+
+        <% if (msg!==null ) { %>
+          <script>
+            alert('<%= msg %>')
+          </script>
+          <% } %>
+            <% if(block===true) {%>
+              <script>
+                var a = document.getElementById('inputMatricula');
+                var b = document.getElementById('inputMarca');
+                var c = document.getElementById('inputModelo');
+                var d = document.getElementById('inputCodF');
+                var e = document.getElementById('inputNumSeguro');
+                var f = document.getElementById('botonVerReclamos');
+                f.disabled = true;
+                a.disabled = true;
+                b.disabled = true;
+                c.disabled = true;
+                d.disabled = true;
+                e.disabled = true;
+                a.value = '<%= matricula %>'
+                b.value = '<%= marca %>'
+                c.value = '<%= modelo %>'
+                d.value = '<%= codF %>'
+                e.value = '<%= numS %>'
+              </script>
+              <% }%>
+
+                <!-- Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                  crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                  crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                  crossorigin="anonymous"></script>
+</body>
+
+</html>

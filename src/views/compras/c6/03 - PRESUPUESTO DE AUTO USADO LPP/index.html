@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var n;
+    var ciudadFecha;
+    var nombre;
+    var apellido;
+    var teléfono;
+    var mail;
+    var tipoDocumento;
+    var numDocumento;
+    var dirección;
+    var marca;
+    var modelo;
+    var precio;
+    var color;
+
+    var tipoDocumentoActual;
+    var numDocumentoActual;
+    var nombreActual;
+    var teléfonoActual;
+    var apellidoActual;
+    var mailActual;
+    var direcciónActual;
+
+
+    var fechaDespacho;
+    var aprobado;
+    var aceptado;
+    var elaborado;
+
+
+
+    function generarDocumento() {
+
+      n = document.getElementById("n").value;
+      ciudadFecha = document.getElementById("ciudadFecha").value;
+      nombre = document.getElementById("nombre").value;
+      apellido = document.getElementById("apellido").value;
+      teléfono = document.getElementById("teléfono").value;
+      mail = document.getElementById("mail").value;
+      tipoDocumento = document.getElementById("tipoDocumento").value;
+      numDocumento = document.getElementById("numDocumento").value;
+      dirección = document.getElementById("dirección").value;
+      marca = document.getElementById("marca").value;
+      modelo = document.getElementById("modelo").value;
+      precio = document.getElementById("precio").value;
+      color = document.getElementById("color").value;
+      tipoDocumentoActual = document.getElementById("tipoDocumentoActual").value;
+      numDocumentoActual = document.getElementById("numDocumentoActual").value;
+      nombreActual = document.getElementById("nombreActual").value;
+      teléfonoActual = document.getElementById("teléfonoActual").value;
+      apellidoActual = document.getElementById("apellidoActual").value;
+      mailActual = document.getElementById("mailActual").value;
+      direcciónActual = document.getElementById("direcciónActual").value;
+
+
+      fechaDespacho = document.getElementById("fechaDespacho").value;
+      aprobado = document.getElementById("aprobado").value;
+      aceptado = document.getElementById("aceptado").value;
+      elaborado = document.getElementById("elaborado").value;
+
+
+      document.write("N°:" + '&nbsp;' + n + "<br>" + "<br>" + "<br>");
+      document.write("Ciudad y Fecha, CABA:" + '&nbsp;' + ciudadFecha + "<br>" + "<br>");
+      document.write("Nombre: " + '&nbsp;' + nombre + "<br>" + "<br>");
+      document.write("Apellido: " + '&nbsp;' + apellido + "<br>" + "<br>");
+      document.write("Teléfono:" + '&nbsp;' + teléfono + "<br>" + "<br>");
+      document.write("Mail:" + '&nbsp;' + mail + "<br>" + "<br>");
+      document.write("Tipo de Documento:" + '&nbsp;' + tipoDocumento + "<br>" + "<br>");
+      document.write("Número de Documento:" + '&nbsp;' + numDocumento + "<br>" + "<br>");
+      document.write("Dirección:" + '&nbsp;' + dirección + "<br>" + "<br>");
+      document.write("MARCA:" + '&nbsp;' + marca + "<br>" + "<br>");
+      document.write("MODELO:" + '&nbsp;' + modelo + "<br>" + "<br>");
+      document.write("PRECIO:" + '&nbsp;' + precio + "<br>" + "<br>");
+      document.write("COLOR:" + '&nbsp;' + color + "<br>" + "<br>");
+      document.write("Tipo de Documento:" + '&nbsp;' + tipoDocumentoActual + "<br>" + "<br>");
+      document.write("Número de Documento:" + '&nbsp;' + numDocumentoActual + "<br>" + "<br>");
+      document.write("Nombre:" + '&nbsp;' + nombreActual + "<br>" + "<br>");
+      document.write("Teléfono:" + '&nbsp;' + teléfonoActual + "<br>" + "<br>");
+      document.write("Apellido:" + '&nbsp;' + apellidoActual + "<br>" + "<br>");
+      document.write("Mail:" + '&nbsp;' + mailActual + "<br>" + "<br>");
+      document.write("Dirección:" + '&nbsp;' + direcciónActual + "<br>" + "<br>");
+
+      document.write("Fecha de despacho:" + '&nbsp;' + fechaDespacho + "<br>" + "<br>");
+      document.write("Aprobado por:" + '&nbsp;' + aprobado + "<br>" + "<br>");
+      document.write("Aceptado:" + '&nbsp;' + aceptado + "<br>" + "<br>");
+      document.write("Elaborado por:" + '&nbsp;' + elaborado + "<br>" + "<br>");
+
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    input {
+      font-size: 12px;
+      background: rgb(241, 243, 241);
+      border: solid 1px rgb(22, 22, 22);
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      float: right;
+      margin-right: 310px;
+      width: 200px;
+      outline: 1px solid rgb(41, 39, 39);
+    }
+
+    #otroElemento {
+      font-size: 12px;
+      padding-left: 240px;
+    }
+  </style>
+
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      width: auto;
+      border: solid 10px LightSteelBlue;
+      font-size: 15px;
+      padding-left: 15px;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      width: 100%;
+      max-width: 600px;
+
+    }
+
+    input {
+      font-size: 12px;
+      background: rgb(241, 243, 241);
+      border: solid 1px rgb(22, 22, 22);
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      float: right;
+      margin-right: 15px;
+      width: 200px;
+      outline: 1px solid rgb(41, 39, 39);
+    }
+
+    #otroElemento {
+      font-size: 12px;
+      padding-left: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <ol>
+      <div id="otroElemento"><b>
+          Presupuesto de Auto Usado N° <input type="number" name="n" id="n" placeholder="Escribir número aqui..." /><br>
+          <br></b>
+      </div>
+      <ol>
+        <fieldset style="text-align: center;">Cliente Comprador</fieldset><br>
+        <div id="otroElemento">
+          Ciudad y Fecha, CABA <input type="datetime-local" name="ciudadFecha" id="ciudadFecha"
+            placeholder=" " /><br><br>
+          Nombre <input type="text" name="nombre" id="nombre" placeholder=" " /><br><br>
+          Apellido <input type="text" name="apellido" id="apellido" placeholder=" " /><br><br>
+          Teléfono <input type="text" name="teléfono" id="teléfono" placeholder=" " /><br><br>
+          Mail <input type="text" name="mail" id="mail" placeholder=" " /><br><br>
+          Tipo de Documento <input type="text" name="tipoDocumento" id="tipoDocumento" placeholder=" " /><br><br>
+          Número de Documento <input type="text" name="numDocumento" id="numDocumento" placeholder=" " /><br><br>
+          Dirección <input type="text" name="dirección" id="dirección" placeholder=" " /><br><br></div>
+      </ol>
+
+      <ol>
+        <fieldset style="text-align: center;">AUTOMÓVIL USADO</fieldset><br>
+        <legend style="text-align: center;">Detalles del automóvil cero kilométros seleccionado para su compra.</legend>
+        <br>
+        <div id="otroElemento">
+          MARCA <input type="text" name="marca" id="marca" placeholder=" " /><br><br>
+          MODELO <input type="text" name="modelo" id="modelo" placeholder=" " /><br><br>
+          PRECIO <input type="text" name="precio" id="precio" placeholder=" " /><br><br>
+          COLOR <input type="text" name="color" id="color" placeholder=" " /><br><br></div>
+        <legend style="text-align: center;">La compra corresponde a 1 (uno) solo automóvil de la marca y modelos
+          especificados. | CANTIDAD:1</legend>
+        <br>
+      </ol>
+
+      <ol>
+        <fieldset style="text-align: left;">Propietario Actual</fieldset><br>
+        <div id="otroElemento">
+          Tipo de Documento <input type="text" name="tipoDocumentoActual" id="tipoDocumentoActual"
+            placeholder=" " /><br><br>
+          Número de Documento <input type="text" name="numDocumentoActual" id="numDocumentoActual"
+            placeholder=" " /><br><br>
+          Nombre <input type="text" name="nombreActual" id="nombreActual" placeholder=" " /><br><br>
+          Teléfono <input type="text" name="teléfonoActual" id="teléfonoActual" placeholder=" " /><br><br>
+          Apellido <input type="text" name="apellidoActual" id="apellidoActual" placeholder=" " /><br><br>
+          Mail <input type="text" name="mailActual" id="mailActual" placeholder=" " /><br><br>
+          Dirección <input type="text" name="direcciónActual" id="direcciónActual" placeholder=" " /><br><br></div>
+      </ol>
+
+      <ol>
+        <fieldset style="text-align: center;">Datos empresa</fieldset><br>
+        <br>
+        <div id="otroElemento">
+          <br><textarea class="textarea" name="Automóviles usados disponibles para su compra" id=""
+            cols="65" rows="2" placeholder=" " pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="349"
+            required>Observaciones</textarea><br><br>
+
+          Fecha de despacho <input type="datetime-local" name="fechaDespacho" id="fechaDespacho" /><br><br>
+          Aprobado por <input type="text" name="aprobado" id="aprobado" placeholder=" " /><br><br>
+          Aceptado <input type="text" name="aceptado" id="aceptado" placeholder=" " /><br><br>
+          Elaborado por <input type="text" name="elaborado" id="elaborado" placeholder=" " /><br><br>
+      </ol>
+
+    </ol>
+  </div>
+  <ol>
+    <div>
+      <input type="button" name="IMPRIMIR" onclick="generarDocumento()" value="IMPRIMIR" />
+    </div>
+  </ol>
+</body>
+
+</html>

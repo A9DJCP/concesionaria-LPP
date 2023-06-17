@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var clientes;
+    var número;
+
+
+    function generarDocumento() {
+
+      clientes = document.getElementById("clientes").value;
+      número = document.getElementById("número").value;
+
+      document.write("Clientes que deben pagar cuotas de sus préstamos:" + '&nbsp;' + clientes + "<br>" + "<br>" + "<br>");
+      document.write("Número de Préstamo Seleccionado:" + '&nbsp;' + número + "<br>" + "<br>");
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      font-size: 12px;
+      padding: 30px;
+      width: 400px;
+      text-align: center;
+      border: solid 10px LightSteelBlue;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      font: bold 15px 'Helvetica';
+      color: #050505;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+  <form>
+    <div id="elemento">
+      <ol>
+        <div style="text-align: center;">
+          <div>Clientes que deben pagar cuotas de sus préstamos
+            <br><br>
+            <textarea class="textarea" name="clientes" id="" cols="40" rows="13" placeholder=" "
+              pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="200" required></textarea>
+          </div><br>
+          <div> Número de Préstamo Seleccionado <input type="number" name="número" id="número" />
+          </div><br>
+          <div>
+            <input type="button" name="IMPRIMIR INFORME" onclick="generarDocumento()" value="IMPRIMIR INFORME" />
+            <input type="button" onclick="history.back()" name="Finalizar impresiones y Regresar al menú"
+              value="Finalizar impresiones y Regresar al menú">
+          </div>
+        </div>
+      </ol>
+    </div>
+  </form>
+</body>
+
+</html>

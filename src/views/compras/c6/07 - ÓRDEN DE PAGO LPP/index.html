@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var n;
+    var clienteCobrador;
+    var doClienteCobrador;
+    var respondeContrato;
+    var fechaEmisión;
+    var fechaVencimiento;
+    var totalACobrar;
+    var fechaCobro;
+
+
+    function generarDocumento() {
+
+      n = document.getElementById("n").value;
+      clienteCobrador = document.getElementById("clienteCobrador").value;
+      doClienteCobrador = document.getElementById("doClienteCobrador").value;
+      respondeContrato = document.getElementById("respondeContrato").value;
+      fechaEmisión = document.getElementById("fechaEmisión").value;
+      fechaVencimiento = document.getElementById("fechaVencimiento").value;
+      totalACobrar = document.getElementById("totalACobrar").value;
+      fechaCobro = document.getElementById("fechaCobro").value;
+
+      document.write("N°:" + '&nbsp;' + n + "<br>" + "<br>" + "<br>");
+      document.write("Cliente Cobrador:" + '&nbsp;' + clienteCobrador + "<br>" + "<br>");
+      document.write("Doc. Cliente Cobrador:" + '&nbsp;' + doClienteCobrador + "<br>" + "<br>");
+      document.write("Responde al contrato:" + '&nbsp;' + respondeContrato + "<br>" + "<br>");
+      document.write("Fecha de Emisión:" + '&nbsp;' + fechaEmisión + "<br>" + "<br>");
+      document.write("Fecha de Vencimiento:" + '&nbsp;' + fechaVencimiento + "<br>" + "<br>" + "<br>");
+      document.write("Total a cobrar:" + '&nbsp;' + totalACobrar + "<br>" + "<br>");
+      document.write("Fecha de cobro:" + '&nbsp;' + fechaCobro + "<br>" + "<br>");
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      font-size: 12px;
+      padding: 30px;
+      width: 400px;
+      border: solid 10px LightSteelBlue;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      font: bold 15px 'Helvetica';
+      color: #050505;
+    }
+
+    #otroElemento {
+      font-size: 20px;
+      padding-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'>LPP Concesionaria de autos</p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <ol>
+      <div>
+        <div id="otroElemento">Órden de Pago.</div>
+        N° <br><input type="number" name="n" id="n" placeholder="Escribir número aqui..." /><br><br>
+        Cliente Cobrador <br><input type="text" name="clienteCobrador" id="clienteCobrador"
+          placeholder="Escribir cliente aqui..." /><br><br>
+        Doc. Cliente Cobrador <br><input type="text" name="doClienteCobrador" id="doClienteCobrador"
+          placeholder="Escribir documento aqui..." /><br><br>
+        Responde al contrato <br><input type="text" name="respondeContrato" id="respondeContrato"
+          placeholder="Escribir aqui..." /><br><br>
+        Fecha de Emisión <br><input type="datetime-local" name="fechaEmisión" id="fechaEmisión" /><br><br>
+        Fecha de Vencimiento <br><input type="datetime-local" name="fechaVencimiento" id="fechaVencimiento" /><br><br>
+        <div id="otroElemento">Condición. Contrato Cerrado con Éxito</div>
+        Total a cobrar <br><input type="number" name="totalACobrar" id="totalACobrar"
+          placeholder="Escribir cantidad aqui..." /><br><br>
+        Fecha de cobro <br><input type="datetime-local" name="fechaCobro" id="fechaCobro" /><br><br>
+      </div>
+    </ol>
+  </div>
+  <ol>
+    <div>
+      <input type="button" name="IMPRIMIR" onclick="generarDocumento()" value="IMPRIMIR" />
+    </div>
+  </ol>
+</body>
+
+</html>

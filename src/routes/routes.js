@@ -24,55 +24,13 @@ router.get("/contact", isLoggedIn, (req, res) =>
 // RUTAS DE MENU PRINCIPAL
 
 router.get("/c2", isLoggedIn, (req, res) =>
-	res.render("./posventa/reclamoReparacion/index")
+	res.render("./posventa/c2/index", { msg: null })
 );
 
-router.get("/c3", (req, res) => res.render("./posventa/VentaAccesorios/index"));
+router.get("/c3", (req, res) => res.render("./posventa/c3/index"));
 
-router.get("/c4", (req, res) =>
-	res.render("./posventa/reparacionesFueraGarantia/index")
-);
+router.get("/c4", (req, res) => res.render("./posventa/c4/index"));
 
 // RUTAS DE SECCION DE POSVENTAS
-
-// RUTAS DE CIRCUITO 2 - RECLAMO REPARACION AUTO 0KM
-
-//BOTON 1
-router.get("/c2/b1/procRep0km", isLoggedIn, (req, res) => {
-	res.render("./posventa/reclamoReparacion/formularioReparacion");
-});
-
-//BOTON 2
-router.get("/c2/b2/procInfAcces", isLoggedIn, async (req, res) => {
-	banderin = False;
-	codigoDeFabrica = req.flash("Ingrese el código de fábrica del automóvil");
-	(sql =
-		"select COUNT(*), A.codA0KM from docauto0km DA, auto0KM A, analisisauto0km AA where AA.codA0KM=A.codA0KM and DA.codDA0KM=A.codDA0KM and estado='Análisis en progreso' and codigodefabrica='"),
-		codigodefabrica,
-		"'";
-	const resultSet = await pool.query(sql);
-	if (rs[0].count == 0) {
-		alert(
-			"El código ingresado es inválido o no corresponde a un automóvil en análisis."
-		);
-	} else {
-		(sql =
-			"update analisisauto0km set estado='Análisis Finalizado' where codA0KM="),
-			rs[0].codA0KM,
-			" and estado='Análisis en progreso'";
-		await pool.query(sql);
-		res.redirect("./posventa/reclamoReparacion/procesarInformeAccesorios");
-	}
-});
-
-router.get("/c2/b2/selecRep", isLoggedIn, (req, res) => {
-	res.redirect("./posventa/reclamoReparacion/seleccionarReparaciones.ejs");
-});
-
-router.get("/c2/b2/impDocRep", isLoggedIn, (req, res) => {
-	res.redirect("./posventa/reclamoReparacion/docReparacion");
-});
-
-//EL BOTON 3 NO REDIRIGE A NUEVAS PAGINAS
 
 export default router;

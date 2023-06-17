@@ -1,0 +1,202 @@
+html {
+    background-image: url(fondo.jpg);
+    background-attachment: fixed;
+    background-position: right center;
+    max-width: 100%;
+    background-repeat: no-repeat;
+    color: black;
+    font-family: monospace, calibri !important;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    font-family: calibri, monospace;
+    border: 0;
+  }
+
+  #submit {
+    text-align: center;
+    display: inline-block;
+    background-color: red;
+    padding: 20px 10px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    min-width: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #submit:hover {
+    transform: scale(0.95); 
+  }
+
+body {
+    font-family: monospace, calibri;
+    text-align: center;
+    margin: 0;
+}
+
+h2 {
+    margin-left: 40px;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background-color: black;
+    color: white;
+    font-family: calibri, monospace;
+}
+
+.logo {
+    position: fixed;
+    width: 100px;
+    top: -10px;
+    left: 30px;
+    margin: -3;
+}
+#title {
+    margin: 0;
+    display: inline-block;
+    margin-top: 25px;
+}
+#footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 25px;
+    color: white;
+    background-color: black;
+    margin: 0;
+    font-family: calibri;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.main-section {
+    width: 70%;
+    margin-right: 10px;
+    margin-top: 120px;
+}
+.main-section h1 {
+    text-align: center;
+}
+.main-section .data-display {
+    width: 100%;
+    height: 360px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    margin: 20px;
+    margin-bottom: 150px;
+}
+.side-section {
+    width: 30%;
+    text-align: center;
+    margin-top: 140px;
+}
+/*.side-section h2 {
+    display: block;
+    margin: 10px;
+    text-align: center;
+}*/
+.side-section .data-display {
+    width: 80%;
+    height: 50px;
+    margin: 10px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+}
+.side-section .payment-methods {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.side-section label {
+    margin-right: 10px;
+}
+.side-section input[type="radio"] {
+    margin-right: 5px;
+}
+.side-section button.cancel-button {
+    width: 140px;
+    height: 70px;
+    padding: 20px;
+    margin: 20px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+    color: white;
+
+}
+.side-section button.order-button {
+    width: 140px;
+    height: 70px;
+    padding: 20px;
+    margin: 20px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: yellow;
+    color: black;
+
+}*/
+
+.side-section button:hover {
+    transform: scale(0.95);
+}
+.side-section button:active {
+    opacity: 0.8;
+}
+
+.copyright {
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 10px;
+}
+p {
+    margin: 0;
+}
+user agent stylesheet
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+#footer {
+    position: relative;
+    margin-top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    padding: 28px;
+    right: 0;
+    text-align: center;
+}
+
+.logo {
+    position: absolute;
+    font-size: 0.5em;
+    width: 100px;
+    margin: -3px;
+    left: 30px;
+    top: -10px;
+    border-radius: 50%;
+    border: 0;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}

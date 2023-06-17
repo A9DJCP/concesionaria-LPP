@@ -1,0 +1,185 @@
+#titulo {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+table[id="orden-retiro"] th,
+table[id="orden-retiro"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 255px;
+}
+
+table[id="poliza"] th,
+table[id="poliza"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 190px;
+}
+
+table[id="objeto"] th,
+table[id="objeto"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 190px;
+}
+
+table[id="contrato"] th,
+table[id="contrato"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 190px;
+}
+
+table[id="seguro"] th,
+table[id="seguro"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 200px;
+}
+
+th {
+    background-color: #e0e0e0;
+}
+
+td {
+    background-color: white;
+}
+
+table[id="orden-retiro"] input {
+    text-indent: 3px;
+    width: 75%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="estado"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="objeto"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="poliza"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="contrato"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="seguro"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="orden-retiro"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="poliza"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="contrato"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="seguro"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    display: block;
+    text-align: center;
+    width: 150px;
+    margin: -20px auto;
+}
+
+#titulo {
+    text-align: center;
+    margin-top: 0px; 
+    margin-bottom: -20px;
+    font-family: calibri, monospace;
+}
+
+.container {
+    background-color: white;
+    margin: 30px auto !important;
+    width: 55%;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#encabezado {
+    margin: 0 auto;
+}
+
+.espacio {
+    visibility: collapse;
+}
+
+
+#pdf {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    margin: 30px auto;
+    font-weight: bold;
+}
+
+
+.espaciado {
+    margin-top: 40px !important;
+    margin-bottom: 30px !important;
+}
+
+@page {
+    size: A4;
+  }
+  
+  .container {
+    width: 210mm; /* Ancho de A4 en mm */
+    height: 297mm; /* Altura de A4 en mm */
+    margin: 0 auto; /* Centra el div horizontalmente */
+    /* Otros estilos según tus necesidades */
+    page-break-after: always;
+  }

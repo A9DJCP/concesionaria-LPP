@@ -2,3 +2,12 @@ body {
     background: #202020;
     color:white;
 }
+
+#gradientBG {
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7413b5+18,5615bf+40,390b83+61,19043a+84,080112+96,080112+96 */
+background: rgb(116,19,181); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(116,19,181,1) 18%, rgba(86,21,191,1) 40%, rgba(57,11,131,1) 61%, rgba(25,4,58,1) 84%, rgba(8,1,18,1) 96%, rgba(8,1,18,1) 96%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(116,19,181,1) 18%,rgba(86,21,191,1) 40%,rgba(57,11,131,1) 61%,rgba(25,4,58,1) 84%,rgba(8,1,18,1) 96%,rgba(8,1,18,1) 96%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(116,19,181,1) 18%,rgba(86,21,191,1) 40%,rgba(57,11,131,1) 61%,rgba(25,4,58,1) 84%,rgba(8,1,18,1) 96%,rgba(8,1,18,1) 96%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7413b5', endColorstr='#080112',GradientType=0 ); /* IE6-9 */
+}

@@ -3,10 +3,12 @@
     margin:1% 1%;
 }
 
+/*
 
+    background-color: #390b83; 
+*/
 .componenteMenu {
     margin:5%;
-    background-color: #390b83; 
     margin:0; 
     width:100%;
     color:rgb(247, 214, 23);
@@ -24,7 +26,7 @@
     font-weight:bold !important;
 }
 
-#posventa{
+#posventas{
     background-color:rgb(25, 4, 58);
 }
 
@@ -33,7 +35,7 @@
    padding:2%;
 }
 
-#contratos{
+#contratoss{
     background-color:rgb(8, 1, 18);
 }
 

@@ -1,0 +1,254 @@
+#titulo {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+table[id="prestamo"] th,
+table[id="prestamo"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 255px;
+}
+
+table[id="fecha"] th,
+table[id="fecha"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 171px;
+}
+
+table[id="cliente"] th,
+table[id="cliente"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 390px;
+}
+
+
+table[id="condiciones"] th,
+table[id="condiciones"] td {
+    border: 2px solid black;
+    text-align: left;
+    margin: 0 auto;
+    width: 600px;
+    background-color: white;
+    border: 0;
+}
+
+table[id="cuotas"] th,
+table[id="cuotas"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 255px;
+}
+
+table[id="estado"] th,
+table[id="estado"] td {
+    border: 2px solid black;
+    text-align: left;
+    margin: 0 auto;
+    width: 600px;
+    border: 0;
+    background-color: white;
+}
+
+table[id="compra"] th,
+table[id="compra"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 86px;
+}
+
+
+th {
+    background-color: #e0e0e0;
+}
+
+td {
+    background-color: white;
+}
+
+table[id="prestamo"] input {
+    text-indent: 3px;
+    width: 75%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="fecha"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="cliente"] input {
+    width: 85%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="condiciones"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="cuotas"] input {
+    margin-left: 5px;
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="estado"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="compra"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="prestamo"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="fecha"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+table[id="cliente"] {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="condiciones"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="cuotas"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="estado"] {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+table[id="compra"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    display: block;
+    text-align: center;
+    width: 150px;
+    margin: -20px auto;
+}
+
+#titulo {
+    text-align: center;
+    margin-top: 0px; 
+    margin-bottom: -20px;
+    font-family: calibri, monospace;
+}
+
+.container {
+    background-color: white;
+    margin: 30px auto !important;
+    width: 55%;
+    padding: 30px;
+    border-radius: 5px;
+    margin-bottom: 30px !important;
+    margin-top: 30px !important;
+}
+
+#encabezado {
+    margin: 0 auto;
+}
+
+#total-2 {
+    font-weight: bold;
+}
+
+.espacio {
+    visibility: collapse;
+}
+
+#cod-barras {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 20%;
+}
+
+#pdf {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    margin: 30px auto;
+    font-weight: bold;
+}
+
+td[class="texto"] {
+    border: 0 !important;
+}
+
+td[class="renglon"] {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 2px solid black !important;
+}
+
+@page {
+    size: A4;
+  }
+  
+  .container {
+    width: 210mm; /* Ancho de A4 en mm */
+    height: 297mm; /* Altura de A4 en mm */
+    margin: 0 auto; /* Centra el div horizontalmente */
+    /* Otros estilos según tus necesidades */
+    page-break-after: always;
+  }

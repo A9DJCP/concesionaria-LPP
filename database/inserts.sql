@@ -1,12 +1,12 @@
 /*INSERTS DE LA BASE DE DATOS CONCESIONARIA LPP*/
 
 insert into persona values
-(1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), /*Esta persona simboliza a nadie. SE usa para el circuito 8 cuando el automóvil usado no se vende, para poder no dejar nulo el codCL*/
+(1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL), /*Esta persona simboliza a nadie. SE usa para el circuito 8 cuando el automovil usado no se vende, para poder no dejar nulo el codCL*/
 ('','DNI','22233152','Ricardo','Garbossa','J.B. Justo 2800','4566-8222','RicardoGarbossa@gamil.com',0),
 ('','PASAPORTE','AJJ222222','Tomas','Petraccaro','A. Alvarez Jonte 3600','3500-2213','TomasPetraccaro@gmail.com',0),
-('','DNI','43000991','Nicolás','Quesada','Segurola 301','4443-4441','NicoQuesada@gmail.com',0),
+('','DNI','43000991','Nicolas','Quesada','Segurola 301','4443-4441','NicoQuesada@gmail.com',0),
 ('','DNI','43000992','Hugo','Fernandez','Segurola 302','4443-4442','HugoHenandez@gmail.com',0),
-('','DNI','43000993','Carlos','López','Segurola 303','4443-4443','CarlosLopez@gmail.com',0),
+('','DNI','43000993','Carlos','Lopez','Segurola 303','4443-4443','CarlosLopez@gmail.com',0),
 ('','DNI','43000994','Maria','Yeno','Segurola 304','4443-4444','MariaYeno@gmail.com',0),
 ('','DNI','33437891','Carlos','Perez','Lope de Vega 1502','4443-4445','calitosp@gmail.com',0),
 ('','DNI','32237890','Carlos','Lasso','A. Alvarez Jonte 2310','4434-4446','carloslasso@gmail.com',0),
@@ -31,7 +31,7 @@ insert into persona values
 ('','DNI','33231890','Sabrina','West',' A. Rivadavia 2153','4434-4465','wests@yahoo.com',0),
 ('','DNI','33237190','Laura','Hernandez','A. Rivadavia 2531','4434-4466','hernandezl@yahoo.com',0),
 ('','DNI','33237810','Laura','Fernandez','Alfredo R. Bufano 2131','4434-4467','fernandezl@yahoo.com',0),
-('','DNI','33237811','Laura','López','Chivilcoy 2135','4434-4468','lopezl@yahoo.com',0),
+('','DNI','33237811','Laura','Lopez','Chivilcoy 2135','4434-4468','lopezl@yahoo.com',0),
 ('','DNI','33232290','Laura','Renti','Chivilcoy 4523','4434-4469','rentil@yahoo.com',0),
 ('','DNI','33237390','Carla','Shudo','Alfredo R. Bufano 3215','4434-4470','shudoc@yahoo.com',0),
 ('','DNI','33537590','Carla','Du Couteau','Chivilcoy 2331','4434-4471','ducouteauc@yahoo.com',0),
@@ -142,7 +142,7 @@ insert into AutoDisponible0km values
 
 insert into FormaPago values
 (400,'Efectivo'),
-(401,'Crédito Prendario');
+(401,'Credito Prendario');
 
 insert into ordendecompra values
 (450,100,300,400,'2019/01/07',true),
@@ -187,8 +187,8 @@ INSERT into ReparacionDisponible VALUES
 /* CARGADA */
 
 insert INTO Accesorio values
-(40001,'Luces Xenón'      ,600 ,20,0),
-(''   ,'Alerón'           ,1000,20,0),
+(40001,'Luces Xenon'      ,600 ,20,0),
+(''   ,'Aleron'           ,1000,20,0),
 (''   ,'Vidrio Polarizado',1000,20,0);
 
 /* CARGADA */
@@ -198,11 +198,11 @@ Insert Into Condicion values
 (5001,'Vidrio Roto'),
 ('','Daños por accidente'),
 ('', 'Robo'),
-('','Daños climático'),
+('','Daños climatico'),
 ('','Daños a terceros'),
 ('','Incendio'),
-('','Daños por árboles o elementos del entorno'),
-('','Daños por Tormenta Eléctrica'),
+('','Daños por arboles o elementos del entorno'),
+('','Daños por Tormenta Electrica'),
 ('','Daños por Granizo'),
 ('','Cualquier tipo de daño de cualquier fuente');
 
@@ -214,16 +214,16 @@ insert into CondicionTipoSeguro VALUES
 
 Insert into Porcentaje VALUES
 (6500,"IVA",21),
-('',"Interes Cuotas Préstamo", 30);
+('',"Interes Cuotas Prestamo", 30);
 
 
 
-/*INSERTS USADOS PARA INGRESAR UN AUTOMÓVIL COMPRADO CON EFECTIVO*/
+/*INSERTS USADOS PARA INGRESAR UN AUTOMoVIL COMPRADO CON EFECTIVO*/
 
 INSERT INTO ordendecompra values ('',100,300,400,curdate(),1);
 INSERT INTO RECIBO VALUES ('',100000,465,curdate(),'PAGADO');
 INSERT INTO DocFabricacion VALUES ('',465,curdate(),DATE_ADD(curdate(), INTERVAL 30 DAY));
-INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Toro','XXX333666J','Doméstico','CCHH333222111',
+INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Toro','XXX333666J','Domestico','CCHH333222111',
 'MMZZ22211100','Ricardo Garbossa','DNI','22233152','J.B. Justo 2800',DATE_ADD(curdate(), INTERVAL 1 YEAR),
  year(curdate()),'Rojo',1,'ZZZKKK888999');
  INSERT INTO Auto0KM VALUES ('',300,curdate(),1,100);
@@ -236,11 +236,11 @@ INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Toro','XXX333666J','Doméstico','CCHH
  ('',1,40003,4,1000);
 INSERT INTO facturaaccesorio VALUES ('',1,curdate(),12584);
  insert into seguro0km values ('',1,1,curdate(),DATE_ADD(curdate(), INTERVAL 2 YEAR),210400,'Vigente');
-/*Para poder usar el automóvil en el circuito de reparaciones fuera de la garantía*/
+/*Para poder usar el automovil en el circuito de reparaciones fuera de la garantia*/
 /*UPDATE Seguro0KM set estado='No Vigente' where codA0KM=1;
 */
 
-/*INSERT DE AUTOS COMPRADOS CON CRÉDITO MOROSOS*/
+/*INSERT DE AUTOS COMPRADOS CON CReDITO MOROSOS*/
 
 INSERT INTO ordendecompra values ('',123,301,401,curdate(),1);
 INSERT INTO ordendecompra values ('',124,302,401,curdate(),1);
@@ -248,10 +248,10 @@ INSERT INTO RECIBO VALUES ('',56000,466,curdate(),'PAGADO');
 INSERT INTO RECIBO VALUES ('',42500,467,curdate(),'PAGADO');
 INSERT INTO DocFabricacion VALUES ('',466,curdate(),DATE_ADD(curdate(), INTERVAL 30 DAY));
 INSERT INTO DocFabricacion VALUES ('',467,curdate(),DATE_ADD(curdate(), INTERVAL 30 DAY));
-INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Cubo','ZZ222KK','Doméstico','CCHH3332223121',
+INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Cubo','ZZ222KK','Domestico','CCHH3332223121',
 'MM22000212','Sabrina Mishagi','DNI','33231890','San Blas 2134',DATE_ADD(curdate(), INTERVAL 1 YEAR),
  year(curdate()),'Azul',2,'XXX222ZZZ');
- INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Siena','XXX333777L','Doméstico','CCHH444222111',
+ INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Siena','XXX333777L','Domestico','CCHH444222111',
 'MMHH22211100','Sabrina Yamada','DNI','33237290','San Blas 6523',DATE_ADD(curdate(), INTERVAL 1 YEAR),
  year(curdate()),'Blanco',3,'RRR999JJJ');
  INSERT INTO Auto0KM VALUES ('',301,curdate(),2,123);
@@ -293,17 +293,17 @@ INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Cubo','ZZ222KK','Doméstico','CCHH333
  
 /*INSERTS DE AUTOS USADOS*/
 INSERT INTO AUTOUSADO VALUES
-('','XXJJ22','Fiat','Toro',200000,"2013/10/20",200,"Doméstico","CHCH222333555","MMMM20001111",0,0,0,'Rojo'),
+('','XXJJ22','Fiat','Toro',200000,"2013/10/20",200,"Domestico","CHCH222333555","MMMM20001111",0,0,0,'Rojo'),
 ('','KKLL33','Fiat','Cubo',150000,"2014/08/18",201,"Laboral","CHCH888999","MMMM200111",0,0,0,'Verde'),
 ('','MSUI56','Ford','Mustang',149999,"2015/12/30",202,"Laboral","CHCH111222","MMMM898976",0,0,0,'Azul'),
 ('','POLO77','Ford','Fiesta',2000000,"2012/05/06",203,"Personal","CHCH123456","MMMM483763",0,0,0,'Amarillo'),
-('','POLN98','Ford','Ecosport',950000,"2017/07/23",204,"Doméstico","CHCH738474","MMMM673829",0,0,0,'Violeta');
+('','POLN98','Ford','Ecosport',950000,"2017/07/23",204,"Domestico","CHCH738474","MMMM673829",0,0,0,'Violeta');
 INSERT INTO CONTRATO VALUES
-('',1,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Típicas de contrato.',20),
-('',2,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Típicas de contrato.',20),
-('',3,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Típicas de contrato.',20),
-('',4,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Típicas de contrato.',20),
-('',5,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Típicas de contrato.',20);
+('',1,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
+('',2,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
+('',3,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
+('',4,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
+('',5,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20);
 
 /*INSERTS DE UN CLIENTE DEUDOR NO MOROSO*/
 

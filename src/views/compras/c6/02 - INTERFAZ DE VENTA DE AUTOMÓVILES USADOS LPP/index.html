@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        });
+    </script>
+    <style>
+        body {
+            background: #e0eeee;
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+        }
+
+        header {
+            display:flex;
+            align-items:center;
+            justify-content: center;
+        }
+
+        #imagen_div,
+        #titles {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .imagen {
+            width: 100px;
+            height: 100px;
+            
+        }
+
+        #títulos {
+            margin: 0% 32px;
+        }
+
+        .título {
+            font: bold 27px 'Helvetica';
+            color: #050505;
+        }
+    </style>
+    <style type="text/css">
+        form#interfaz {
+            margin:auto;
+            background: rgb(231, 233, 231);
+            color: rgb(3, 3, 3);
+            font-size: 12px;
+            padding: 30px;
+            width: 450px;
+            border: solid 10px LightSteelBlue;
+            border-radius: 1px;
+            -webkit-border-radius: 1px;
+            -moz-border-radius: 1px;
+        }
+
+        form#interfaz fieldset {
+            border: none;
+        }
+
+        form#interfaz input {
+            font-size: 12px;
+            background: rgb(241, 243, 241);
+            border: solid 1em rgb(22, 22, 22);
+            border-radius: 3px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            float: right;
+            width: 200px;
+        }
+
+        form#interfaz li {
+            line-height: 25px;
+            list-style: none;
+        }
+
+        form#interfaz [required] {
+            border: solid 1px rgb(150, 140, 140);
+        }
+
+        input:required {
+            outline: 1px solid rgb(41, 39, 39);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id='imagen_div'>
+            <img class='imagen' src="logo LPP Concesionaria.jpg" />
+        </div>
+        <div id="títulos">
+            <p class='título'>LPP Concesionaria de autos</p>
+        </div>
+    </header>
+    <form id="interfaz">
+
+        <fieldset>
+            <li>
+                <label for="Cliente que compra">CLIENTE QUE COMPRA</label>
+                <input id="Cliente que compra" name="Cliente que compra" type="text" placeholder=" " required>
+            </li>
+            <li>
+                <label for="Propietario actual del">PROPIETARIO ACTUAL DEL</label>
+                <input id="Propietario actual del" name="Propietario actual del" type="text"
+                    placeholder="Seleccione un automóvil de la lista de los automóviles disponibles." required>
+            </li>
+            <li>
+                <label for="Automóvil usado a comprar">AUTOMÓVIL USADO A COMPRAR</label>
+                <input id="Automóvil usado a comprar" name="Automóvil usado a comprar" type="text"
+                    placeholder="Seleccione un automóvil de la lista de los automóviles disponibles." required>
+            </li>
+            <div style="text-align:center">
+            <p>
+
+                <label for="Automóviles usados disponibles para su compra">AUTOMÓVILES USADOS DISPONIBLES PARA SU
+                    COMPRA</label>
+                <textarea class="textarea" name="Automóviles usados disponibles para su compra" id="" cols="55" rows="14"
+                    placeholder=" " pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="349" required></textarea>
+            </p>
+        </div>
+        </fieldset>
+        <div style="text-align:center">
+            <button type="submit" value="Cancelar" class="btn">CANCELAR COMPRA</button>
+            <button type="submit" value="Generar" class="btn">Generar Pedido de Auto Usado</button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>

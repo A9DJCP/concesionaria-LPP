@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="logo.png" class="logo">
+            <h1 id="title">Modificar Auto Usado - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Modifica los datos de un auto usado disponible para comprar</p>
+                <p id="description">Auto a modificar:</p>
+                <label for="marca-label" class="marca-label">Busqueda por Marca</label>
+                <input type="text" class="marca" placeholder="Marca del Auto">
+                <div class="pantalla"></div>
+                <div class="part1">
+                    <label for="matricula-label" id="matricula-label">Matricula</label>
+                    <input type="text" id="matricula" placeholder="Matricula del Auto">
+                    <label for="marca-label" class="marca-label">Marca</label>
+                    <input type="text" class="marca" placeholder="Marca del Auto">
+                    <label for="modelo-label" id="modelo-label">Modelo</label>
+                    <input type="text" id="modelo" placeholder="Modelo del Auto">
+                    <label for="precio-label" id="precio-label">Precio</label>
+                    <input type="number" id="precio" placeholder="Precio de Venta">
+                    <label for="codigo-propietario-label" id="codigo-propietario-label">Código Prop.</label>
+                    <input type="text" id="codigo-propietario" placeholder="Código del Propietario">
+                </div>
+                <div class="part2">
+                    <label for="uso-label" id="uso-label">Uso</label>
+                    <input type="text" id="uso" placeholder="Uso del Auto">
+                    <label for="motor-label" id="motor-label">Motor</label>
+                    <input type="text" id="motor" placeholder="Motor del Auto">
+                    <label for="chasis-label" id="chasis-label">Chasis</label>
+                    <input type="text" id="chasis" placeholder="Chasis del Auto">
+                    <label for="fecha-fabricacion-label" id="fecha-fabricacion-label">Fecha de Fabricación</label>
+                    <input type="date" id="fecha-fabricacion">
+                    <label for="color-label" id="color-label">Color</label>
+                    <input type="text" id="color" placeholder="Color del Auto">
+                </div>
+                <div class="part3">
+                    <a class="submit" href="#">Modificar Registro</a>
+                    <a class="submit" href="../../0. Menu ABM/index.html">Regresar</a>
+                    <a class="submit" href="#">Habilitar Edición</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<footer id="footer">
+    <p class="copyright">LPP Concesionario</p>
+    <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+</footer>
+
+</html>

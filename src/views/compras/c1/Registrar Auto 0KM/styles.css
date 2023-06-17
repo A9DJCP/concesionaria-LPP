@@ -1,0 +1,167 @@
+.part1, .part2, .part3 {
+  display: inline-block;
+  margin: 10px 20px;
+}
+
+input[type="date"] {
+  display: block;
+  text-align: center;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: none;
+  padding: 3px 33px;
+  font-size: 14px;
+}
+
+.pantalla {
+  width: 350px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 200px;
+  margin: 10px auto;
+}
+
+#header {
+    background-color: black;
+    top: 0;
+    text-align: center;
+    position: fixed;
+    z-index: 100;
+    color: white;
+    padding: 25px;
+    right: 0;
+    left: 0;
+  }
+  
+  #espaciado {
+   margin-bottom: 150px;
+  }
+  
+  #description {
+    font-size: 15px;
+    margin: 15px;
+    color: white;
+    font-family: monospace, Calibri;
+    font-weight: bold;
+  }
+  
+  label {
+    font-family: monospace;
+  }
+  
+  #marca, #modelo, #matricula, #uso, #chasis, #motor, #num-fabricacion, #anio-fabricacion, #fecha-vencimiento, #titular, #tipo-doc, #doc-titular, #domicilio, #color, #cod-fabrica {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
+  
+  body {
+    margin: 0;
+    background-image:url("fondo.png");
+    background-attachment: fixed;
+    background-position: center center;
+    max-width: 100%;
+    background-repeat: no-repeat;
+  }
+  
+  #title {
+    font-family: Calibri, Sans-Serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  .logo {
+    position: absolute;
+    font-size: 0.5em;
+    width: 100px;
+    margin: -3px;
+    left: 30px;
+    top: -10px;
+    border-radius: 50%;
+    border: 0;
+  }
+  
+  #principal-description {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color:#F9ea6e;
+    font-family: monospace, Calibri;
+  }
+  
+  #survey-form {
+    opacity: 0.8;
+    background-color: black;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 120px;
+    min-width: 250px;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+  }
+  
+  #footer {
+    position: relative;
+    margin-top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    padding: 28px;
+    right: 0;
+    text-align: center;
+  }
+  
+  
+  a:link, a:visited, a:active {
+    text-decoration: none;
+    font-family: calibri, monospace;
+    border: 0;
+  }
+
+  .submit {
+    display: inline-block;
+    background-color: red;
+    padding: 20px 10px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    min-width: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .submit:hover {
+    transform: scale(0.95);
+  }
+  .copyright {
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 10px;
+  }
+  
+  label {
+    color: #F9ea6e;
+    font-weight: bold;
+  }

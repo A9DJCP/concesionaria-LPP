@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var órdenCompra;
+    var fechaEmisión;
+    var recibidoCliente;
+    var conceptoPago;
+
+
+
+    function generarDocumento() {
+
+      órdenCompra = document.getElementById("órdenCompra").value;
+      fechaEmisión = document.getElementById("fechaEmisión").value;
+      recibidoCliente = document.getElementById("recibidoCliente").value;
+      conceptoPago = document.getElementById("conceptoPago").value;
+
+      document.write("Refiere a la órden de compra N°:" + '&nbsp;' + órdenCompra + "<br>" + "<br>" + "<br>");
+      document.write("Fecha de emisión:" + '&nbsp;' + fechaEmisión + "<br>" + "<br>");
+      document.write("He recibido del cliente:" + '&nbsp;' + recibidoCliente + "<br>" + "<br>");
+      document.write("En concepto del pago de la cuota:" + '&nbsp;' + conceptoPago + "<br>" + "<br>");
+
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      font-size: 12px;
+      padding: 30px;
+      width: 400px;
+      border: solid 10px LightSteelBlue;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      font: bold 15px 'Helvetica';
+      color: #050505;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <ol>
+      <div>
+        <div>Refiere a la órden de </div>
+        compra N° <br><input type="text" name="avisoDeuda" id="avisoDeuda" placeholder=" " /><br><br>
+        Fecha de emisión <br><input type="datetime-local" name="fechaEmisión" id="fechaEmisión"
+          placeholder=" " /><br><br>
+        He recibido del cliente <br><input type="text" name="fechaEmisión" id="fechaEmisión" placeholder=" " /><br>
+        <input type="text" name="fechaEmisión" id="fechaEmisión" placeholder=" " /><br><br>
+        <div style="text-align: center;">
+          <textarea class="textarea" name="recibidoCliente" id="" cols="40" rows="3" placeholder=" "
+            pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="90" required>IMPORTE:</textarea>
+        </div><br>
+        <div> En concepto del pago de la cuota: <input type="text" name="conceptoPago" id="conceptoPago" /> del préstamo
+          <input type="text" name="conceptoPago" id="conceptoPago" /> por el cual el cliente compró por préstamo
+          prendario un automóvil 0KM Marca<input type="text" name="conceptoPago" id="conceptoPago" />
+          Modelo <input type="text" name="conceptoPago" id="conceptoPago" />
+          Matrícula <input type="text" name="conceptoPago" id="conceptoPago" />
+
+        </div>
+      </div>
+    </ol>
+  </div>
+  <ol>
+    <div>
+      <input type="button" name="IMPRIMIR" onclick="generarDocumento()" value="IMPRIMIR" />
+    </div>
+  </ol>
+</body>
+
+</html>

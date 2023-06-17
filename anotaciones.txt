@@ -1,0 +1,7 @@
+Implementacion para las alerts
+
+Si deseas una mayor personalización en las alertas, puedes considerar implementar tus propias ventanas emergentes o utilizar bibliotecas de terceros que brinden más opciones de personalización. Algunas de estas bibliotecas populares son:
+
+SweetAlert: https://sweetalert.js.org/
+Toastr: https://codeseven.github.io/toastr/
+Noty: https://ned.im/noty/

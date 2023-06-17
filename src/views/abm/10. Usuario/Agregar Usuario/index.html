@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="logo.png" class="logo">
+            <h1 id="title">Agregar Usuario - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Registra un usuario en el sistema</p>
+                <p id="description">Usuario a cargar:</p>
+                <label for="nickname-label" class="nickname-label">Nick del Usuario</label>
+                <input type="text" class="nickname" placeholder="Nickname del Usuario">
+                <label for="password-label" class="password-label">Contraseña (30 Max.)</label>
+                <input type="password" class="password" placeholder="Contraseña">
+                <label for="password-label" class="password-label">Confirmar Contraseña</label>
+                <input type="password" class="password" placeholder="Contraseña">
+                <div class="contenedor-checkbox">
+                    <div class="contenedor-label">
+                        <label class="pass">Mostrar Contraseña</label><input type="checkbox" class="pass">
+                    </div>
+                </div>
+                <p id="description">Permisos:</p>
+                <div class="contenedor-checkbox">
+                    <div class="contenedor-label">
+                        <label class="permisos"><input type="checkbox" class="permisos"><span>Permisos de Administrador</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="permisos"><input type="checkbox" class="permisos"><span>Permisos de ABM</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="permisos"><input type="checkbox" class="permisos"><span>Permisos de Acceso a los circuitos de
+                                Compras</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="permisos"><input type="checkbox" class="permisos"><span>Permisos de Acceso a los circuitos de
+                                Posventa</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="permisos"><input type="checkbox" class="permisos"><span>Permisos de Acceso a los circuitos de
+                                Contrataciones</span></label>
+                    </div>
+                </div>
+                <div class="botones">
+                    <a class="submit" href="#">Agregar Usuario</a>
+                    <a class="submit" href="../../0. Menu ABM/index.html">Regresar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<footer id="footer">
+    <p class="copyright">LPP Concesionario</p>
+    <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+</footer>
+
+</html>

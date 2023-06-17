@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <script>
+
+    var n;
+    var automóvilRetirar;
+    var matrículAutomóvil;
+    var clienteRetira;
+    var doCliente;
+    var fechaEmisión;
+    var fechaVencimiento;
+    var elAutomóvil;
+    var motivoRetiro;
+    var esteRetiro;
+    var responde;
+
+
+
+    function generarDocumento() {
+
+      n = document.getElementById("n").value;
+      automóvilRetirar = document.getElementById("automóvilRetirar").value;
+      matrículAutomóvil = document.getElementById("matrículAutomóvil").value;
+      clienteRetira = document.getElementById("clienteRetira").value;
+      doCliente = document.getElementById("doCliente").value;
+      fechaEmisión = document.getElementById("fechaEmisión").value;
+      fechaVencimiento = document.getElementById("fechaVencimiento").value;
+      elAutomóvil = document.getElementById("elAutomóvil").value;
+      motivoRetiro = document.getElementById("motivoRetiro").value;
+      esteRetiro = document.getElementById("esteRetiro").value;
+      responde = document.getElementById("responde").value;
+
+      document.write("N°:" + '&nbsp;' + n + "<br>" + "<br>" + "<br>");
+      document.write("Automóvil a Retirar:" + '&nbsp;' + automóvilRetirar + "<br>" + "<br>");
+      document.write("Matrícula automóvil:" + '&nbsp;' + matrículAutomóvil + "<br>" + "<br>");
+      document.write("Cliente que retira:" + '&nbsp;' + clienteRetira + "<br>" + "<br>");
+      document.write("Doc. Cliente:" + '&nbsp;' + doCliente + "<br>" + "<br>");
+      document.write("Fecha de Emisión:" + '&nbsp;' + fechaEmisión + "<br>" + "<br>");
+      document.write("Fecha de Vencimiento:" + '&nbsp;' + fechaVencimiento + "<br>" + "<br>" + "<br>");
+      document.write("El Automóvil fue retirado:" + '&nbsp;' + elAutomóvil + "<br>" + "<br>");
+      document.write("Motivo de Retiro:" + '&nbsp;' + motivoRetiro + "<br>" + "<br>");
+      document.write("Este retiro corresponde al automóvil del contrato número: " + '&nbsp;' + esteRetiro + "<br>" + "<br>");
+      document.write("Responde a la factura de compra de auto usado número: " + '&nbsp;' + responde + "<br>" + "<br>");
+
+      document.write('<button onclick="window.print()">Imprimir Documento</button>');
+
+    }
+
+    function generarDocumento(Imprimir) {
+      window.print()
+    }
+
+  </script>
+
+  <style>
+    body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagen_div,
+    #títulos {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+  <style media="print">
+    #body {
+      background: #e0eeee;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+    }
+
+    #header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .imagen {
+      width: 100px;
+      height: 100px;
+    }
+
+    #títulos {
+      padding-left: 15px;
+    }
+
+    .título {
+      font: bold 27px 'Helvetica';
+      color: #050505;
+    }
+
+    #elemento {
+
+      margin: auto;
+      background: rgb(231, 233, 231);
+      color: rgb(3, 3, 3);
+      font-size: 12px;
+      padding: 30px;
+      width: 400px;
+      border: solid 10px LightSteelBlue;
+      border-radius: 1px;
+      -webkit-border-radius: 1px;
+      -moz-border-radius: 1px;
+      font: bold 15px 'Helvetica';
+      color: #050505;
+    }
+
+    #otroElemento {
+      font-size: 20px;
+      padding-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div id='imagen_div'>
+      <img class='imagen' src="logo LPP Concesionaria.jpg" />
+    </div>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <ol>
+      <div>
+        <div>Órden de Pago.</div>
+        N° <br><input type="number" name="n" id="n" placeholder="Escribir número aqui..." /><br><br>
+        Automóvil a Retirar <br><input type="text" name="automóvilRetirar" id="automóvilRetirar"
+          placeholder="Escribir automóvil aqui..." /><br><br>
+        Matrícula Automóvil <br><input type="text" name="matrículAutomóvil" id="matrículAutomóvil"
+          placeholder="Escribir matrícula aqui..." /><br><br>
+        Cliente que retira <br><input type="text" name="clienteRetira" id="clienteRetira"
+          placeholder="Escribir aqui..." /><br><br>
+        Doc. Cliente <br><input type="text" name="doCliente" id="doCliente" placeholder="Escribir aqui..." /><br><br>
+        Fecha de Emisión <br><input type="datetime-local" name="fechaEmisión" id="fechaEmisión" /><br><br>
+        Fecha de Vencimiento <br><input type="datetime-local" name="fechaVencimiento" id="fechaVencimiento" /><br><br>
+        El automovil fue retirado <br><br>
+        <ul>
+          <li>
+            <label for="si">
+              <input type="radio" id="si" name="decido" value="K">
+              SI
+            </label>
+          </li>
+          <li>
+            <label for="no">
+              <input type="radio" id="no" name="decido" value="Q">
+              NO
+            </label>
+          </li>
+        </ul><br>
+        Motivo de Retiro <br><input type="text" name="motivoRetiro" id="motivoRetiro"
+          placeholder="Escribir aqui..." /><br><br>
+        <div id="otroElemento">Este retiro
+          <div>corresponde al</div>
+          <div>automóvil del</div>
+          <div>contrato número: <br><input type="text" name="esteRetiro" id="esteRetiro" /></br></br></div>
+        </div>
+
+        <div id="otroElemento">Responde a la
+          <div>factura de </div>
+          <div>compra de auto </div>
+          <div>usado número: <br><input type="text" name="responde" id="responde" /></br></br></div>
+        </div>
+      </div>
+    </ol>
+  </div>
+  <ol>
+    <div>
+      <input type="button" name="IMPRIMIR" onclick="generarDocumento()" value="IMPRIMIR" />
+    </div>
+  </ol>
+</body>
+
+</html>

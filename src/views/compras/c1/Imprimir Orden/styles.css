@@ -1,0 +1,311 @@
+#titulo {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+table[id="orden-retiro"] th,
+table[id="orden-retiro"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 255px;
+}
+
+table[id="fecha"] th,
+table[id="fecha"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 171px;
+}
+
+table[id="auto"] th,
+table[id="auto"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 400px;
+}
+
+
+table[id="condiciones"] th,
+table[id="condiciones"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 390px;
+    background-color: white;
+    font-weight: bold;
+}
+
+table[id="producto"] th,
+table[id="producto"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 171px;
+}
+
+table[id="estado"] th,
+table[id="estado"] td {
+    border: 2px solid black;
+    text-align: left;
+    margin: 0 auto;
+    width: 600px;
+    border: 0;
+    background-color: white;
+}
+
+table[id="compra"] th,
+table[id="compra"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 86px;
+}
+
+table[id="orden-nro"] th,
+table[id="orden-nro"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 350px;
+}
+
+table[id="condiciones-2"] th,
+table[id="condiciones-2"] td {
+    border: 2px solid black;
+    text-align: center;
+    margin: 0 auto;
+    width: 800px;
+    background-color: white;
+    font-weight: bold;
+}
+
+th {
+    background-color: #e0e0e0;
+}
+
+td {
+    background-color: white;
+}
+
+table[id="orden-retiro"] input {
+    text-indent: 3px;
+    width: 75%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="fecha"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="auto"] input {
+    width: 85%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="condiciones"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="producto"] input {
+    margin-left: 5px;
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="estado"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="compra"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="orden-nro"] input {
+    width: 60%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+table[id="condiciones-2"] input {
+    width: 82%;
+    border: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+
+table[id="orden-retiro"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="fecha"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+table[id="auto"] {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="condiciones"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="producto"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="estado"] {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+table[id="compra"] {
+    margin: 30px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="orden-nro"] {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+table[id="condiciones-2"] {
+    width: 100%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    display: block;
+    text-align: center;
+    width: 150px;
+    margin: -20px auto;
+}
+
+#titulo {
+    text-align: center;
+    margin-top: 0px; 
+    margin-bottom: -20px;
+    font-family: calibri, monospace;
+}
+
+.container {
+    background-color: white;
+    margin: 30px auto !important;
+    width: 55%;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#encabezado {
+    margin: 0 auto;
+}
+
+#total-2 {
+    font-weight: bold;
+}
+
+.espacio {
+    visibility: collapse;
+}
+
+#cod-barras {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    width: 20%;
+}
+
+#pdf {
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 5px;
+    display: block;
+    margin: 30px auto;
+    font-weight: bold;
+}
+
+td[class="texto"] {
+    border: 0 !important;
+}
+
+td[class="renglon"] {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 2px solid black !important;
+}
+
+.ciudad {
+    text-indent: 5px;
+}
+
+.espaciado {
+    margin-top: 40px !important;
+    margin-bottom: 30px !important;
+}
+
+.firma td{
+    width: 600px !important;
+}
+
+@page {
+    size: A4;
+  }
+  
+  .container {
+    width: 210mm; /* Ancho de A4 en mm */
+    height: 297mm; /* Altura de A4 en mm */
+    margin: 0 auto; /* Centra el div horizontalmente */
+    /* Otros estilos según tus necesidades */
+    page-break-after: always;
+  }
