@@ -44,7 +44,7 @@
             <div class="card-body">
               <h5 class="card-title">Procesar accesorios</h5>
               <p class="card-text">Procesar informe de accesorios.</p>
-              <form action="/c2/b2/procInfAcces" method="GET">
+              <form name="myForm" action="/c2/b2/procInfAcces" method="POST">
 
                 <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
                   <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
@@ -94,7 +94,7 @@
     </div>
 
 
-    <% if (msg!==null) { %>
+    <% if (typeof msg !=='undefined' ) { %>
       <script>
         alert('<%= msg %>')
       </script>

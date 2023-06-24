@@ -1,106 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mi sitio web de autos</title>
   <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
- 
+
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+
 </head>
+
 <body>
+  <%- include('../../partials/navigation') %>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #000000e8;">
-    <a class="navbar-brand" href="#"><img src="/icon.png" alt="" srcset="" height="50px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Autos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contacto</a>
-        </li>
-      </ul>
+    <!-- Contenido principal -->
+    <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;">
+
+
+      <div class="row justify-content-center py-5 h-100  ">
+        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+          <div class="card text-center  text-light" style="  background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Accesorios</h5>
+              <p class="card-text">Procesar solicitud de agregado de accesorio.</p>
+              <form name="myForm" action="/consultarAccesorios" method="POST">
+
+                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                  <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
+                  <input type="text" name="codF" class="form-control" id="codFInput"
+                    placeholder="Código de Fábrica del Automóvil" style="width:40%">
+                </div>
+
+                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="Continuar">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Aceptar presupuesto</h5>
+              <p class="card-text">Procesar aceptacion de presupuesto.</p>
+              <form name="myForm" action="/c3/b2/registrarPresupuesto" method="POST">
+                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                  <div class="input-group-text w-50">Ingrese el número de presupuesto</div>
+                  <input type="text" name="codPAA" class="form-control" id="codFInput"
+                    placeholder="Número de Presupuesto" style="width:40%">
+                </div>
+
+                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="Continuar">
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Cobro de la instalacion</h5>
+              <p class="card-text">Procesar cobro de la instalacion.</p>
+              <form name="myForm" action="/imprimirFacturaAccesorio" method="POST">
+                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                  <div class="input-group-text w-50">Ingrese el número del presupuesto aceptado</div>
+                  <input type="text" name="codPAA" class="form-control" id="codFInput"
+                    placeholder="Número de Presupuesto" style="width:40%">
+                </div>
+
+                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="Continuar">
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-8 col-xl-5 m-4 mt-5">
+          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+            <div class="card-body">
+              <h5 class="card-title">Entrega automovil</h5>
+              <p class="card-text">Procesar entrega.</p>
+              <form name="myForm" action="/c3/b4/registrarSalidaAutomovil" method="POST">
+                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                  <div class="input-group-text w-50">Ingrese el número de la factura (del presupuesto pagado del
+                    automóvil a retirar).</div>
+                  <input type="text" name="codFACC" class="form-control" id="codFInput" placeholder="Número de factura"
+                    style="width:40%">
+                </div>
+                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="Continuar">
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </nav>
 
 
- <!-- Contenido principal -->
- <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center;">
- 
 
-    <div class="row justify-content-center py-5 h-100  ">
-      <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3" >
-        <div class="card text-center  text-light"  style="  background-color: rgba(0, 0, 0, 0.603);">
-          <div class="card-body">
-            <h5 class="card-title">Accesorios</h5>
-            <p class="card-text">Procesar solicitud de agregado de accesorio.</p>
-            <a href="selectAccesorio.html" class="btn btn-danger ">Continuar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3" >
-        <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-          <div class="card-body">
-            <h5 class="card-title">Aceptar presupuesto</h5>
-            <p class="card-text">Procesar aceptacion de presupuesto.</p>
-            <a href="aceptacionPresupuesto.html" class="btn btn-danger ">Continuar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-8 col-xl-5 m-4 mt-5" >
-        <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-          <div class="card-body">
-            <h5 class="card-title">Cobro de la instalacion</h5>
-            <p class="card-text">Procesar cobro de la instalacion.</p>
-            <a href="cobroinstalacion.html" class="btn btn-danger ">Continuar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-8 col-xl-5 m-4 mt-5" >
-        <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-          <div class="card-body">
-            <h5 class="card-title">Entrega automovil</h5>
-            <p class="card-text">Procesar entrega.</p>
-            <a href="entregaAtomovil.html" class="btn btn-danger ">Continuar</a>
-          </div>
-        </div>
-      </div>
 
-    </div>
-
-  </div>
-  
- 
-  
-<!-- Footer -->
-<footer class="  py-3" style="background-color: #000000e8;">
-  <div class="container">
-    <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
-    </ul>
-    <p class="text-center text-light">© 2022 Company, Inc</p>
-  </div>
-</footer>
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 </body>
+
 </html>

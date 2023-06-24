@@ -19,6 +19,10 @@ import routes from "./routes/routes.js";
 import routesc2b1 from "./routes/c2/b1.js";
 import routesc2b2 from "./routes/c2/b2.js";
 import routesc2b3 from "./routes/c2/b3.js";
+import routesc3b1 from "./routes/c3/b1.js";
+import routesc3b2 from "./routes/c3/b2.js";
+import routesc3b3 from "./routes/c3/b3.js";
+import routesc3b4 from "./routes/c3/b4.js";
 
 import expressMysqlSession from "express-mysql-session";
 const MySQLStore = expressMysqlSession(session);
@@ -67,10 +71,10 @@ app.use(routesc2b1);
 app.use(routesc2b2);
 app.use(routesc2b3);
 //c3
-//app.use(routesc3b1);
-//app.use(routesc3b2);
-//app.use(routesc3b3);
-//app.use(routesc3b4);
+app.use(routesc3b1);
+app.use(routesc3b2);
+app.use(routesc3b3);
+app.use(routesc3b4);
 
 // Global variables
 app.use((req, res, next) => {

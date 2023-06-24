@@ -196,18 +196,18 @@ insert INTO Accesorio values
 
 Insert Into Condicion values
 (5001,'Vidrio Roto'),
-('','Daños por accidente'),
+('','Perjuicio por accidente'),
 ('', 'Robo'),
-('','Daños climatico'),
-('','Daños a terceros'),
+('','Perjuicio climatico'),
+('','Perjuicio a terceros'),
 ('','Incendio'),
-('','Daños por arboles o elementos del entorno'),
-('','Daños por Tormenta Electrica'),
-('','Daños por Granizo'),
-('','Cualquier tipo de daño de cualquier fuente');
+('','Perjuicio por arboles o elementos del entorno'),
+('','Perjuicio por Tormenta Electrica'),
+('','Perjuicio por Granizo'),
+('','Cualquier tipo de perjuicio de cualquier fuente');
 
 insert into tiposeguro values
-('',"Seguro Ante Todo Riesgo",'este seguro cubre todos los tipos de riesgo y asegura todos los daños de cualquier fuente.');
+('',"Seguro Ante Todo Riesgo",'este seguro cubre todos los tipos de riesgo y asegura todos los perjuicio de cualquier fuente.');
 
 insert into CondicionTipoSeguro VALUES 
 ('',5010,1);

@@ -14,6 +14,7 @@
 
   <!-- Activa el dark mode-->
   <%- include('../../partials/head') %>
+    <script src="selecRep.js"></script>
 </head>
 
 <body>
@@ -23,8 +24,23 @@
       @media (min-width: 1000px) {
         .container {
           width: 80%;
-
         }
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      h2 {
+        margin-top: 30px;
       }
     </style>
     <!-- Contenido principal -->
@@ -36,22 +52,75 @@
 
 
       <div class="row container mx-auto  pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
+
+
+        <style>
+          .button-cell {
+            text-align: right;
+            padding-right: 10px;
+          }
+
+          .button-cell button {
+            margin-left: auto;
+          }
+        </style>
+
         <div class="col-12 col-xl-6">
-          <h3 class="text-center text-light">Reparaciones disponibles</h3>
-          <div class="caja w-95  border border-light" style="height: 400px;">
-            <p></p>
-          </div>
+          <h3 class="text-center text-light">Reparaciones Disponibles</h3>
+          <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codRDISP</th>
+              <th>nombre</th>
+              <th>Precio Unitario</th>
+              <th>Detalles</th>
+              <th>Accion</th>
+            </tr>
+
+            <% for(let i=0; i<reparaciones.length; i++) {%>
+              <tr click="selecRep">
+                <td>
+                  <%= reparaciones[i].codRDISP %>
+                </td>
+                <td>
+                  <%= reparaciones[i].nombre %>
+                </td>
+                <td>
+                  <%= reparaciones[i].PU %>
+                </td>
+                <td>
+                  <%= reparaciones[i].detalles %>
+                </td>
+                <td class="button-cell">
+                  <button onclick="addRep('<%= i %>')">Añadir</button>
+                </td>
+              </tr>
+              <% } %>
+          </table>
         </div>
-        <div class="col-12 col-xl-6 ">
-          <h3 class="text-center text-light">Reparaciones seleccionadas</h3>
-          <div class="caja w-95  border border-light" style="height: 400px;">
-            <p></p>
-          </div>
+
+        <div class="col-12 col-xl-6">
+          <h3 class="text-center text-light">Reparaciones Seleccionadas</h3>
+          <table id="tabla-seleccionadas" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codRDISP</th>
+              <th>nombre</th>
+              <th>Precio Unitario</th>
+              <th>Detalles</th>
+            </tr>
+          </table>
         </div>
+
+
+
 
         <div class="col">
           <div class="row py-3  mx-auto d-flex justify-content-center  align-items-center">
-            <div class="btn btn-danger col-9 col-xl-2 mx-3 my-2">Añadir reparacion</div>
+            <div class="col-9">
+              <label for="codRDISP">CodRDISP:</label>
+              <input type="number" min="0" id="codRDISP" name="codRDISP" placeholder="Ingrese el codRDISP...">
+            </div>
+
+            <div class="btn btn-danger col-9  col-xl-2 mx-3">Añadir reparacion</div>
             <div class="btn btn-danger col-9  col-xl-2 mx-3">Eliminar reparacion</div>
             <div
               class=" text-light col-9   d-flex align-items-center justify-content-center pt-3  p-0 text-center  col-xl-3 border-bottom border-light  mx-3"
@@ -62,6 +131,9 @@
             <div class="btn btn-danger col-9 mt-2 col-xl-2  mx-3">Continuar</div>
           </div>
         </div>
+
+
+
       </div>
 
 
@@ -69,19 +141,6 @@
 
 
 
-    <!-- Footer -->
-    <footer class="  py-3" style="background-color: #000000e8;">
-      <div class="container">
-        <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
-        </ul>
-        <p class="text-center text-light">© 2022 Company, Inc</p>
-      </div>
-    </footer>
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

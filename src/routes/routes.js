@@ -23,13 +23,11 @@ router.get("/contact", isLoggedIn, (req, res) =>
 
 // RUTAS DE MENU PRINCIPAL
 
-router.get("/c2", isLoggedIn, (req, res) =>
-	res.render("./posventa/c2/index", { msg: null })
-);
+router.get("/c2", isLoggedIn, (req, res) => res.render("./posventa/c2/index"));
 
-router.get("/c3", (req, res) => res.render("./posventa/c3/index"));
+router.get("/c3", isLoggedIn, (req, res) => res.render("./posventa/c3/index"));
 
-router.get("/c4", (req, res) => res.render("./posventa/c4/index"));
+router.get("/c4", isLoggedIn, (req, res) => res.render("./posventa/c4/index"));
 
 // RUTAS DE SECCION DE POSVENTAS
 
