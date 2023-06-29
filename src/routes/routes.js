@@ -23,6 +23,8 @@ router.get("/contact", isLoggedIn, (req, res) =>
 
 // RUTAS DE MENU PRINCIPAL
 
+router.get("/c1", isLoggedIn, (req, res) => res.render("./compras/c1/index"));
+
 router.get("/c2", isLoggedIn, (req, res) => res.render("./posventa/c2/index"));
 
 router.get("/c3", isLoggedIn, (req, res) => res.render("./posventa/c3/index"));

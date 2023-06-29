@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/c1/menu.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/c1/menu/popup.js"></script>
+
+    <!--Activa el Dark Mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <% if (typeof msg !=='undefined' ) { %>
+        <h1>msg</h1>
+        <script>
+            alert('<%= msg %>')
+        </script>
+        <% } %>
+
+            <%- include('../../partials/navigation') %>
+                <div class="container">
+                    <div id="espaciado"></div>
+                    <div class="margin">
+                        <form id="survey-form" required>
+                            <p id="principal-description">Accede a las secciones relacionadas a la compra de
+                                autos
+                                0KM:
+                            </p>
+                            <p id="description">Secciones - Auto 0KM</p>
+                            <div class="bloque-1">
+                                <a class="submit procesar-solicitud-compra"
+                                    href="../Verificar Cliente parte 1/index.html">Procesar
+                                    Solicitud
+                                    de Compra de Automovil 0KM</a>
+                            </div>
+                            <div class="bloque-2">
+                                <a href="#" id="openModal" class="submit aceptar-orden-compra">Procesar
+                                    Aceptación
+                                    de
+                                    Orden
+                                    de
+                                    Compra</a>
+                                <a href="#" id="openModal2" class="submit procesar-pago-senia">Procesar Pago de
+                                    Seña
+                                    (Recibo)</a>
+                            </div>
+                            <div class="bloque-1">
+                                <a class="submit procesar-pedido-proceso"
+                                    href="../Registro Doc de Fabricación/index.html">Procesar
+                                    Pedido en Proceso (Registro de
+                                    Documentación de Fabricación)</a>
+                            </div>
+                            <div class="bloque-2">
+                                <a class="submit procesar-recepcion-auto"
+                                    href="../Registrar Auto 0KM/index.html">Procesar
+                                    Recepción
+                                    de Automovil 0KM</a>
+                                <a href="#" id="openModal3" class="submit procesar-plan-pago">Procesar Plan de
+                                    Pago</a>
+                            </div>
+                            <div class="bloque-2">
+                                <a href="#" id="openModal4" class="submit procesar-orden-retiro">Procesar Orden
+                                    de
+                                    Retiro</a>
+                                <a href="#" id="openModal5" class="submit procesar-confeccion-seguro">Procesar
+                                    Confección de
+                                    Seguro</a>
+                            </div>
+                            <a class="submit" href="#">Regresar</a>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="modal-message"></h3>
+                        <input type="text" id="inputValue">
+                        <br>
+                        <button id="acceptBtn">Aceptar</button>
+                        <button id="cancelBtn">Cancelar</button>
+                    </div>
+                </div>
+
+                <footer id="footer">
+                    <p class="copyright">L.P.P Concesionaria</p>
+                    <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+                </footer>
+</body>
+</body>
+
+</html>

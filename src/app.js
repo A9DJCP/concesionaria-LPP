@@ -15,10 +15,20 @@ import "./lib/passport.js";
 
 //Import Routes
 import routes from "./routes/routes.js";
+//c1
+import routesc1b1 from "./routes/c1/b1.js";
+import routesc1b2 from "./routes/c1/b2.js";
+import routesc1b3 from "./routes/c1/b3.js";
+import routesc1b4 from "./routes/c1/b4.js";
+import routesc1b5 from "./routes/c1/b5.js";
+import routesc1b6 from "./routes/c1/b6.js";
+import routesc1b7 from "./routes/c1/b7.js";
+import routesc1b8 from "./routes/c1/b8.js";
 //c2
 import routesc2b1 from "./routes/c2/b1.js";
 import routesc2b2 from "./routes/c2/b2.js";
 import routesc2b3 from "./routes/c2/b3.js";
+//c3
 import routesc3b1 from "./routes/c3/b1.js";
 import routesc3b2 from "./routes/c3/b2.js";
 import routesc3b3 from "./routes/c3/b3.js";
@@ -65,6 +75,14 @@ app.use(authentication);
 app.use("/links", links);
 
 //c1
+app.use(routesc1b1);
+app.use(routesc1b2);
+app.use(routesc1b3);
+app.use(routesc1b4);
+app.use(routesc1b5);
+app.use(routesc1b6);
+app.use(routesc1b7);
+app.use(routesc1b8);
 
 //c2
 app.use(routesc2b1);

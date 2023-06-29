@@ -1,5 +1,5 @@
 html {
-    background-image: url(fondo.jpg);
+    background-image: url(/img/fondo.jpg);
     background-attachment: fixed;
     background-position: right center;
     max-width: 100%;
@@ -52,13 +52,6 @@ h2 {
     font-family: calibri, monospace;
 }
 
-.logo {
-    position: fixed;
-    width: 100px;
-    top: -10px;
-    left: 30px;
-    margin: -3;
-}
 #title {
     margin: 0;
     display: inline-block;

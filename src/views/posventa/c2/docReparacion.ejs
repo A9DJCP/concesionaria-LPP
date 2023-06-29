@@ -64,24 +64,28 @@
 
       <div class="containerFactura    mx-auto">
 
-        <div class="row   h-100 ">
-          <div class="col-6 col-sm-4 p-1 m-0  col-xl-2  ">
-            <img src="/icon.png" alt="logo" height="100px">
+        <div class="row h-100">
+          <div class="col-6 col-sm-4 p-1 m-0  col-xl-2">
+            <div style="display: flex;">
+              <img src="/img/logo.png" alt="logo" height="100px">
+              <img src="/img/logoLPP.png" alt="logo" height="100px">
+            </div>
           </div>
           <div class="col-6  d-flex justify-content-center flex-column   align-items-center">
-
             <Strong class="text-center ">LPP consecionaria de autos</Strong>
           </div>
           <div class="col-12 col-xl-4   p-1 m-0  d-flex" style="height: 100px;">
             <div class="col p-1 m-0  border border-dark">
               <p>Presupuesto reparacion:</p>
               <hr class=" m-0 bg-dark">
-              <p>NO</p>
+              <p>NO <%=data.codDR%>
+              </p>
             </div>
             <div class="col p-1 m-0 border border-dark">
               <p>Refiere al auto:</p>
               <hr class="m-0 bg-dark">
-              <p>NO</p>
+              <p>NO <%= data.codA %>
+              </p>
             </div>
           </div>
         </div>
@@ -91,55 +95,73 @@
           </h4> <br>
           <div class="col-12  col-sm-10 col-xl-11 py-2 ">
 
-            <strong>Fecha de reparacion: <span>_ _ _</span></strong>
+            <strong>Fecha de reparacion:</strong> <span>
+              <%=data.fechaHoy%>
+            </span>
             <br>
-            <strong>Fecha maxima de entrega del automovil reparado: <span>_ _ _</span></strong>
+            <strong>Fecha maxima de entrega del automovil reparado:</strong> <span>
+              <%= data.fechaMax %>
+            </span>
             <br>
-            <strong>Monto total: $ <span>_ _ _</span></strong>
+            <strong>Monto total: $</strong> <span>
+              <%=data.monto%>
+            </span>
 
-            <p>Son: <span>_ _ _</span></p>
+            <p>Son: <span>
+                <%=data.montoLetras%>
+              </span></p>
           </div>
         </div>
 
 
         <div class="row ">
           <div class="col col-xl-11 py-2 text-center">
-            <p>La reparacion <span>_ _ _ _ _ _ _</span> corresponde al automovil <span>_ _ _ _ _ _ _</span><br> cuyo
-              propetario es el cliente <span>_ _ _ _ _ _ _ _ _ _</span><br>
-              (documento: <span>_ _ _ _ _ _ __ </span>)</p>
+            <p>La reparacion <span>
+                <%=data.codDR%>
+              </span> corresponde al automovil <span>
+                <%=data.lblAuto%>
+              </span><br> cuyo
+              propetario es el cliente <span>
+                <%=data.lblCliente%>
+              </span><br>
+              (documento: <span>
+                <%= data.lblDoc%>
+              </span>)</p>
           </div>
         </div>
         <div class="row   border-dark border-danger  ">
-          <h4 class="col-12 justify-content-center text-center  border border-dark">Detalle de las reparaciones
-            individuales incluidad</h4>
+          <h4 class="col-12 justify-content-center text-center  border border-dark">Detalle de las Reparaciones
+            Individuales Incluidas</h4>
 
-          <div class="col-6  border border-dark  text-center" style="height: 50px;"> prueba 1 </div>
-          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
-          <div class="col-6  border border-dark  text-center " style="height: 50px;"> prueba 1 </div>
-          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
-          <div class="col-6  border border-dark  text-center " style="height: 50px;"> prueba 1 </div>
-          <div class="col-6  border border-dark  text-center" style="height: 50px;">prueba 1</div>
-          <div class="col-6  border border-dark  text-center" style="height: 50px;"> prueba 1 </div>
-          <div class="col-6  border border-dark  text-center " style="height: 50px;">prueba 1</div>
-
+          <% for (let i=0; i < data.reparaciones.length; i++) { %>
+            <div class="col-6  border border-dark  text-center" style="height: 50px;">
+              <%=data.reparaciones[i].nombre%>
+            </div>
+            <% } %>
         </div>
       </div>
 
     </div>
 
-    <!-- Footer -->
-    <footer class="  py-3" style="background-color: #000000e8;">
-      <div class="container">
-        <ul class="nav justify-content-center  border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light ">Home</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Features</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">Pricing</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">FAQs</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-light">About</a></li>
-        </ul>
-        <p class="text-center text-light">© 2022 Company, Inc</p>
-      </div>
-    </footer>
+    <div style="text-align: center;">
+      <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+      <a href="/c2" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+    </div>
+    <script>
+      // Función para imprimir o descargar el contenido al hacer clic en el botón
+      function printOrDownload() {
+        // Aquí puedes agregar el código para imprimir o descargar el contenido
+        // Puedes utilizar la función window.print() para imprimir la página
+        // O puedes utilizar técnicas como la generación de archivos PDF para la descarga
+
+        // Ejemplo: Imprimir la página
+        window.print();
+      }
+
+      // Asigna el evento de clic al botón
+      document.getElementById('printButton').addEventListener('click', printOrDownload);
+    </script>
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

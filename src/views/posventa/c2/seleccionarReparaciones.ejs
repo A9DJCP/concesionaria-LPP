@@ -11,10 +11,10 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="/js/c2/selecRep.js"></script>
 
   <!-- Activa el dark mode-->
   <%- include('../../partials/head') %>
-    <script src="selecRep.js"></script>
 </head>
 
 <body>
@@ -76,8 +76,9 @@
               <th>Accion</th>
             </tr>
 
-            <% for(let i=0; i<reparaciones.length; i++) {%>
-              <tr click="selecRep">
+            <% for (let i=0; i < reparaciones.length; i++) { %>
+              <tr id="fila-<%= i %>"
+                onclick="addRep('<%= reparaciones[i].codRDISP%>', '<%=reparaciones[i].nombre%>', '<%=reparaciones[i].PU%>', '<%=reparaciones[i].detalles%>')">
                 <td>
                   <%= reparaciones[i].codRDISP %>
                 </td>
@@ -91,7 +92,7 @@
                   <%= reparaciones[i].detalles %>
                 </td>
                 <td class="button-cell">
-                  <button onclick="addRep('<%= i %>')">Añadir</button>
+                  <button>Añadir</button>
                 </td>
               </tr>
               <% } %>
@@ -106,37 +107,32 @@
               <th>nombre</th>
               <th>Precio Unitario</th>
               <th>Detalles</th>
+              <th>Accion</th>
             </tr>
           </table>
         </div>
 
-
-
-
         <div class="col">
           <div class="row py-3  mx-auto d-flex justify-content-center  align-items-center">
-            <div class="col-9">
-              <label for="codRDISP">CodRDISP:</label>
-              <input type="number" min="0" id="codRDISP" name="codRDISP" placeholder="Ingrese el codRDISP...">
-            </div>
-
-            <div class="btn btn-danger col-9  col-xl-2 mx-3">Añadir reparacion</div>
-            <div class="btn btn-danger col-9  col-xl-2 mx-3">Eliminar reparacion</div>
             <div
               class=" text-light col-9   d-flex align-items-center justify-content-center pt-3  p-0 text-center  col-xl-3 border-bottom border-light  mx-3"
               style="height: 40px;">
-              <p class="">Monto actual:
-              <p class="">3000$</p>
+              <p>Monto Actual: <span id="suma-precio-unitario">0</span></p>
             </div>
-            <div class="btn btn-danger col-9 mt-2 col-xl-2  mx-3">Continuar</div>
+            <form id="formulario-reparaciones" action="/c2/b2/avanzarAImpresionDocRep" method="POST" required>
+              <input type="hidden" id="datos-reparaciones" name="datos-reparaciones">
+              <input type="hidden" id="codAuto" name="codA">
+              <button type="submit" class="submit btn btn-danger col-9 mt-2 col-xl-2 mx-3">Avanzar</button>
+            </form>
+            <script>
+              var codA = '<%= codA %>';
+              document.getElementById('codAuto').value = codA;
+            </script>
+
+
           </div>
         </div>
-
-
-
       </div>
-
-
     </div>
 
 

@@ -1,6 +1,7 @@
 <!--Bootstrap navigation component-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style=" position: fixed; width:100%; margin-bottom: 50px">
+    <div id="" class="container-fluid">
+        <img src="./img/logo.png" id="logoLPP">
         <a class="navbar-brand" href="/menu">Concesionaria LPP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
             aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,3 +56,27 @@
         </form>
     </div>
 </nav>
+<br>
+<br>
+<br>
+<br>
+
+<style>
+    #header {
+        top: 0;
+        text-align: center;
+        position: fixed;
+        z-index: 100;
+        background-color: rgb(77, 77, 77);
+        color: white;
+        padding: 25px;
+        right: 0;
+        left: 0;
+    }
+
+    #logoLPP {
+        font-size: 0.5em;
+        width: 5%;
+        border: 0;
+    }
+</style>

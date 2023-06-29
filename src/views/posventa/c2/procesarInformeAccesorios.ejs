@@ -35,7 +35,6 @@
 
 
 
-
       <div class="row container mx-auto   pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);"
         style="width: 60%;">
         <% if (typeof codF !=='undefined' ) {%>
@@ -65,14 +64,23 @@
               todos sus accesorios registrados en la concesionaria</h6>
 
             <div class="col-12 py-3">
-              <form name="myForm" action="/c2/b2/selecRep" method="">
+              <form name="myForm" action="/c2/b2/selecRep" method="POST">
+                <input type="hidden" id="codA" name="codA">
                 <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-success col-6"
                   style="margin-top:1%" value="Selecionar Reparaciones">
               </form>
             </div>
+            <script>
+              // Obtener el valor de codA desde el parámetro del archivo EJS
+              var codA = '<%= codA %>';
+              // Establecer el valor de codA en el campo de entrada oculto
+              document.getElementById('codA').value = codA;
+              document.getElementById('codAAnular').value = codA;
+            </script>
 
             <div class="col-12 py-3">
               <form name="myForm" action="/c2/b2/anular" method="GET">
+                <input type="hidden" id="codAAnular" name="codigoA">
                 <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-danger col-6"
                   style="margin-top:1%" value="El automovil no tiene sus accesorios registrados">
               </form>

@@ -14,15 +14,9 @@ router.post("/entregaAutomovil", isLoggedIn, async (req, res) => {
 		var result = await pool.query(sql);
 		var cont = result[0].cont;
 		if (cont >= 1) {
-			var respuesta = window.confirm(
-				"¿Está seguro de que desea registrar el retiro del automóvil?"
-			);
-			if (respuesta) {
-				// El usuario hizo clic en "Aceptar"
-				msg = "Se ha registrado el retiro del automóvil.";
-				var sql = `	UPDATE docreparacion0km set retirado=1 where codDR=${num}`;
-				await pool.query(sql);
-			}
+			msg = "Se ha registrado el retiro del automóvil.";
+			var sql = `	UPDATE docreparacion0km set retirado=1 where codDR=${nRep}`;
+			await pool.query(sql);
 		} else {
 			msg =
 				"El numero ingresado no corresponde a una documentacion de reparacion valida";
@@ -30,6 +24,7 @@ router.post("/entregaAutomovil", isLoggedIn, async (req, res) => {
 		}
 	} catch (error) {
 		msg = "Los datos ingresados son invalidos";
+		console.log(error);
 	}
 	res.render("./posventa/c2/index", { msg });
 });

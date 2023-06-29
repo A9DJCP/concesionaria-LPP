@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/c1/compra.css">
+    <!--Activa el Dark Mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+
+    <%- include('../../partials/navigation') %>
+        <div class="container">
+            <div class="main-section">
+                <h2>Automóviles disponibles para su compra</h2>
+
+                <div class="col-12 col-xl-6">
+                    <h3 class="text-center text-light">Automoviles 0KM Disponibles</h3>
+                    <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+                        <tr style="background-color:white; color:black">
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Precio</th>
+                            <th>Color</th>
+                            <th>Accion</th>
+                        </tr>
+
+                        <% for(let i=0; i<autos.length; i++) {%>
+                            <tr click="selecRep">
+                                <td>
+                                    <%= autos[i].marca %>
+                                </td>
+                                <td>
+                                    <%= autos[i].modelo %>
+                                </td>
+                                <td>
+                                    <%= autos[i].precio %>
+                                </td>
+                                <td>
+                                    <%= autos[i].color %>
+                                </td>
+                                <td class="button-cell">
+                                    <button onclick="addRep('<%= i %>')">Elegir</button>
+                                </td>
+                            </tr>
+                            <% } %>
+                    </table>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="side-section">
+            <h2>Cliente que compra</h2>
+            <div class="data-display"></div>
+            <h2>Forma de pago</h2>
+            <div class="payment-methods">
+                <label><input type="radio" name="payment-method" value="credit"> Crédito Prendario</label>
+                <label><input type="radio" name="payment-method" value="cash"> Efectivo</label>
+            </div>
+            <h2>Automóvil a comprar</h2>
+            <div class="data-display"></div>
+            <a id="submit" href="../Verificar Cliente parte 2/index.html">Cancelar Compra</a>
+            <a id="submit" href="#">Generar Orden de Compra</a>
+        </div>
+        </div>
+
+
+        <%- include('../../partials/footer') %>
+</body>
+
+</html>
