@@ -19,108 +19,113 @@
 
 <body>
   <%- include('../../partials/navigation') %>
+    <% if (typeof msg !=='undefined' ) { %>
+      <script>
+        alert('<%= msg %>');
+      </script>
+      <% } %>
 
-    <!-- Contenido principal -->
-    <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
+        <!-- Contenido principal -->
+        <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;">
 
 
-      <div class="row justify-content-center py-5 h-100  ">
-        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
-          <div class="card text-center  text-light" style="  background-color: rgba(0, 0, 0, 0.603);">
-            <div class="card-body">
-              <h5 class="card-title">Accesorios</h5>
-              <p class="card-text">Procesar solicitud de agregado de accesorio.</p>
-              <form name="myForm" action="/consultarAccesorios" method="POST">
+          <div class="row justify-content-center py-5 h-100  ">
+            <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+              <div class="card text-center  text-light" style="  background-color: rgba(0, 0, 0, 0.603);">
+                <div class="card-body">
+                  <h5 class="card-title">Accesorios</h5>
+                  <p class="card-text">Procesar solicitud de agregado de accesorio.</p>
+                  <form name="myForm" action="/consultarAccesorios" method="POST">
 
-                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
-                  <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
-                  <input type="text" name="codF" class="form-control" id="codFInput"
-                    placeholder="Código de Fábrica del Automóvil" style="width:40%">
+                    <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                      <div class="input-group-text w-50">Ingrese el código de fábrica del automóvil</div>
+                      <input type="text" name="codF" class="form-control" id="codFInput"
+                        placeholder="Código de Fábrica del Automóvil" style="width:40%">
+                    </div>
+
+                    <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                      value="Continuar">
+                  </form>
                 </div>
-
-                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
-                  value="Continuar">
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
-          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-            <div class="card-body">
-              <h5 class="card-title">Aceptar presupuesto</h5>
-              <p class="card-text">Procesar aceptacion de presupuesto.</p>
-              <form name="myForm" action="/c3/b2/registrarPresupuesto" method="POST">
-                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
-                  <div class="input-group-text w-50">Ingrese el número de presupuesto</div>
-                  <input type="text" name="codPAA" class="form-control" id="codFInput"
-                    placeholder="Número de Presupuesto" style="width:40%">
+            <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+              <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                <div class="card-body">
+                  <h5 class="card-title">Aceptar presupuesto</h5>
+                  <p class="card-text">Procesar aceptacion de presupuesto.</p>
+                  <form name="myForm" action="/c3/b2/registrarPresupuesto" method="POST">
+                    <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                      <div class="input-group-text w-50">Ingrese el número de presupuesto</div>
+                      <input type="text" name="codPAA" class="form-control" id="codFInput"
+                        placeholder="Número de Presupuesto" style="width:40%">
+                    </div>
+
+                    <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                      value="Continuar">
+                  </form>
                 </div>
-
-                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
-                  value="Continuar">
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-8 col-xl-5 m-4 mt-5">
-          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-            <div class="card-body">
-              <h5 class="card-title">Cobro de la instalacion</h5>
-              <p class="card-text">Procesar cobro de la instalacion.</p>
-              <form name="myForm" action="/imprimirFacturaAccesorio" method="POST">
-                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
-                  <div class="input-group-text w-50">Ingrese el número del presupuesto aceptado</div>
-                  <input type="text" name="codPAA" class="form-control" id="codFInput"
-                    placeholder="Número de Presupuesto" style="width:40%">
+            <div class="col-8 col-xl-5 m-4 mt-5">
+              <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                <div class="card-body">
+                  <h5 class="card-title">Cobro de la instalacion</h5>
+                  <p class="card-text">Procesar pago del presupuesto de instalacion de accesorios.</p>
+                  <form name="myForm" action="/imprimirFacturaAccesorio" method="POST">
+                    <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                      <div class="input-group-text w-50">Ingrese el número del presupuesto aceptado</div>
+                      <input type="text" name="codPAA" class="form-control" id="codFInput"
+                        placeholder="Número de Presupuesto" style="width:40%">
+                    </div>
+
+                    <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                      value="Continuar">
+                  </form>
                 </div>
-
-                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
-                  value="Continuar">
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
 
 
-        <div class="col-8 col-xl-5 m-4 mt-5">
-          <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
-            <div class="card-body">
-              <h5 class="card-title">Entrega automovil</h5>
-              <p class="card-text">Procesar entrega.</p>
-              <form name="myForm" action="/c3/b4/registrarSalidaAutomovil" method="POST">
-                <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
-                  <div class="input-group-text w-50">Ingrese el número de la factura (del presupuesto pagado del
-                    automóvil a retirar).</div>
-                  <input type="text" name="codFACC" class="form-control" id="codFInput" placeholder="Número de factura"
-                    style="width:40%">
+            <div class="col-8 col-xl-5 m-4 mt-5">
+              <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                <div class="card-body">
+                  <h5 class="card-title">Entrega automovil</h5>
+                  <p class="card-text">Procesar entrega.</p>
+                  <form name="myForm" action="/c3/b4/registrarSalidaAutomovil" method="POST">
+                    <div class="row row-cols-lg-auto g-3 align-items-center input-group" style="margin: 10px auto">
+                      <div class="input-group-text w-50">Ingrese el número de la factura (del presupuesto pagado del
+                        automóvil a retirar).</div>
+                      <input type="text" name="codFACC" class="form-control" id="codFInput"
+                        placeholder="Número de factura" style="width:40%">
+                    </div>
+                    <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                      value="Continuar">
+                  </form>
                 </div>
-                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
-                  value="Continuar">
-              </form>
+              </div>
             </div>
+
           </div>
+
         </div>
 
-      </div>
-
-    </div>
 
 
 
-
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
 </body>
 
 </html>

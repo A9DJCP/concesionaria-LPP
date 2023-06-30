@@ -18,6 +18,7 @@
 
 <body>
 
+
   <%- include('../../partials/navigation') %>
 
     <style>
@@ -71,12 +72,11 @@
  background-size: cover;
  background-position: center;">
 
-      <div class="containerFactura  mx-auto">
+      <div class="containerFactura    mx-auto">
 
         <div class="row align-items-center  h-100 ">
 
-
-          <div style="display: flex;">
+          <div style="display: flex;" class="col-5 p-1 m-0 col-xl-2">
             <img src="/img/logo.png" alt="logo" height="100px">
             <img src="/img/logoLPP.png" alt="logo" height="100px">
           </div>
@@ -84,7 +84,7 @@
           <div class="col-7 col-xl-5  d-flex justify-content-center flex-column   align-items-center">
 
             <Strong class="text-center ">
-              <h3>LPP CONCESIONARIA DE AUTOS</h3>
+              LPP consecionaria de autos
             </Strong>
           </div>
 
@@ -92,20 +92,16 @@
 
             <div class="col-xl-12  d-flex p-0 m-0 mt-xl-2 mt-xl-0">
               <div class="col p-1 m-0  border border-dark">
-                <p>Número de Presupuesto de Agregación de Accesorios:</p>
+                <p>Factura :</p>
                 <hr class="w-100 m-0 bg-dark">
                 <p>NRO: <span>
-                    <%=data.codPAA%>
-                  </span>
-                </p>
+                    <%=data.codFACC%>
+                  </span></p>
               </div>
               <div class="col p-1 m-0 border border-dark">
-                <p>Refiere al automóvil:</p>
+                <p>Refiere al Presupuesto:</p>
                 <hr class="m-0 bg-dark">
-                <p>NRO:
-                  <span>
-                    <%=data.codA%>
-                  </span>
+                <p>NRO: <%=data.codPAA%>
                 </p>
               </div>
             </div>
@@ -116,7 +112,6 @@
               <div id="mes" class="col border border-dark" style="height: 30px;">.</div>
               <div id="anio" class="col border border-dark" style="height: 30px;">.</div>
             </div>
-
             <script>
               // Obtiene la fecha actual
               var fechaActual = new Date();
@@ -132,81 +127,100 @@
               document.getElementById("anio").textContent = anio;
             </script>
           </div>
+
+
         </div>
 
-        <div class="row">
-          <div class="col-12 border border-dark text-center"> <strong>Datos del agregado</strong></div>
-          <div class="col-11  col-xl-11 py-2 ">
-            <strong>Monto total: $ <span>
-                <%=data.monto%>
-              </span></strong>
-            <p>Son: <span>
-                <%=data.montoLetras%>
-              </span></p>
-            <strong>Fecha de emision del presupuesto: <span>
-                <%=data.fecha%>
+        <div class="row ">
+
+          <div class="col-12   col-xl-11 py-2 ">
+            <strong>Cliente: <span>
+                <%=data.nom%>
+              </span> <span>
+                <%=data.ape%>
               </span></strong>
 
+
           </div>
-          <div class="col-1 border border-dark p-0 m-0 text-center"> <strong style=" writing-mode: vertical-rl;
-        text-orientation: upright;">GENERAL</strong></div>
-        </div>
-        <div class="row">
-          <div class="col py-2">
-            <p>El presupuesto del accesorio numero <span>
-                <%=data.codPAA%>
-              </span> contempla un total de <%=data.cantAccesorios%> tipos
-                de accesorios nuevos
-                selecionados para agregar.</p>
-            <p>Estos seran agregados al automovil <br><strong>MARCA :</strong> <span>
-                <%=data.marca%>
-              </span><br> <strong>MODELO:
-              </strong> <span>
-                <%=data.modelo%>
-              </span><br> <strong>MATRICULA:</strong><span>
-                <%=data.mat%>
-              </span>.</p>
-            <p>Dicho automovil esta al nombre de <span>
-                <%=data.lblCliente%>
-              </span> (Documento: <span>
-                <%=data.lblDoc%>
-              </span>).
-            </p>
-            <p>El agregado se iniciara en automovil con los acesorios agregados es de 15 (quince) dias luego de la
-              aceptacion de este presupuesto.</p>
-          </div>
+          <div class="col-12   col-xl-11 py-2"> <strong>Direccion: <span>
+                <%=data.direc%>
+              </span></strong></div>
+
+          <div class="col-6 mx-auto border border-dark p-0 m-0 text-center"><strong>Pago al contado</strong></div>
         </div>
 
-        <h5 class="col-12 justify-content-center py-2 m-0 border border-dark text-center table-title">Detalle de Factura
-        </h5>
 
-        <div class="row">
-          <div class="col-4 text-center py-2">
-            <strong>ACCES.</strong>
-          </div>
-          <div class="col-4 text-center py-2">
-            <strong>PREC</strong>
-          </div>
-          <div class="col-4 text-center py-2">
-            <strong>CANT</strong>
-          </div>
-        </div>
 
-        <% for (let i=0; i < data.accesorios.length; i++) { %>
+
+        <div class="row ">
+          <h5 class="col-12 justify-content-center py-2 m-0 border border-dark text-center  ">DETALLE DE FACTURA</h5>
           <div class="row">
-            <div class="col-4 col-data">
-              <%= data.accesorios[i].nombre %>
+            <div class="col-3 text-center py-2">
+              <strong>ACCES.</strong>
             </div>
-            <div class="col-4 col-data">
-              <%= data.accesorios[i].PU %>
+            <div class="col-3 text-center py-2">
+              <strong>PREC</strong>
             </div>
-            <div class="col-4 col-data">
-              <%= data.accesorios[i].cant %>
+            <div class="col-3 text-center py-2">
+              <strong>CANT</strong>
+            </div>
+            <div class="col-3 text-center py-2">
+              <strong>Subtotal</strong>
             </div>
           </div>
-          <% } %>
+          <% for (let i=0; i < accesorios.length; i++) { %>
+            <div class="row">
+              <div class="col-3 col-data">
+                <%= accesorios[i].nombre %>
+              </div>
+              <div class="col-3 col-data">
+                <%= accesorios[i].PU %>
+              </div>
+              <div class="col-3 col-data">
+                <%= accesorios[i].cant %>
+              </div>
+              <div class="col-3 col-data">
+                <%= parseFloat(accesorios[i].cant) * parseFloat(accesorios[i].PU) %>
+              </div>
+            </div>
+            <% } %>
 
+        </div>
+
+        <div class="row pt-2 px-4 ">
+          <div class="col-12 col-xl-6 py-1  p-0 ">
+            <div class="">
+              <div class="col-12 text-center" style="height: 40px;">Codigo QR</div>
+              <div class="col-12">
+                <p class="m-0 p-0 text-" style="font-size: 12px;">147 telefono gratuito C.A.B.A <br> Area de defensa y
+                  proteccion al consumidor</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-xl-6 ">
+            <div class="row mt-1">
+              <div class="col "> Sub total($)</div>
+              <div class="col">
+                <%=data.submonto%>
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col"> I.V.A. Inscripto(%)</div>
+              <div class="col">
+                <%=data.iva%>%
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col"> Total</div>
+              <div class="col">
+                <%=data.montototal%>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
 
     <div style="text-align: center;">
@@ -214,19 +228,12 @@
       <a href="/c3" class="btn btn-success btn-lg ">Finalizar Operacion</a>
     </div>
     <script>
-      // Función para imprimir o descargar el contenido al hacer clic en el botón
       function printOrDownload() {
-        // Aquí puedes agregar el código para imprimir o descargar el contenido
-        // Puedes utilizar la función window.print() para imprimir la página
-        // O puedes utilizar técnicas como la generación de archivos PDF para la descarga
-
-        // Ejemplo: Imprimir la página
         window.print();
       }
-
-      // Asigna el evento de clic al botón
       document.getElementById('printButton').addEventListener('click', printOrDownload);
     </script>
+
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

@@ -11,16 +11,13 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
   <!-- Activa el dark mode-->
   <%- include('../../partials/head') %>
-
 </head>
 
 <body>
 
   <%- include('../../partials/navigation') %>
-
 
     <style>
       @media (min-width: 1000px) {
@@ -44,68 +41,74 @@
  background-size: cover;
  background-position: center;">
 
-
-
       <div class="row container mx-auto  pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
         <div class="col-12 col-xl-6">
           <h3 class="text-center text-light">Accesorios Disponibles</h3>
+          <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codACC</th>
+              <th>Nombre</th>
+              <th>PU</th>
+              <th>Stock</th>
+              <th>Accion</th>
+            </tr>
 
-
-
-          <div>
-            <table id="tabla-original" class="caja w-100  border border-light" style="height: 400px;">
-              <tr style="background-color:white; color:black">
-                <th>codACC</th>
-                <th>Nombre</th>
-                <th>PU</th>
-                <th>Stock</th>
+            <% for (let i=0; i < accesorios.length; i++) { %>
+              <tr id="fila-<%= i %>"
+                onclick="addAcc('<%= accesorios[i].codACC%>', '<%=accesorios[i].nombre%>', '<%=accesorios[i].PU%>', '<%=accesorios[i].stock%>')">
+                <td>
+                  <%= accesorios[i].codACC %>
+                </td>
+                <td>
+                  <%= accesorios[i].nombre %>
+                </td>
+                <td>
+                  <%= accesorios[i].PU %>
+                </td>
+                <td>
+                  <%= accesorios[i].stock %>
+                </td>
+                <td class="button-cell">
+                  <button class="add-button">Añadir</button>
+                </td>
               </tr>
-
-              <% for(let i=0; i<accesorios.length; i++) {%>
-                <tr click="selecRep">
-                  <td>
-                    <%= accesorios[i].codACC %>
-                  </td>
-                  <td>
-                    <%= accesorios[i].nombre %>
-                  </td>
-                  <td>
-                    <%= accesorios[i].PU %>
-                  </td>
-                  <td>
-                    <%= accesorios[i].stock %>
-                  </td>
-                </tr>
-                <% } %>
-            </table>
-          </div>
-
-
-
+              <% } %>
+          </table>
         </div>
-        <div class="col-12 col-xl-6 ">
+
+        <div class="col-12 col-xl-6">
           <h3 class="text-center text-light">Accesorios Seleccionados</h3>
-          <div class="caja w-95  border border-light" style="height: 400px;">
-            <p></p>
-          </div>
+          <table id="tabla-seleccionadas" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codACC</th>
+              <th>Nombre</th>
+              <th>PU</th>
+              <th>Cantidad</th>
+              <th>Accion</th>
+            </tr>
+          </table>
         </div>
 
         <div class="col">
           <div class="row py-3  mx-auto d-flex justify-content-center  align-items-center">
-            <div class="btn btn-danger col-5 col-xl-2 mx-3 my-2">Añadir accesorio</div>
-            <div class="btn btn-danger col-5 col-xl-2 mx-3">Eliminar accesorio</div>
             <div
-              class=" text-light col-5  d-flex align-items-center justify-content-center pt-3  p-0 text-center  col-xl-3 border-bottom border-light  mx-3"
+              class=" text-light col-9   d-flex align-items-center justify-content-center pt-3  p-0 text-center  col-xl-3 border-bottom border-light  mx-3"
               style="height: 40px;">
-              <p class="">Monto actual:
-              <p class="">3000$</p>
+              <p>Monto Actual: <span id="suma-precio-unitario">0</span></p>
             </div>
-            <div class="btn btn-danger col-5 col-xl-2  mx-3">generar presupuesto</div>
+            <form id="formulario-accesorios" action="/c3/b1/generarPresupuesto" method="POST" required>
+              <input type="hidden" id="datos-accesorios" name="datos-accesorios">
+              <input type="hidden" id="codAuto" name="codA">
+              <button type="submit" class="submit btn btn-danger col-9 mt-2 col-xl-2 mx-3">Generar Presupuesto</button>
+            </form>
+            <script>
+              var codA = '<%= codA %>';
+              document.getElementById('codAuto').value = codA;
+            </script>
           </div>
         </div>
       </div>
     </div>
-
 
 
 
@@ -119,6 +122,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
+    <script src="/js/c3/selecAccess.js"></script>
 </body>
 
 </html>

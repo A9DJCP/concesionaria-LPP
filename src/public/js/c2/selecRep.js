@@ -85,4 +85,5 @@ function addRep(codRDISP, nombre, PU, detalles) {
 	// Actualizar el campo oculto con los datos de la tabla
 	document.getElementById("datos-reparaciones").value =
 		JSON.stringify(datosReparaciones);
+		
 }
