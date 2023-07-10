@@ -78,7 +78,7 @@
             <div class="col p-1 m-0  border border-dark">
               <p>Presupuesto reparacion:</p>
               <hr class=" m-0 bg-dark">
-              <p>NO <%=data.codDR%>
+              <p>NO <%=data.codPREP%>
               </p>
             </div>
             <div class="col p-1 m-0 border border-dark">
@@ -90,9 +90,9 @@
           </div>
         </div>
 
-        <div class="row   ">
+        <div class="row">
           <h4 class="col-12 justify-content-center text-center border border-dark  text-center">
-            DATOS DE LA REPARACIÓN DEL AUTOMÓVIL DENTRO DE LA GARANTÍA
+            DATOS DE LA REPARACIÓN DEL AUTOMÓVIL FUERA DE GARANTÍA
           </h4> <br>
           <div class="col-12  col-sm-10 col-xl-11 py-2 ">
 
@@ -117,8 +117,8 @@
 
         <div class="row ">
           <div class="col col-xl-11 py-2 text-center">
-            <p>El presupuesto de Reparación <span>
-                <%=data.codDR%>
+            <p>El presupuesto de Reparación (fuera de garantía) <span>
+                <%=data.codPREP%>
               </span> corresponde al automóvil <span>
                 <%=data.lblAuto%>
               </span><br> cuyo
@@ -133,10 +133,18 @@
         <div class="row   border-dark border-danger  ">
           <h4 class="col-12 justify-content-center text-center  border border-dark">Detalle de las Reparaciones
             Individuales Incluidas</h4>
-
+          <div class="col-6  border border-dark  text-center" style="height: 50px;">
+            <h4>REPARACIÓN</h4>
+          </div>
+          <div class="col-6  border border-dark  text-center" style="height: 50px;">
+            <h4>PRECIO</h4>
+          </div>
           <% for (let i=0; i < data.reparaciones.length; i++) { %>
             <div class="col-6  border border-dark  text-center" style="height: 50px;">
               <%=data.reparaciones[i].nombre%>
+            </div>
+            <div class="col-6  border border-dark  text-center" style="height: 50px;">
+              <%=data.reparaciones[i].PU%>
             </div>
             <% } %>
         </div>
@@ -146,20 +154,12 @@
 
     <div style="text-align: center;">
       <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
-      <a href="/c2" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+      <a href="/c4" class="btn btn-success btn-lg ">Finalizar Operacion</a>
     </div>
     <script>
-      // Función para imprimir o descargar el contenido al hacer clic en el botón
       function printOrDownload() {
-        // Aquí puedes agregar el código para imprimir o descargar el contenido
-        // Puedes utilizar la función window.print() para imprimir la página
-        // O puedes utilizar técnicas como la generación de archivos PDF para la descarga
-
-        // Ejemplo: Imprimir la página
         window.print();
       }
-
-      // Asigna el evento de clic al botón
       document.getElementById('printButton').addEventListener('click', printOrDownload);
     </script>
 

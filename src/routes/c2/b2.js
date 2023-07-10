@@ -29,7 +29,14 @@ router.post("/c2/b2/procInfAcces", isLoggedIn, async (req, res) => {
 			AND codigodefabrica='${codF}'`;
 			var accesorios = await pool.query(sql);
 			var array = [];
-			accesorios.forEach((v) => array.push(v.accessorio));
+			accesorios.forEach((a) =>
+				array.push({
+					nom: a.nombre,
+					fecha: a.fechapedido,
+					entrega: a.fechaentrega,
+					cant: a.cant,
+				})
+			);
 			res.render("./posventa/c2/procesarInformeAccesorios", {
 				codF,
 				accesorios: array,
@@ -72,16 +79,18 @@ router.post("/c2/b2/selecRep", async (req, res) => {
 	}
 });
 
-router.get("/c2/b2/anular", async (req, res) => {
+router.post("/c2/b2/anular", async (req, res) => {
 	try {
-		//FALTA CHEQUEAR EL CAMBIO DE LA VIGENCIA DEL SEGURO
 		var codA = req.body.codA;
-		sql = `UPDATE seguro0km SET estado='No Vigente' where codA0KM=${codA}`;
+		console.log(codA);
+		console.log(req.body);
+		var sql = `UPDATE seguro0km SET estado='No Vigente' where codA0KM=${codA}`;
 		await pool.query(sql);
 		res.render("./posVenta/c2/index", {
 			msg: "El Automóvil no es apto para las reparaciones de su seguro. Se declarará la vigencia del seguro como anulada.",
 		});
 	} catch (err) {
+		console.log(err);
 		res.render("./posVenta/c2/index", { msg: "Ocurrió un error inesperado" });
 	}
 });

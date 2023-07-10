@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LLP</title>
+  <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="/js/c2/selecRep.js"></script>
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+
+</head>
+
+<body>
+
+  <%- include('../../partials/navigation') %>
+    <style>
+      @media (min-width: 1000px) {
+        .container {
+          width: 80%;
+        }
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+      }
+
+      h2 {
+        margin-top: 30px;
+      }
+    </style>
+    <!-- Contenido principal -->
+    <div class="container-fluid  h-75" style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+
+
+
+      <div class="row container mx-auto  pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
+
+
+        <style>
+          .button-cell {
+            text-align: right;
+            padding-right: 10px;
+          }
+
+          .button-cell button {
+            margin-left: auto;
+          }
+        </style>
+
+        <div class="col-12 col-xl-6">
+          <h3 class="text-center text-light">Reparaciones Disponibles</h3>
+          <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codRDISP</th>
+              <th>nombre</th>
+              <th>Precio Unitario</th>
+              <th>Detalles</th>
+              <th>Accion</th>
+            </tr>
+
+            <% for (let i=0; i < reparaciones.length; i++) { %>
+              <tr id="fila-<%= i %>"
+                onclick="addRep('<%= reparaciones[i].codRDISP%>', '<%=reparaciones[i].nombre%>', '<%=reparaciones[i].PU%>', '<%=reparaciones[i].detalles%>')">
+                <td>
+                  <%= reparaciones[i].codRDISP %>
+                </td>
+                <td>
+                  <%= reparaciones[i].nombre %>
+                </td>
+                <td>
+                  <%= reparaciones[i].PU %>
+                </td>
+                <td>
+                  <%= reparaciones[i].detalles %>
+                </td>
+                <td class="button-cell">
+                  <button>Añadir</button>
+                </td>
+              </tr>
+              <% } %>
+          </table>
+        </div>
+
+        <div class="col-12 col-xl-6">
+          <h3 class="text-center text-light">Reparaciones Seleccionadas</h3>
+          <table id="tabla-seleccionadas" class="caja w-95 border border-light" style="height: 400px;">
+            <tr style="background-color:white; color:black">
+              <th>codRDISP</th>
+              <th>nombre</th>
+              <th>Precio Unitario</th>
+              <th>Detalles</th>
+              <th>Accion</th>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col">
+          <div class="row py-3  mx-auto d-flex justify-content-center  align-items-center">
+            <div
+              class=" text-light col-9   d-flex align-items-center justify-content-center pt-3  p-0 text-center  col-xl-3 border-bottom border-light  mx-3"
+              style="height: 40px;">
+              <p>Monto Actual: <span id="suma-precio-unitario">0</span></p>
+            </div>
+            <form id="formulario-reparaciones" action="/c4/b2/printPres" method="POST" required>
+              <input type="hidden" id="datos-reparaciones" name="datos-reparaciones">
+              <input type="hidden" id="codAuto" name="codA">
+              <button type="submit" class="submit btn btn-danger col-9 mt-2 col-xl-2 mx-3">Avanzar</button>
+            </form>
+            <script>
+              var codA = '<%= codA %>';
+              document.getElementById('codAuto').value = codA;
+            </script>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+</body>
+
+
+</html>

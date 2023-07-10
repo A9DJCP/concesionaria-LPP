@@ -41,12 +41,13 @@
           <div class="col-12 col-xl-12">
             <h3 class="text-center text-light">Accesorios registrados en la consesionaria LPP del automovil ingresado
             </h3>
-            <div class="caja w-95  border border-light" style="height: 400px;">
+            <div class="caja w-95  border border-light" style="min-height: 400px;">
               <% if (accesorios.length>0) {%>
                 <ol>
                   <% for(let i=0; i<accesorios.length; i++) {%>
                     <li>
-                      <%= accesorios[i] %>
+                      <%= accesorios[i].nom %> (cant: <%=accesorios[i].cant%>) // F. Pedido: <%=accesorios[i].fecha %>
+                            // F. Entrega: <%= accesorios[i].entrega%>
                     </li>
                     <% } %>
                 </ol>
@@ -70,22 +71,23 @@
                   style="margin-top:1%" value="Selecionar Reparaciones">
               </form>
             </div>
-            <script>
-              // Obtener el valor de codA desde el parámetro del archivo EJS
-              var codA = '<%= codA %>';
-              // Establecer el valor de codA en el campo de entrada oculto
-              document.getElementById('codA').value = codA;
-              document.getElementById('codAAnular').value = codA;
-            </script>
+
 
             <div class="col-12 py-3">
-              <form name="myForm" action="/c2/b2/anular" method="GET">
-                <input type="hidden" id="codAAnular" name="codigoA">
+              <form name="myForm" action="/c2/b2/anular" method="POST">
+                <input type="hidden" id="codA2" name="codA">
                 <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-danger col-6"
                   style="margin-top:1%" value="El automovil no tiene sus accesorios registrados">
               </form>
             </div>
 
+            <script>
+              // Obtener el valor de codA desde el parámetro del archivo EJS
+              var codA = '<%= codA %>';
+              // Establecer el valor de codA en el campo de entrada oculto
+              document.getElementById('codA').value = codA;
+              document.getElementById('codA2').value = codA;
+            </script>
       </div>
 
 
