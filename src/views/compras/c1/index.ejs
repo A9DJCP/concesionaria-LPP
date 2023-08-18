@@ -1,95 +1,220 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>L.P.P Concesionario</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/c1/menu.css">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/c1/menu/popup.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reclamos para Automóviles 0 KM</title>
 
-    <!--Activa el Dark Mode-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Activa el dark mode-->
     <%- include('../../partials/head') %>
 </head>
 
 <body>
-    <% if (typeof msg !=='undefined' ) { %>
-        <h1>msg</h1>
-        <script>
-            alert('<%= msg %>')
-        </script>
-        <% } %>
 
-            <%- include('../../partials/navigation') %>
-                <div class="container">
-                    <div id="espaciado"></div>
-                    <div class="margin">
-                        <form id="survey-form" required>
-                            <p id="principal-description">Accede a las secciones relacionadas a la compra de
-                                autos
-                                0KM:
-                            </p>
-                            <p id="description">Secciones - Auto 0KM</p>
-                            <div class="bloque-1">
-                                <a class="submit procesar-solicitud-compra"
-                                    href="../Verificar Cliente parte 1/index.html">Procesar
-                                    Solicitud
-                                    de Compra de Automovil 0KM</a>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+
+                <!-- Contenido principal -->
+                <div class="container-fluid h-75 " style="background-image: url(/background.jpg); height: calc(100vh);  background-attachment: scroll;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: center;">
+                    <h1 id="principal-description">Accede a las secciones relacionadas a la compra de
+                        autos
+                        0KM:
+                    </h1>
+
+                    <div class="row justify-content-center py-5 h-100  ">
+                        <!--BOTON 1 - Procesar solicitud de compra de auto 0km-->
+                        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Secciones - Auto 0KM</h5>
+                                    <p class="card-text">Procesar
+                                        Solicitud
+                                        de Compra de Automovil 0KM.</p>
+                                    <a id="continueB1Button" href="/c1/b1/start" class="btn btn-danger ">Continuar</a>
+                                </div>
                             </div>
-                            <div class="bloque-2">
-                                <a href="#" id="openModal" class="submit aceptar-orden-compra">Procesar
-                                    Aceptación
-                                    de
-                                    Orden
-                                    de
-                                    Compra</a>
-                                <a href="#" id="openModal2" class="submit procesar-pago-senia">Procesar Pago de
-                                    Seña
-                                    (Recibo)</a>
+                        </div>
+
+                        <!--BOTON 2 - Procesar Aceptación de Orden De Compra -->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Aceptación de Orden de compra</h5>
+                                    <p class="card-text">Procesar Aceptación de Orden de Compra de auto 0km.</p>
+                                    <form name="myForm" action="/c1/b2/acptODC" method="POST">
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingrese el número de orden de compra
+                                            </div>
+                                            <input type="text" name="cododc" class="form-control" id="codODCInput"
+                                                placeholder="Número de Orden de Compra" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
                             </div>
-                            <div class="bloque-1">
-                                <a class="submit procesar-pedido-proceso"
-                                    href="../Registro Doc de Fabricación/index.html">Procesar
-                                    Pedido en Proceso (Registro de
-                                    Documentación de Fabricación)</a>
-                            </div>
-                            <div class="bloque-2">
-                                <a class="submit procesar-recepcion-auto"
-                                    href="../Registrar Auto 0KM/index.html">Procesar
-                                    Recepción
-                                    de Automovil 0KM</a>
-                                <a href="#" id="openModal3" class="submit procesar-plan-pago">Procesar Plan de
-                                    Pago</a>
-                            </div>
-                            <div class="bloque-2">
-                                <a href="#" id="openModal4" class="submit procesar-orden-retiro">Procesar Orden
-                                    de
-                                    Retiro</a>
-                                <a href="#" id="openModal5" class="submit procesar-confeccion-seguro">Procesar
-                                    Confección de
-                                    Seguro</a>
-                            </div>
-                            <a class="submit" href="#">Regresar</a>
-                        </form>
+                        </div>
                     </div>
+
+
+                    <div class="row justify-content-center py-5 h-100  ">
+                        <!--BOTON 3 - Procesar solicitud de compra de auto 0km-->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Pago de Seña (Recibo)</h5>
+                                    <p class="card-text">Procesar Pago de seña de recibo.</p>
+                                    <form name="myForm" action="/c1/b3/paySign" method="POST">
+
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingrese el número del recibo</div>
+                                            <input type="text" name="nroRec" class="form-control" id="codRInput"
+                                                placeholder="Número de Recibo" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--BOTON 4 - Procesar Pedido en proceso-->
+                        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Pedido en Proceso</h5>
+                                    <p class="card-text">Procesar Pedido en Proceso (Registro de Documentación de
+                                        Fabricación).</p>
+                                    <a id="continueB1Button" href="/c1/b4/openRegDocF"
+                                        class="btn btn-danger ">Continuar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center py-5 h-100">
+                        <!--BOTON 5 - Procesar Recepción de Automóvil 0Km-->
+                        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Recepción de Automóvil 0KM</h5>
+                                    <p class="card-text">Procesar Recepción de Automóvil 0 kilómetro.</p>
+                                    <a id="continueB1Button" href="/c1/b5/openRegAuto0km"
+                                        class="btn btn-danger ">Continuar</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--BOTON 6 - Procesar Plan de Pago -->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Plan de Pago</h5>
+                                    <p class="card-text">Procesar el plan de pago ingresando el número de recibo pago.
+                                    </p>
+                                    <form name="myForm" action="/c1/b6/procPlanDePago" method="POST">
+
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingresar el número del recibo pago</div>
+                                            <input type="text" name="codR" class="form-control" id="codRInput"
+                                                placeholder="Número de Recibo" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center py-5 h-100">
+                        <!--BOTON 7 - Procesar órden de retiro-->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Órden de Retiro</h5>
+                                    <p class="card-text">Procesar orden de retiro del automóvil 0km.</p>
+                                    <form name="myForm" action="/c1/b7/procOrdenRetiro" method="POST">
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingresar el número de la órden de retiro
+                                            </div>
+                                            <input type="text" name="codOR" class="form-control" id="codORInput"
+                                                placeholder="Número de Recibo" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--BOTON 8 - Procesar Confección de Seguro -->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Confección de Seguro</h5>
+                                    <p class="card-text">Procesar confección de seguro del automóvil 0km.</p>
+                                    <form name="myForm" action="#" method="POST">
+
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingresar el código de fábrica de la
+                                                documentación del automóvil</div>
+                                            <input type="text" name="codR" class="form-control" id="codRInput"
+                                                placeholder="Código de fábrica del automóvil" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
 
-                <div id="myModal" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <h3 id="modal-message"></h3>
-                        <input type="text" id="inputValue">
-                        <br>
-                        <button id="acceptBtn">Aceptar</button>
-                        <button id="cancelBtn">Cancelar</button>
-                    </div>
-                </div>
 
-                <footer id="footer">
-                    <p class="copyright">L.P.P Concesionaria</p>
-                    <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
-                </footer>
-</body>
+
+
+
+
+
+                <!-- Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
 </body>
 
 </html>

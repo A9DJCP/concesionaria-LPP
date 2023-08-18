@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--PASAR A BOOTSTRAP-->
+    <link rel="stylesheet" href="/css/c1/printODC.css">
+    <!-- Bootstrap 5 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+-->
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <div class="container">
+            <div id="encabezado">
+                <h1 id="titulo">LPP Concesionaria de Autos</h1>
+                <img src="/img/logo.png" alt="logo" height="100px">
+                <img src="/img/logoLPP.png" alt="logo" height="100px">
+                <button id="pdf">Descargar Orden de Compra</button>
+            </div>
+            <table id="orden-retiro">
+                <tr>
+                    <th class="espacio"></th>
+                    <td class="espacio">
+                        </th>
+                    <th>Orden de Compra</th>
+                </tr>
+                <tr>
+                    <th class="espacio"></th>
+                    <td class="espacio"></td>
+                    <td><b>Nro: <%=data.codODC%></b></td>
+                </tr>
+            </table>
+
+            <div>
+                <th>Fecha: </th>
+                <td>
+                    <%=data.fecha%>
+                </td>
+            </div>
+
+            <table id="orden-nro">
+                <tr>
+                    <th class="categoria">Datos de la Compra</th>
+                </tr>
+                <tr>
+                    <th>Ciudad</th>
+                    <td class="ciudad">CABA</td>
+                    <th>Proveedor</th>
+                    <td>Concesionaria LPP</td>
+                </tr>
+                <tr>
+                    <th>Comprador</th>
+                    <td>
+                        <%= data.comprador%>
+                    </td>
+                    <th>Estado</th>
+                    <td>Vigente / No Vigente</td>
+                </tr>
+                <tr>
+                    <th>Doc. Comprador</th>
+                    <td>
+                        <%=data.docComprador%>
+                    </td>
+                    <th>Teléfono</th>
+                    <td>
+                        <%=data.tel%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>
+                        <%=data.direc%>
+                    </td>
+                    <th>Forma de Pago</th>
+                    <td>
+                        <%=data.formaPago%>
+                    </td>
+                </tr>
+            </table>
+            <table id="condiciones">
+                <tr>
+                    <td>Detalles del Automóvil Cero Kilómetros<br> seleccionado para su compra</td>
+                    <td>Cantidad: 1</td>
+                </tr>
+            </table>
+            <table id="auto">
+                <tr>
+                    <th>Automovil</th>
+                </tr>
+                <tr>
+                    <th>Marca</th>
+                    <td>
+                        <%=data.marca%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Modelo</th>
+                    <td>
+                        <%=data.modelo%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Precio</th>
+                    <td>
+                        <%=data.precio%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Color</th>
+                    <td>
+                        <%=data.color%>
+                    </td>
+                </tr>
+            </table>
+            <table id="condiciones-2">
+                <tr>
+                    <td>La compra corresponde a 1 (uno) solo automóvil de la marca y modelo especificados</td>
+                </tr>
+            </table>
+            <!--Los datos de aca abajo se dejan vacios para que a la hora de imprimirlos o editar el PDF virtualmente los complete el empleado manualmente-->
+            <table id="orden-nro" class="espaciado">
+                <tr>
+                    <th>Observaciones (Datos de la Empresa)</th>
+                </tr>
+                <tr>
+                    <th>Fecha de Despacho</th>
+                    <th>Aprobado Por</th>
+                    <th>Aceptado</th>
+                </tr>
+                <tr>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                </tr>
+                <table id="auto">
+                    <tr>
+                        <th>Elaborado Por</th>
+                        <td><input type="text"></td>
+                        <th>Firma y Cédula</th>
+                        <td><input type="text"></td>
+                    </tr>
+                </table>
+            </table>
+
+            <div style="text-align: center;">
+                <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+            </div>
+            <script>
+                function printOrDownload() {
+                    window.print();
+                }
+                document.getElementById('printButton').addEventListener('click', printOrDownload);
+            </script>
+
+        </div>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

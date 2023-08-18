@@ -7,7 +7,7 @@ router.post("/c1/b3/paySign", isLoggedIn, async (req, res) => {
 	var sql, rs, msg;
 	try {
 		var nroRec = req.body.nroRec;
-		sql = `select count(*) cont from recibo where estado='Vigente' and codrec=${codRec}`;
+		sql = `select count(*) cont from recibo where estado='Vigente' and codrec=${nroRec}`;
 		rs = await pool.query(sql);
 		if (rs[0].cont === 1) {
 			sql = `UPDATE recibo set estado='PAGADO' where codrec=${nroRec}`;

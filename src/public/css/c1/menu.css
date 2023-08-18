@@ -94,18 +94,6 @@ p {
   font-size: 15px;
 }
 
-#footer {
-  position: relative;
-  margin-top: 50px;
-  bottom: 0;
-  left: 0;
-  background-color: black;
-  padding: 28px;
-  right: 0;
-  color: white;
-  text-align: center;
-}
-
 a:link, a:visited, a:active {
   text-decoration: none;
   font-family: calibri, monospace;
@@ -156,14 +144,6 @@ a:link, a:visited, a:active {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
 }
 
 .close {

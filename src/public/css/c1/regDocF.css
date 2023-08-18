@@ -1,9 +1,7 @@
 #header {
     background-color: black;
-    top: 0;
+    top: 25;
     text-align: center;
-    position: fixed;
-    z-index: 100;
     color: white;
     padding: 25px;
     right: 0;

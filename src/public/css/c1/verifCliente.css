@@ -72,6 +72,12 @@
     border: 0;
   }
   
+  input[disabled],
+  select[disabled],
+  textarea[disabled] {
+    color: #ffffff;
+  }
+
   #principal-description {
     margin: 0;
     font-weight: bold;
@@ -79,8 +85,7 @@
     color:#F9ea6e;
     font-family: monospace, Calibri;
   }
-  
-  #survey-form {
+  .survey-form {
     opacity: 0.7;
     background-color: black;
     width: 50%;

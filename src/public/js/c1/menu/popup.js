@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", (event) => {
 	var modal = document.getElementById("myModal");
-	var btn = document.getElementById("openModal");
+	var b2 = document.getElementById("b2");
 	var btn2 = document.getElementById("openModal2");
 	var btn3 = document.getElementById("openModal3");
 	var btn4 = document.getElementById("openModal4");
@@ -10,10 +10,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 	var cancelBtn = document.getElementById("cancelBtn");
 	var inputValue = document.getElementById("inputValue");
 	var modalMessage = document.getElementById("modal-message");
+	var codODCb2 = document.getElementById("codODCb2");
 
-	btn.onclick = function () {
+	updateB2codODC = function () {
 		modalMessage.textContent = "Ingrese el número de la orden de compra:";
-		inputValue.value = "";
+		inputValue.value = ""; 
 		inputValue.placeholder = "Número de orden de compra";
 		modal.style.display = "block";
 		acceptBtn.dataset.linkClass = this.classList[1];
@@ -59,48 +60,35 @@ window.addEventListener("DOMContentLoaded", (event) => {
 	acceptBtn.onclick = async function () {
 		var value = inputValue.value;
 		var linkClass = this.dataset.linkClass;
-		var route = "";
+		var inputBoxId = "";
+		alert(linkClass);
 		// Seleccionar la base de datos según la clase
 		switch (linkClass) {
-			case "aceptar-orden-compra":
-				route = "/c1/b2/acptODC";
+			case "btnAcptODC":
+				inputBoxId = "codODCb2";
 				break;
 			case "procesar-pago-senia":
-				route = "/c1/b3/paySign";
+				inputBoxId = "codRb3";
 				break;
 			case "procesar-plan-pago":
-				route = "/c1/b6/procPlanDePago";
+				inputBoxId = "codRb6";
 				break;
 			case "procesar-orden-retiro":
-				route = "/c1/b7/procOrdenRetiro";
+				inputBoxId = "codRETb7";
 				break;
 			case "procesar-confeccion-seguro":
-				route = "/c1/b8/confSeguro";
+				inputBoxId = "codFb9";
 				break;
 			default:
-				alert("Clase no válida");
+				alert("Clase no VALIDA");
 				modal.style.display = "none";
-				return;
-		}
-		// Realizar la solicitud POST
-		try {
-			fetch(route, {
-				method: "POST",
-				body: JSON.stringify({ cododc: value }),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}).then(function () {
-				ruta = response.json();
-				alert(ruta);
-				window.location.href = ruta; // Redirigir al cliente a la ruta deseada
-			});
-		} catch (error) {
-			alert("Ocurrió un error en la solicitud");
-			alert(error);
+				return false;
 		}
 
+		var inputBoxElement = document.getElementById(inputBoxId);
+		inputBoxElement.value = value;
 		modal.style.display = "none";
+		return true;
 	};
 
 	cancelBtn.onclick = function () {

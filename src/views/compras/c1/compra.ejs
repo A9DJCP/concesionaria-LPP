@@ -2,83 +2,106 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="/css/c1/compra.css">
     <!--Activa el Dark Mode-->
     <%- include('../../partials/head') %>
+        <link rel="stylesheet" href="/css/c1/compra.css">
 </head>
 
 <body>
 
     <%- include('../../partials/navigation') %>
         <div class="container">
-            <div class="main-section">
+
+            <div class="col-12 col-xl-6">
                 <h2>Automóviles disponibles para su compra</h2>
+                <h3 class="text-center text-light">Automoviles 0KM Disponibles</h3>
+                <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+                    <tr style="background-color:white; color:black">
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Precio</th>
+                        <th>Color</th>
+                        <th>Accion</th>
+                    </tr>
 
-                <div class="col-12 col-xl-6">
-                    <h3 class="text-center text-light">Automoviles 0KM Disponibles</h3>
-                    <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
-                        <tr style="background-color:white; color:black">
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Precio</th>
-                            <th>Color</th>
-                            <th>Accion</th>
+                    <% for (let i=0; i < autos.length; i++) { %>
+                        <tr id="fila-<%= i %>"
+                            onclick="chooseAut('<%= autos[i].marca%>', '<%=autos[i].modelo%>', '<%=autos[i].precio%>', '<%=autos[i].color%>')">
+                            <td>
+                                <%= autos[i].marca %>
+                            </td>
+                            <td>
+                                <%= autos[i].modelo %>
+                            </td>
+                            <td>
+                                <%= autos[i].precio %>
+                            </td>
+                            <td>
+                                <%= autos[i].color %>
+                            </td>
+                            <td class="button-cell">
+                                <button class="add-button">Seleccionar</button>
+                            </td>
                         </tr>
+                        <% } %>
+                </table>
+            </div>
 
-                        <% for(let i=0; i<autos.length; i++) {%>
-                            <tr click="selecRep">
-                                <td>
-                                    <%= autos[i].marca %>
-                                </td>
-                                <td>
-                                    <%= autos[i].modelo %>
-                                </td>
-                                <td>
-                                    <%= autos[i].precio %>
-                                </td>
-                                <td>
-                                    <%= autos[i].color %>
-                                </td>
-                                <td class="button-cell">
-                                    <button onclick="addRep('<%= i %>')">Elegir</button>
-                                </td>
-                            </tr>
-                            <% } %>
-                    </table>
+
+            <div class="side-section">
+                <h2>Cliente que compra</h2>
+                <div class="data-display">
+                    <span>
+                        <%= nom %>
+                    </span>
+                    <span>
+                        <%= ape %> //
+                    </span>
+                    <span style="text-transform: uppercase;">
+                        <%= tdoc%>:
+                    </span>
+                    <span>
+                        <%= ndoc %>
+                    </span>
                 </div>
 
+                <h2>Automóvil a comprar</h2>
+                <div id="chosenCar" class="data-display"></div>
+                <a id="submit" href="../Verificar Cliente parte 2/index.html">Cancelar Compra</a>
+
+                <form id="hiddenForm" action="/c1/b1/ordenCompra" method="POST">
+
+                    <h2>Forma de pago</h2>
+                    <div name="payment" class="payment-methods">
+                        <input type="radio" name="payment-method" value="Credito Prendario">
+                        <input type="radio" name="payment-method" value="Efectivo">
+                    </div>
+
+                    <div style="display: none;"><input type="hidden" id="hiddenNom" name="nom" value='<%= nom %>'>
+                        <input type="hidden" id="hiddenApe" name="ape" value='<%= ape %>'>
+                        <input type="hidden" id="hiddenTdoc" name="tdoc" value='<%= tdoc %>'>
+                        <input type="hidden" id="hiddenNdoc" name="ndoc" value='<%= ndoc %>'>
+
+                        <input type="hidden" id="hiddenMarca" name="marca" required>
+                        <input type="hidden" id="hiddenModelo" name="modelo" required>
+                        <input type="hidden" id="hiddenPrecio" name="precio" required>
+                        <input type="hidden" id="hiddenColor" name="color" required>
+                    </div>
+
+                    <input id="submit" type="submit" class="btn btn-danger" style="margin-top:1%"
+                        value="Generar Orden de Compra">
+
+                </form>
+
+
 
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-        <div class="side-section">
-            <h2>Cliente que compra</h2>
-            <div class="data-display"></div>
-            <h2>Forma de pago</h2>
-            <div class="payment-methods">
-                <label><input type="radio" name="payment-method" value="credit"> Crédito Prendario</label>
-                <label><input type="radio" name="payment-method" value="cash"> Efectivo</label>
-            </div>
-            <h2>Automóvil a comprar</h2>
-            <div class="data-display"></div>
-            <a id="submit" href="../Verificar Cliente parte 2/index.html">Cancelar Compra</a>
-            <a id="submit" href="#">Generar Orden de Compra</a>
-        </div>
         </div>
 
 
         <%- include('../../partials/footer') %>
+            <script src="/js/c1/selecAuto.js"></script>
 </body>
 
 </html>

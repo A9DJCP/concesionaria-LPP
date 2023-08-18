@@ -1,6 +1,9 @@
+body{
+    color:black !important;
+}
 #titulo {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 3.5em;
 }
 
 body {

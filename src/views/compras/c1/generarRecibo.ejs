@@ -4,81 +4,124 @@
 <head>
     <title>LPP Concesionaria de Autos</title>
     <link rel="stylesheet" href="/css/c1/genRecibo.css">
+
+
+    <!-- Activa el dark mode-->
+    <%- include('../../partials/head') %>
 </head>
 
 <body>
-    <div class="container">
-        <div id="encabezado">
-            <h1 id="titulo">LPP Concesionaria de Autos</h1>
-            <img id="logo" src="logo.png" alt="Logo">
-            <button id="pdf">Descargar Recibo</button>
-        </div>
-        <table id="factura">
-            <tr>
-                <th class="espacio"></th>
-                <th class="espacio"></th>
-                <th>Recibo</th>
-            </tr>
-            <tr>
-                <th class="espacio"></th>
-                <td class="espacio"></td>
-                <td><b>No.</b><input type="text"></td>
-            </tr>
-        </table>
-        <table id="fecha">
-            <tr>
-                <th>Fecha de Emisión</th>
-                <td><input type="date"></td>
-                <th class="espacio"></th>
-                <th class="espacio"></th>
-            </tr>
-        </table>
-        <table id="cliente">
-            <tr>
-                <th>He recibido de</th>
-                <td><input type="text"></td>
-            </tr>
-            <tr>
-                <th>Importe</th>
-                <td><input type="text"></td>
-            </tr>
-        </table>
-        <table id="condiciones">
-            <tr>
-                <th>En concepto del primer pago a realizar en forma de "seña" del automovil.</th>
-            </tr>
-        </table>
-        <table id="producto">
-            <tr>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Precio</th>
-                <th>Color</th>
-            </tr>
-            <tr>
-                <td><input type="text"></td>
-                <td><input type="text"></td>
-                <td><input type="number"></td>
-                <td><input type="text"></td>
-            </tr>
-        </table>
-        <table id="estado">
-            <tr>
-                <th>Estado: Pendiente / Pagado</th>
-            </tr>
-        </table>
-        <table id="compra" cellspacing="15">
-            <tr>
-                <th>O. Compra No.</th>
-                <td><input type="text"></td>
-                <td class="renglon"><input type="text"></td>
-                <td class="texto">de</td>
-                <td class="renglon"><input type="text"></td>
-                <td class="texto">de</td>
-                <td class="renglon"><input type="text"></td>
-            </tr>
-        </table>
-    </div>
+
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+
+                <!-- Contenido principal -->
+                <div class="container">
+                    <div id="encabezado">
+                        <h1 id="titulo" style="color:black !important;">LPP Concesionaria de Autos</h1>
+                        <img src="/img/logo.png" alt="logo" height="100px">
+                        <img src="/img/logoLPP.png" alt="logo" height="100px">
+                    </div>
+                    <table id="factura">
+                        <tr>
+                            <th>Recibo</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <%=data.nroRecibo%>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="fecha">
+                        <tr>
+                            <th>Fecha de Emisión</th>
+                            <td>
+                                <%=data.dia%>
+                            </td>
+                            <td>
+                                <%=data.mes%>
+                            </td>
+                            <td>
+                                <%=data.year%>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="cliente">
+                        <tr>
+                            <th>He recibido de</th>
+                            <td>
+                                <%=data.nom%>
+                                    <%=data.ape%> // <%=data.tdoc%>: <%=data.ndoc%>"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Importe</th>
+                            <td>
+                                <input type="text" value="<%=data.importe%>">
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="condiciones">
+                        <tr>
+                            <th>En concepto del primer pago a realizar en forma de "seña" del automovil.</th>
+                        </tr>
+                    </table>
+                    <table id="producto">
+                        <tr>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Precio</th>
+                            <th>Color</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" value="<%=data.marca%>"></td>
+                            <td><input type="text" value="<%=data.modelo%>"></td>
+                            <td><input type="number" value="<%=data.precio%>"></td>
+                            <td><input type="text" value="<%=data.color%>"></td>
+                        </tr>
+                    </table>
+                    <table id="estado">
+                        <tr>
+                            <th>Estado: Pendiente / Pagado</th>
+                        </tr>
+                    </table>
+                    <table id="compra" cellspacing="15">
+                        <tr>
+                            <th>O. Compra NRO.
+                            </th>
+                            <td><input type="text" value="<%=data.codODC%>"></td>
+                            <td class="renglon">
+                                <%=data.dia%>
+                            </td>
+                            <td class="texto">
+                                de
+                            </td>
+                            <td class="renglon">
+                                <%=data.mes%>
+                            </td>
+                            <td class="texto">de
+                            </td>
+                            <td class="renglon">
+                                <%=data.year%>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="text-align: center;">
+                    <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                    <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+                </div>
+                <script>
+                    function printOrDownload() {
+                        window.print();
+                    }
+                    document.getElementById('printButton').addEventListener('click', printOrDownload);
+                </script>
+
 </body>
 
 </html>

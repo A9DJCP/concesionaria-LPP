@@ -6,7 +6,8 @@ import pool from "../../database.js";
 router.post("/c1/b2/acptODC", isLoggedIn, async (req, res) => {
 	var sql, rs, msg;
 	try {
-		var codODC = req.body.cododc;
+		var codODC = parseInt(req.body.cododc);
+		//Vigente = 0 significa que todavia no se ha aceptado la orden de compra. El 1 significa que si.
 		sql = `select count(*) cont from ordendecompra where cododc=${codODC} AND vigente=0`;
 		rs = await pool.query(sql);
 		if (rs[0].cont === 0) {
@@ -28,6 +29,7 @@ router.post("/c1/b2/acptODC", isLoggedIn, async (req, res) => {
 				marca: rs[0].marca,
 				modelo: rs[0].modelo,
 				precio: rs[0].precio,
+				importe: rs[0].precio / 2,
 				color: rs[0].color,
 				fecha: rs[0].fecha,
 			};
@@ -48,12 +50,13 @@ router.post("/c1/b2/acptODC", isLoggedIn, async (req, res) => {
 				mes: rs[0].mes,
 				year: rs[0].year,
 			};
-
-			res.send({ data, ruta: "./compras/c1/generarRecibo" });
+			console.log(data.nroRecibo);
+			res.render("./compras/c1/generarRecibo", { data });
 		}
 	} catch (err) {
 		console.log(err);
-		res.render("./compras/c1/index", { msg: err });
+		//res.render("./compras/c1/index", { msg: err });
+		res.json({ msg: err.message });
 	}
 });
 
