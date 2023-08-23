@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="/css/c1/printSeguro.css">
+
+    <!--SI BORRO LO DE BOOTSTRAP Y EL INCLUDE HEAD SE VE BIEN EL FORM PERO SE BUGEA LA BARRA DE NAVEGACION.-->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Activa el dark mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <div id="encabezado">
+                        <h1 id="titulo">LPP Concesionaria de Autos</h1>
+                        <img src="/img/logo.png" alt="logo" height="100px">
+                        <img src="/img/logoLPP.png" alt="logo" height="100px">
+                    </div>
+
+                    <table id="orden-retiro">
+                        <tr>
+                            <th class="espacio"></th>
+                            <td class="espacio">
+                                </th>
+                            <th>Seguros LPP</th>
+                        </tr>
+                        <tr>
+                            <th class="espacio"></th>
+                            <td class="espacio"></td>
+                            <td><b>NRO: <%=data.codS%></b></td>
+                        </tr>
+                    </table>
+                    <table id="poliza">
+                        <tr>
+                            <th>Póliza de Seguro</th>
+                        </tr>
+                        <tr>
+                            <th>Asegurador</th>
+                            <td>LPP Concesionaria<br> de Autos</td>
+                            <th>Sección</th>
+                            <td>Automotores</td>
+                        </tr>
+                        <tr>
+                            <th>Vigencia Desde</th>
+                            <td>
+                                <%=data.femision%>
+                            </td>
+                            <th>Valor Asegurado</th>
+                            <td>
+                                <%=data.valorasegurado%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Vigencia Hasta</th>
+                            <td>
+                                <%=data.fecfin%>
+                            </td>
+                            <th>Tipo Seguro</th>
+                            <td>
+                                <%=data.tsnom%>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="objeto">
+                        <tr>
+                            <th>Objeto Asegurado</th>
+                        </tr>
+                        <tr>
+                            <th>Marca</th>
+                            <td>
+                                <%=data.marca%>
+                            </td>
+                            <th>Patente</th>
+                            <td>
+                                <%=data.matricula%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Modelo</th>
+                            <td>
+                                <%=data.modelo%>
+                            </td>
+                            <th>Titular</th>
+                            <td>
+                                <%=data.titular%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Año Fabricación</th>
+                            <td>
+                                <%=data.yearF%>
+                            </td>
+                            <th>Doc. Titular</th>
+                            <td>
+                                <%=data.doctitular%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Chasis</th>
+                            <td>
+                                <%=data.chasis%>
+                            </td>
+                            <th>Motor</th>
+                            <td>
+                                <%=data.motor%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Código de Fábrica</th>
+                            <td>
+                                <%=data.codF%>
+                            </td>
+                            <th class="espacio"></th>
+                            <td class="espacio"></td>
+                        </tr>
+                    </table>
+                    <table id="contrato">
+                        <tr>
+                            <th>Contrato</th>
+                        </tr>
+                        <tr>
+                            <th>Paises de Cobertura</th>
+                            <td>Argentina</td>
+                            <th>Fecha de Contrato</th>
+                            <td><input type="date" value="<%=data.fecha%>"></td>
+                        </tr>
+                        <tr>
+                            <th>Ciudad</th>
+                            <td>CABA</td>
+                            <th>Firma / Sello Aseguradora</th>
+                            <td><input type="date"></td>
+                        </tr>
+                        <tr>
+                            <th>Pais</th>
+                            <td>República<br> Argentina</td>
+                            <th class="espacio"></th>
+                            <td class="espacio"></td>
+                        </tr>
+                    </table>
+                    <table id="seguro">
+                        <tr>
+                            <th>El tipo de seguro es</th>
+                            <td>
+                                <%=data.tsnom%>
+                            </td>
+                            <th class="espacio"></th>
+                            <td class="espacio"></td>
+                        </tr>
+                        <tr>
+                            <th>Es decir</th>
+                            <td>
+                                <%=data.tsexp%>
+                            </td>
+                            <th class="espacio"></th>
+                            <td class="espacio"></td>
+                        </tr>
+                    </table>
+                    <div style="text-align: center;">
+                        <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                        <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+                    </div>
+                    <script>
+                        function printOrDownload() {
+                            window.print();
+                        }
+                        document.getElementById('printButton').addEventListener('click', printOrDownload);
+                    </script>
+                </div>
+
+                <!-- Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+</body>
+
+</html>

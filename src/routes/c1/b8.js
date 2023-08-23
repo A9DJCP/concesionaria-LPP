@@ -3,7 +3,7 @@ import { isLoggedIn } from "../../lib/auth.js";
 const router = Router();
 import pool from "../../database.js";
 
-router.get("/c1/b8/confSeguro", isLoggedIn, async (req, res) => {
+router.post("/c1/b8/confSeguro", isLoggedIn, async (req, res) => {
 	var sql, msg, rs;
 	try {
 		var codF = req.body.codF;
@@ -28,11 +28,17 @@ router.get("/c1/b8/confSeguro", isLoggedIn, async (req, res) => {
 				var desc = rs[0].descripcion;
 				var nom = rs[0].nombre;
 				var exp = rs[0].explicacion;
+				console.log("HOLA LLEGUE HASTA ACA");
 				sql = `SELECT SUM(monto) acum FROM presupuestoaccesorio PA, auto0KM A, docauto0KM DA 
                 WHERE DA.codDA0KM=A.codDA0KM AND A.codA0KM=PA.codA0KM AND codigodefabrica='${codF}' 
                 GROUP BY A.codA0KM`;
 				rs = await pool.query(sql);
-				var acum = rs[0].acum;
+				var acum;
+				if (rs.length === 0) {
+					acum = 0;
+				} else {
+					acum = rs[0].acum;
+				}
 
 				sql = `SELECT precio from autodisponible0km A, ordendecompra O, docfabricacion DF, docauto0km DA 
                 WHERE A.codAD0KM=O.codAD0KM AND O.codODC=DF.codODC AND DF.codDF=DA.codDF 
@@ -49,16 +55,16 @@ router.get("/c1/b8/confSeguro", isLoggedIn, async (req, res) => {
 				var codS = rs[0].codS;
 				sql = `SELECT 
                 max(S.codS0KM) codS, P.nom nom, P.ape ape, P.tipodoc tdoc, P.nrodoc ndoc, DA.motor motor, 
-                DA.chasis chasis, DA.codigodefabrica codF, DA.añofabricacion yearF, DA.modelo modelo, 
+                DA.chasis chasis, DA.codigodefabrica codF, DA.aniofabricacion yearF, DA.modelo modelo, 
                 DA.marca marca, DA.matricula matricula, S.valorasegurado valorasegurado, S.femision femision, 
-                S.fecfin fecfin, curdate() fecha, TS.nombre tsnom, TS.explicacion tsexp,
+                S.fecfin fecfin, curdate() fecha, TS.nombre tsnom, TS.explicacion tsexp
                 FROM Persona P, cliente C, ordendecompra O, docfabricacion DF, docauto0km DA, auto0km A, 
                 Seguro0KM S, tiposeguro TS, condiciontiposeguro CTS, condicion Co
                 WHERE P.codPER=c.codper AND C.codCL=O.codCL AND O.codODC=DF.codODC AND DF.codDF=DA.codDF 
                 AND DA.codDA0KM=A.codDA0KM AND A.codA0KM=S.codA0KM AND S.codTS=TS.codTS 
                 AND TS.codTS=CTS.codTS AND Co.codcond=CTS.codcond AND codS0KM=${codS}`;
 				rs = await pool.query(sql);
-				var printData = {
+				var data = {
 					codS: rs[0].codS,
 					titular: rs[0].nom + " " + rs[0].ape,
 					doctitular: rs[0].tdoc + " : " + rs[0].ndoc,
@@ -76,7 +82,7 @@ router.get("/c1/b8/confSeguro", isLoggedIn, async (req, res) => {
 					tsnom: rs[0].tsnom,
 					tsexp: rs[0].tsexp,
 				};
-				res.render("./compras/c1/impSeguro", { printData });
+				res.render("./compras/c1/printSeguro", { data });
 			} else {
 				msg =
 					"El automóvil cuyo código de fábrica fue ingresado ya tiene un seguro registrado vigente.";

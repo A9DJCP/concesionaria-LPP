@@ -24,18 +24,17 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 
 		if (formaPago === "Efectivo") {
 			//Forma de Pago Efectivo
-
 			sql = `SELECT COUNT(*) cont FROM factura F, recibo R, ordendecompra O 
 			WHERE O.codODC=R.codODC AND O.codODC=F.codODC AND codREC=${codR}`;
 			rs = await pool.query(sql);
 			if (rs[0].cont === 1) {
-				msg = "";
 				sql = `SELECT COUNT(*) cont FROM recibo R, ordendecompra O, retiroauto0km RA 
 				WHERE RA.codODC=O.codODC AND O.codODC=R.codODC AND retirado=1 AND codREC=${codR}`;
 				rs = await pool.query(sql);
 				if (rs[0].cont === 1) {
-					msg +=
+					msg =
 						"Ya se ha registrado la factura para este recibo anteriormente y el automovil ya ha sido retirado.";
+					res.render("./compras/c1/index", { msg });
 				} else {
 					//Se renueva la orden de retiro y se vuelve a registrar e imprimir.
 					msg =
@@ -52,7 +51,7 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 					formaPago FP WHERE R.codODC=O.codODC AND O.codODC=DF.codODC AND C.codCL=O.codCL AND C.codper=P.codper 
 					AND DA.codDF=DF.codDF AND codRA0KM=(select MAX(codRA0km) FROM retiroauto0km) AND FP.codFP=O.codFP`;
 					rs = await pool.query(sql);
-					data = {
+					var data = {
 						lblAuto:
 							rs[0].marca +
 							" " +
@@ -88,9 +87,9 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 				sql = `SELECT year(curdate()) year,  marca, modelo, color, nom, ape, tipodoc tdoc, nrodoc ndoc,
 				day(curdate()) day, direc, F.total ftot, R.Total rtot, porcentaje porc, month(curdate()) month,
 				codF, O.codODC codODC, R.codREC nroRec 
-				FROM Factura F, recibo R, ordendecompra O, persona Per, cliente C, autodisponible0km A," & _
-				" porcentaje P WHERE A.codAD0KM=O.codAD0KM AND Per.codPer=C.codper AND C.codCL=O.codCL AND R.codODC=O.codODC AND F.codODC=O.codODC " & _
-				" AND P.descripcion='IVA' AND codF= (select MAX(codF) FROM factura) AND codREC=${codR}`;
+				FROM Factura F, recibo R, ordendecompra O, persona Per, cliente C, autodisponible0km A,
+				porcentaje P WHERE A.codAD0KM=O.codAD0KM AND Per.codPer=C.codper AND C.codCL=O.codCL AND R.codODC=O.codODC AND F.codODC=O.codODC
+				AND P.descripcion='IVA' AND codF= (select MAX(codF) FROM factura) AND codREC=${codR}`;
 				rs = await pool.query(sql);
 				var lblYear = rs[0].year;
 				var lblAuto = rs[0].marca + " " + rs[0].modelo + " " + rs[0].color;
@@ -113,7 +112,7 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 				var lblImporteTotal = rs[0].ftot + rs[0].rtot;
 				sql = `INSERT INTO retiroauto0km values('',${lblCodODC},curdate(),DATE_ADD(curdate(), INTERVAL 2 DAY),0)`;
 				await pool.query(sql);
-				data = {
+				var data = {
 					lblYear,
 					lblAuto,
 					lblCantidad,
@@ -131,19 +130,23 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 					lblNroRecibo,
 					lblImporteTotal,
 				};
+				console.log(data);
 				res.render("./compras/c1/generarFactura", { msg, data });
 			}
 		} else {
 			//Forma de Pago Credito Prendario
+			sql = `select codODC from recibo where codREC = ${codR}`;
+			rs = await pool.query(sql);
+			var codODC = rs[0].codODC;
+
 			sql = `select COUNT(*) cont FROM prestamo P, ordendecompra O, recibo R 
 			WHERE P.codODC=O.codODC AND O.codODC=R.codODC AND codREC=${codR}`;
 			rs = await pool.query(sql);
-			if (rs[0].cont === 1) {
-				msg = "El recibo ingresado ya tiene un prestamo en proceso.";
-				sql = `select COUNT(*) cont, O.codODC codODC FROM recibo R, ordendecompra O, retiroauto0km RA 
-				WHERE R.codODC=O.codODC AND R.codODC=RA.codODC AND retirado=1 AND codREC=${codR}`;
+			if (rs[0].cont >= 1) {
+				msg =
+					"El recibo ingresado ya tiene un prestamo en proceso. Se creara o renovara la orden de retiro.";
+				sql = `select COUNT(*) cont from retiroauto0km where codODC = ${codODC} and retirado=1;`;
 				rs = await pool.query(sql);
-				var codODC = rs[0].codODC;
 				if (rs[0].cont === 0) {
 					sql = `UPDATE retiroauto0km SET retirado=NULL WHERE cododc=${codODC}`;
 					await pool.query(sql);
@@ -175,8 +178,8 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 					var lblNroOrden = rs[0].codRA0KM;
 					var lblMotivo =
 						rs[0].descripcion + " (Renovación de Órden de Retiro)";
-					data = {
-						codODC,
+					var data = {
+						lblNroODC: codODC,
 						lblAuto,
 						lblCliente,
 						lblFemision,
@@ -190,8 +193,70 @@ router.post("/c1/b6/procPlanDePago", isLoggedIn, async (req, res) => {
 					res.render("./compras/c1/index", { msg });
 				}
 			} else {
-				res.render("./compras/c1/generarPrestamo", { msg });
+				res.render("./compras/c1/generarPrestamo", { msg, codR });
 			}
+		}
+	} catch (err) {
+		console.log(err);
+		res.render("./compras/c1/index", { msg: err });
+	}
+});
+
+router.post("/c1/b6/regPrestamo", isLoggedIn, async (req, res) => {
+	var sql, rs, msg;
+	try {
+		var cant = parseInt(req.body.cant);
+		var codR = parseInt(req.body.codR);
+		if (cant > 20 || cant < 3) {
+			msg = "La cantidad de cuotas no puede ser mayor a 20 ni menor a 3.";
+			res.render("./compras/c1/generarPrestamo", { msg });
+		} else {
+			sql = `select codODC from recibo where codREC=${codR}`;
+			rs = await pool.query(sql);
+			var codODC = rs[0].codODC;
+
+			console.log("HOLA LLEGUE ACA");
+			sql = `SELECT total from recibo where codREC = ${codR}`;
+			rs = await pool.query(sql);
+			var precio = parseInt(rs[0].total) / cant;
+
+			sql = `insert into prestamo values ('',${codODC},${cant},${precio},DATE_ADD(Curdate(),INTERVAL 1 MONTH),0,0)`;
+			await pool.query(sql);
+			console.log("HOLA LLEGUE ACA 2");
+			sql = "select MAX(codPRE) codPRE from prestamo";
+			rs = await pool.query(sql);
+			var codPRE = rs[0].codPRE;
+			console.log("HOLA LLEGUE ACA 3");
+			sql = `select DATE_ADD(curdate(), INTERVAL 1 MONTH) fecha`;
+			rs = await pool.query(sql);
+			var fechaInicial = rs[0].fecha;
+			for (var i = 0; i < cant; i++) {
+				sql = `insert into cuota values('',${codPRE},${i},0,(select DATE_ADD(Curdate(),INTERVAL ${i} MONTH)), (select DATE_ADD(Curdate(),INTERVAL (${i} + 1) MONTH)))`;
+				await pool.query(sql);
+			}
+			msg = "Préstamo registrado correctamente.";
+			sql = `insert into retiroauto0km values('',${codODC},curdate(),(DATE_ADD(Curdate(),INTERVAL 2 DAY)),FALSE)`;
+			await pool.query(sql);
+			99;
+			sql = `SELECT codRA0KM, marca, modelo, matricula, nom, ape, P.tipodoc tdoc, P.nrodoc ndoc, 
+			R.fechaemision femision, R.fvto fvto 
+			FROM retiroauto0km R, ordendecompra O, docfabricacion DF, cliente C, persona P, docauto0km DA 
+			WHERE R.codODC=O.codODC AND O.codODC=DF.codODC AND C.codCL=O.codCL AND C.codper=P.codper AND DA.codDF=DF.codDF 
+			AND codRA0KM=(SELECT MAX(codRA0km) FROM retiroauto0km)`;
+			rs = await pool.query(sql);
+			var lblCliente =
+				rs[0].nom + " " + rs[0].ape + " // " + rs[0].tdoc + " : " + rs[0].ndoc;
+
+			var data = {
+				lblCliente,
+				lblNroOrdenCompra: codODC,
+				lblFechaInicial: fechaInicial,
+				lblCant: cant,
+				lblPrec: precio,
+				lblCodPRE: codPRE,
+			};
+
+			res.render("./compras/c1/printDocPres", { msg, data });
 		}
 	} catch (err) {
 		console.log(err);

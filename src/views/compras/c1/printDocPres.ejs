@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="/css/c1/printDocPres.css">
+</head>
+
+<body>
+
+    <%- include('../../partials/navigation') %>
+        <div class="container">
+            <div id="encabezado">
+                <h1 id="titulo">LPP Concesionaria de Autos</h1>
+                <img src="/img/logo.png" alt="logo" height="100px">
+                <img src="/img/logoLPP.png" alt="logo" height="100px">
+            </div>
+            <table id="prestamo">
+                <tr>
+                    <th class="espacio"></th>
+                    <th class="espacio"></th>
+                    <th>Prestamo Prendario</th>
+                </tr>
+                <tr>
+                    <th class="espacio"></th>
+                    <td class="espacio"></td>
+                    <td><b>NRO:</b>
+                        <%=data.lblCodPRE%>
+                    </td>
+                </tr>
+            </table>
+            <table id="cliente">
+                <tr>
+                    <th>Orden de Compra</th>
+                    <td>
+                        <%=data.lblNroOrdenCompra%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Cliente Deudor</th>
+                    <td>
+                        <%=data.lblCliente%>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Precio por cuota</th>
+                    <td>
+                        $ <%=data.lblPrec%> (* intereses e IVA aplicables)
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha Inicial</th>
+                    <td>
+                        <%=data.lblFechaInicial%>
+                    </td>
+                </tr>
+                <table id="condiciones">
+                    <tr>
+                        <th>Pagado: Si / No</th>
+                    </tr>
+                </table>
+            </table>
+            <table id="cuotas">
+                <tr>
+                    <th class="espacio"></th>
+                    <th class="espacio"></th>
+                    <th class="espacio"></th>
+                    <th>Cantidad de Cuotas</th>
+                </tr>
+                <tr>
+                    <th class="espacio"></th>
+                    <th class="espacio"></th>
+                    <th class="espacio"></th>
+                    <td>
+                        <%=data.lblCant%>
+                    </td>
+                </tr>
+            </table>
+            <div style="text-align: center;">
+                <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+            </div>
+            <script>
+                function printOrDownload() {
+                    window.print();
+                }
+                document.getElementById('printButton').addEventListener('click', printOrDownload);
+            </script>
+
+        </div>
+        </div>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

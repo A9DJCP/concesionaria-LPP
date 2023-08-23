@@ -145,10 +145,7 @@ router.post("/c1/b1/ordenCompra", isLoggedIn, async (req, res) => {
 		precio = req.body.precio;
 		color = req.body.color;
 
-		formaPago = req.body["payment-method"];
-
-		console.log(req.body);
-		console.log(formaPago);
+		formaPago = req.body.seleccion;
 		//Busco el codigo de persona y de cliente
 
 		sql = `SELECT codPer, direc, tel, mail from Persona WHERE tipodoc = '${tdoc}' 
@@ -160,8 +157,7 @@ router.post("/c1/b1/ordenCompra", isLoggedIn, async (req, res) => {
 		tel = rs[0].tel;
 		mail = rs[0].mail;
 
-		if (req.body.pay === "credito") {
-			formaPago = "Credito Prendario";
+		if (formaPago === "Credito Prendario") {
 			//El cliente quiere pagar con credito.
 			sql = `SELECT requisitos FROM cliente WHERE codper=${codPer}`;
 			rs = await pool.query(sql);

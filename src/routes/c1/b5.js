@@ -66,9 +66,9 @@ router.post("/c1/b5/regDoc", isLoggedIn, async (req, res) => {
 				} else {
 					//Inserts
 					sql = `INSERT INTO docauto0km values ('','${marca}','${modelo}','${matricula}','${uso}','${chasis}',
-					'${motor}','${titular}','${tdoc}','${ndoc}','${domicilio}','${fvto}'," ${yearF}",'${color}',"${docF}",
+					'${motor}','${titular}','${tdoc}','${ndoc}','${domicilio}','${fvto}'," ${yearF}",'${color}',"${codDF}",
 					'${codF}')`;
-					rs = await pool.query(rs);
+					rs = await pool.query(sql);
 					sql = `SELECT codad0km codAD FROM autodisponible0km WHERE marca='${marca}' AND modelo='${modelo}' 
 					AND color='${color}'`;
 					rs = await pool.query(sql);
@@ -86,7 +86,7 @@ router.post("/c1/b5/regDoc", isLoggedIn, async (req, res) => {
 			}
 		}
 		res.render("./compras/c1/index", { msg });
-	} catch (e) {
+	} catch (err) {
 		console.log(err);
 		res.render("./compras/c1/index", { msg: err });
 	}

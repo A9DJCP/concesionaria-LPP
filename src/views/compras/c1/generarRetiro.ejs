@@ -21,12 +21,11 @@
                 alert('<%= msg %>');
             </script>
             <% } %>
-
                 <div class="container">
                     <div id="encabezado">
                         <h1 id="titulo">LPP Concesionaria de Autos</h1>
-                        <img id="logo" src="logo.png" alt="Logo">
-                        <button id="pdf">Descargar Orden de Retiro</button>
+                        <img src="/img/logo.png" alt="logo" height="100px">
+                        <img src="/img/logoLPP.png" alt="logo" height="100px">
                     </div>
                     <table id="orden-retiro">
                         <tr>
@@ -37,29 +36,39 @@
                         <tr>
                             <th class="espacio"></th>
                             <td class="espacio"></td>
-                            <td><b>No.</b><input type="text"></td>
+                            <td><b>Nro: <%=data.lblNroOrden%> </b></td>
                         </tr>
                     </table>
                     <table id="auto">
                         <tr>
                             <th>Automovil a Retirar</th>
-                            <td><input type="text"></td>
+                            <td>
+                                <%=data.lblAuto%>
+                            </td>
                         </tr>
                         <tr>
                             <th>Emitido para el Cliente</th>
-                            <td><input type="text"></td>
+                            <td>
+                                <%=data.lblCliente%>
+                            </td>
                         </tr>
                         <tr>
                             <th>Movil de Retiro</th>
-                            <td><input type="text"></td>
+                            <td>
+                                <%=data.lblMotivo%>
+                            </td>
                         </tr>
                         <tr>
                             <th>Fecha de Emisión</th>
-                            <td><input type="date"></td>
+                            <td>
+                                <%=data.lblFemision%>
+                            </td>
                         </tr>
                         <tr>
                             <th>Fecha de Vencimiento</th>
-                            <td><input type="date"></td>
+                            <td>
+                                <%=data.lblFvto%>
+                            </td>
                         </tr>
                         <table id="condiciones">
                             <tr>
@@ -78,9 +87,19 @@
                             <th class="espacio"></th>
                             <th class="espacio"></th>
                             <th class="espacio"></th>
-                            <td><b>No.</b><input type="text"></td>
+                            <td><b>Nro: <%=data.lblNroODC%></b></td>
                         </tr>
                     </table>
+                    <div style="text-align: center;">
+                        <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                        <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+                    </div>
+                    <script>
+                        function printOrDownload() {
+                            window.print();
+                        }
+                        document.getElementById('printButton').addEventListener('click', printOrDownload);
+                    </script>
                 </div>
                 <!-- Bootstrap JS -->
                 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
