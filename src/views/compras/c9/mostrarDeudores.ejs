@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+
+  <link rel="stylesheet" href="/css/c9/mostrarDeudores.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Activa el dark mode-->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+  <%- include('../../partials/navigation') %>
+    <% if (typeof msg !=='undefined' ) { %>
+      <script>
+        alert('<%= msg %>');
+      </script>
+      <% } %>
+        <header>
+          <div id="encabezado">
+            <h1 id="titulo">LPP Concesionaria de Autos</h1>
+            <img src="/img/logo.png" alt="logo" height="100px">
+            <img src="/img/logoLPP.png" alt="logo" height="100px">
+          </div>
+        </header>
+        <form id="center" class="center-form" action="/c9/b1/imprimirInforme" method="POST">
+          <div>
+            <div>
+              <div class="center">
+                <h2 class="center">Clientes que deben pagar cuotas de sus préstamos</h2>
+                <h3 class="text-center text-light center">Clientes con deudas</h3>
+                <table id="tabla" class="caja w-95 border border-light" style="height: 400px;">
+                  <tr style="background-color:white; color:black">
+                    <th class="tablaCell">Número de Préstamo</th>
+                    <th class="tablaCell">Cantidad de cuotas adeudadas vencidas</th>
+                    <th class="tablaCell">Monto total adeudado vencido</th>
+                    <th class="tablaCell">Tipo de Deudor</th>
+                    <th class="tablaCell">Acción</th>
+                  </tr>
+
+                  <% for (let i=0; i < deudas.length; i++) { %>
+                    <tr>
+                      <td class="tablaCell">
+                        <%= deudas[i].codPRE %>
+                      </td>
+                      <td class="tablaCell">
+                        <%= deudas[i].cant %>
+                      </td>
+                      <td class="tablaCell">
+                        <%= deudas[i].monto %>
+                      </td>
+                      <td class="tablaCell">
+                        <%= deudas[i].tipo %>
+                      </td>
+                      <td class="button-cell tablaCell">
+                        <button class="add-button">Seleccionar</button>
+                      </td>
+                    </tr>
+                    <% } %>
+                </table>
+              </div>
+
+              <div class="center">
+                <h2> Número de Préstamo Seleccionado </h2>
+                <div id="chosenPrestamo" class="data-display"></div>
+                <input type="hidden" id="chosenPrestamoInput" name="codPRE" value="">
+              </div>
+              <input id="submit" type="submit" style="margin-top:1%" value="IMPRIMIR INFORME">
+              <a id="submit" href="/c9" style="
+                background-color: red !important;">Finalizar impresiones y Regresar al menú</a>
+            </div>
+          </div>
+          </div>
+        </form>
+        <%- include('../../partials/footer') %>
+          <script src="/js/c9/selecPrestamo.js"></script>
+</body>
+
+</html>

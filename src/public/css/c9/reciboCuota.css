@@ -1,0 +1,65 @@
+body {
+  background: #e0eeee;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#elemento {
+  margin: auto;
+  background: rgb(231, 233, 231);
+  color: rgb(3, 3, 3);
+  font-size: 12px;
+  padding: 30px;
+  width: 400px;
+  border: solid 10px LightSteelBlue;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  font: 15px 'Helvetica';
+  color: #050505;
+}
+
+.param-data {
+  background-color: #ffc107; /* Cambia el color de fondo según tus preferencias */
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #333; /* Puedes personalizar el estilo del borde */
+  border-radius: 5px;
+}
+
+.param-value {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-warning:hover {
+  background-color: #ffa000;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}

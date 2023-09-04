@@ -1,0 +1,126 @@
+html {
+  background-image: url(/img/fondo.jpg);
+  background-attachment: fixed;
+  background-position: right center;
+  max-width: 100%;
+  background-repeat: no-repeat;
+  color: black;
+  font-family: monospace, calibri !important;
+}
+
+body {
+  font-family: monospace, calibri;
+  text-align: center;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.titulo {
+  margin: 0;
+  display: inline-block;
+  margin-top: 25px;
+  color: #050505;
+}
+
+#encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+#encabezado img {
+    width: 100px;
+    height: 100px;
+  }
+
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    font-family: calibri, monospace;
+    border: 0;
+  }
+
+  #submit {
+    display: inline-block;
+    background-color: green;
+    padding: 20px 6px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    min-width: 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  #submit:hover {
+    transform: scale(0.95); 
+  }
+
+  #center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .col-12.col-xl-6 {
+    width: 100%;
+  }
+  
+  .btn.btn-danger {
+    width: auto;
+  }
+
+  .center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .data-display {
+    width: 80%;
+    height: 100px;
+    margin: 10px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+#tabla {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para las celdas de encabezado de la tabla */
+th.tablaCell {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+  border: 1px solid black; /* Agrega bordes a las celdas de encabezado */
+  padding: 8px; /* Agrega espacio alrededor del contenido de la celda */
+}
+
+/* Estilos para las celdas de datos de la tabla */
+td.tablaCell {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+  border: 1px solid black; /* Agrega bordes a las celdas de datos */
+  padding: 8px; /* Agrega espacio alrededor del contenido de la celda */
+}

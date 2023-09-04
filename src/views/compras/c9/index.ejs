@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/c9/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Menu de Administración de Cuotas</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Activa el dark mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="contenedor">
+                    <h1>Administración de Cuotas</h1>
+                    <div class="contenedor-botones">
+                        <a class="boton menú boton-administracion" href="/c9/b1" style="width: 30%;">
+                            <span>Procesar Administración de Cuotas</span>
+                        </a>
+                    </div>
+                    <!-- BOTON 2 - Procesar Aceptación de Orden De Compra -->
+                    <div class="contenedor-botones">
+                        <div class="card text-center text-dark bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">Procesar Recepción de Pago de Cuota</h5>
+                                <p class="card-text">Ingrese el código del préstamo cuya cuota se va a abonar.</p>
+                                <form name="myForm" action="/c9/b2/pagarCuota" method="POST">
+                                    <div class="form-group">
+                                        <label for="codPREInput">Ingrese el número de préstamo</label>
+                                        <input type="text" name="codPRE" class="form-control" id="codPREInput"
+                                            placeholder="Número de Préstamo">
+                                    </div>
+                                    <button id="continueB2Button" type="submit" class="boton menú boton-administracion"
+                                        style="width: 30%;">
+                                        <span>Continuar</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contenedor-botones">
+                    <a class="boton menú boton-rojo" href="/menu" style="width: 30%;">
+                        <span>Regresar</span>
+                    </a>
+                </div>
+                <!-- Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
+</body>
+
+</html>

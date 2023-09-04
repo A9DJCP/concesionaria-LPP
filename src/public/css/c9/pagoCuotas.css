@@ -1,0 +1,206 @@
+body {
+    background-color: #e0eeee;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#titulo {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+.logo {
+    height: 100px;
+}
+
+#pago {
+    margin: auto;
+    background-color: #e7e9e7;
+    color: #030303;
+    font-size: 14px;
+    padding: 30px;
+    width: 90%;
+    border: solid 1px #b0c4de;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#pago fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#pago input {
+    font-size: 14px;
+    background-color: #f1f3f1;
+    border: 1px solid #161616;
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#pago li {
+    line-height: 25px;
+    list-style: none;
+}
+
+#pago [required] {
+    border-color: #968c8c;
+}
+
+input:required {
+    outline: 1px solid #292727;
+}
+
+#tabla-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#tabla-wrapper {
+    max-width: 100%;
+}
+
+#tabla-original {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+#tabla-original th,
+#tabla-original td {
+    padding: 10px;
+    text-align: center;
+}
+
+.button-cell {
+    text-align: center;
+}
+
+.add-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+}
+
+.inputfield {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn.pagar {
+    background-color: #28a745;
+}
+
+.btn:active {
+    background-color: #0056b3;
+}
+
+.btn.regresar {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 15px 30px; /* Aumenta el tamaño del botón Regresar */
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    float: left;
+    font-size: 3rem !important;
+    max-width: 20%;
+}
+
+#submit {
+    font-size: 3rem !important;
+    background-color: #28a745;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    float: right;
+    max-width: 20%;
+    padding: 15px 30px; /* Aumenta el tamaño del botón Pagar Cuota */
+    margin-left: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.btn.regresar:hover {
+    background-color: #c82333;
+}
+
+#submit:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn.regresar,
+    #submit {
+        margin-top: 10px;
+        max-width: 100%;
+    }
+}
+#chosenCuota {
+    border: 2px solid #000; /* Ancho del borde y color (puedes ajustarlo según tus preferencias) */
+    padding: 10px; /* Espacio interno dentro del contorno */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 20px; /* Espacio superior opcional */
+    text-align: center; /* Centra el contenido horizontalmente */
+    width: 50%;
+}

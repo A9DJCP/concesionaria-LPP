@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Recibo de Cuota</title>
+  <link rel="stylesheet" href="/css/c9/reciboCuota.css">
+</head>
+
+<body>
+  <header>
+    <div id="encabezado">
+      <h1 id="titulo">LPP Concesionaria de Autos</h1>
+      <img src="/img/logo.png" alt="logo" height="100px">
+      <img src="/img/logoLPP.png" alt="logo" height="100px">
+    </div>
+  </header>
+  <div id="elemento">
+    <ol>
+      <div>
+        <div class="param-data">Refiere a la órden de compra N°:</div>
+        <div class="param-value">
+          <%= data.codODC %>
+        </div>
+        <br>
+        <div class="param-data">Fecha de emisión:</div>
+        <div class="param-value">
+          <%= data.femision %>
+        </div>
+        <br>
+        <div class="param-data">He recibido del cliente:</div>
+        <div class="param-value">
+          <%= data.labelCliente %><br>
+            <%= data.labelDoc %>
+        </div>
+        <br>
+        <div class="param-data">Detalle</div>
+        <div class="param-value">
+          En concepto del pago de la cuota: <b>
+            <%= data.nroCuota %>/<%=data.cantCuotas%>
+          </b> del préstamo <b>
+            <%= data.codPRE %>
+          </b> por el cual el cliente
+          compró por préstamo prendario un
+          automóvil 0KM Marca <b>
+            <%= data.marca %>
+          </b> Modelo <b>
+            <%= data.modelo %>
+          </b> Matrícula <b>
+            <%= data.matricula %>
+          </b>
+        </div>
+      </div>
+      <div>
+        <div class="param-data">Precio base de la cuota:</div>
+        <div class="param-value">
+          $<%= data.precioBase %>
+        </div>
+        <br>
+        <div class="param-data">Interés por mes vencido (%):</div>
+        <div class="param-value">
+          <%= data.interes %> %
+        </div>
+        <br>
+        <div class="param-data">Meses de atraso con respecto al vencimiento del pago de la cuota:</div>
+        <div class="param-value">
+          <%= data.mesesVto %>
+        </div>
+        <br>
+        <div class="param-data">Precio Final de la cuota:</div>
+        <div class="param-value">
+          $<%= data.precioFinal %>
+        </div>
+      </div>
+    </ol>
+  </div>
+  <div style="text-align: center;">
+    <button id="printButton" class="btn-warning btn-lg btn" onclick="printOrDownload()">Imprimir o Descargar</button>
+    <a href="/c9" class="btn btn-success btn-lg">Finalizar Operacion</a>
+  </div>
+  <script>
+    function printOrDownload() {
+      window.print();
+    }
+    document.getElementById('printButton').addEventListener('click', printOrDownload);
+  </script>
+</body>
+
+</html>

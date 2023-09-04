@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pago de Cuotas adeudadas</title>
+
+    <link rel="stylesheet" href="/css/c9/pagoCuotas.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Activa el dark mode-->
+    <%- include('../../partials/head') %>
+        <script>
+            // Script para transformar las fechas en formato YYYY/MM/DD
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtén todas las celdas de fecha de vencimiento en la tabla
+                const fechaCells = document.querySelectorAll('#tabla-original td.fecha');
+
+                // Recorre cada celda y reformatea la fecha
+                fechaCells.forEach(cell => {
+                    const fechaOriginal = cell.textContent;
+                    const fechaFormateada = formatDate(fechaOriginal);
+                    cell.textContent = fechaFormateada;
+                });
+
+                // Función para formatear la fecha (Thu Aug 31 2023 00:00:00 GMT-0300) a (2023/08/31)
+                function formatDate(dateString) {
+                    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                    const fecha = new Date(dateString);
+                    return fecha.toLocaleDateString('en-CA', options).replace(/\//g, '-');
+                }
+            });
+        </script>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <header>
+                    <div id="encabezado">
+                        <h1 id="titulo">LPP Concesionaria de Autos</h1>
+                        <img src="/img/logo.png" alt="logo" height="100px">
+                        <img src="/img/logoLPP.png" alt="logo" height="100px">
+                    </div>
+                </header>
+                <div id="pago">
+                    <fieldset>
+                        <b>
+                            <h2>
+                                <div>
+                                    <li>
+                                        <label for="Número de préstamo">Número de Préstamo: </label>
+                                        <b>
+                                            <%=codPRE%>
+                                        </b>
+                                    </li>
+                                </div>
+                            </h2>
+                            <div class="col-12 col-xl-6">
+                                <h2>Cuotas del Préstamo Pendientes</h2>
+                                <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+                                    <tr style="background-color:white; color:black">
+                                        <th>Número de Cuota</th>
+                                        <th>Pagada</th>
+                                        <th>Fecha de Cobro</th>
+                                        <th>Fecha Vto.</th>
+                                        <th>Accion</th>
+                                    </tr>
+
+                                    <% for (let i=0; i < cuotas.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <%= cuotas[i].nroCuota %>
+                                            </td>
+                                            <td>
+                                                <%= cuotas[i].pagada %>
+                                            </td>
+                                            <td class="fecha">
+                                                <%= cuotas[i].fcobro %>
+                                            </td>
+                                            <td class="fecha">
+                                                <%= cuotas[i].fvto%>
+                                            </td>
+                                            <td class="button-cell">
+                                                <button class="add-button">Seleccionar</button>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </table>
+                            </div>
+                        </b>
+                        <br>
+                        <br>
+                        <form method="POST" action="/c9/b2/elegirCuota">
+                            <div class="center">
+                                <h2> Número de Cuota Seleccionada </h2>
+                                <div id="chosenCuota" class="data-display">Número de cuota...</div>
+                                <input type="hidden" id="chosenCuotaInput" name="codCuota" value="">
+                                <input type="hidden" name="codPRE" value="<%=codPRE%>">
+                                <br>
+                                <br>
+                                <input id="submit" type="submit" value="Pagar Cuota">
+
+                            </div>
+                        </form>
+
+                        <a class="btn regresar" href="/c9">Regresar</a>
+
+
+                    </fieldset>
+
+
+                    <script src="/js/c9/selecCuota.js"></script>
+</body>
+
+</html>

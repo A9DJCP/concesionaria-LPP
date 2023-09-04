@@ -1,0 +1,164 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #e0eeee;
+	font-family: 'Roboto', sans-serif;
+	min-height: 100vh;
+}
+
+.contenedor {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 100px 0;
+	text-align: center;
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	color: #11318a;
+	border: 5px solid rgb(140, 163, 214);
+	padding: 1px 20px;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.contenedor-botones {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.boton {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: 80px;
+	background: #4c90cf;
+	color: #f5f1f1;
+	font-family: 'Roboto', sans-serif;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	text-transform: uppercase;
+	transition: .3s ease all;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+	text-decoration: none;
+}
+
+.boton span {
+	position: relative;
+	z-index: 2;
+	transition: .3s ease all;
+}
+
+.boton::after {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: -100%;
+	background: rgb(47, 70, 177);
+	border-right: 80px solid transparent;
+	transition: .4s ease-in-out all;
+}
+
+.boton:hover::after {
+	left: 0;
+}
+
+.card {
+	background-color: rgba(0, 0, 0, 0.603);
+	color: white;
+	margin-top: 20px;
+}
+
+.card-title {
+	font-size: 1.5rem;
+}
+
+.card-text {
+	font-size: 1rem;
+}
+
+form {
+	margin-top: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+label {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.btn-danger {
+	background-color: #dc3545;
+	border: none;
+}
+
+.btn-danger:hover {
+	background-color: #c82333;
+}
+
+.btn-danger:focus {
+	box-shadow: none;
+}
+
+/* ... (El resto del CSS se mantiene igual) ... */
+
+.boton-rojo {
+    background-color: #dc3545;
+    border: none;
+}
+
+.boton-rojo:hover {
+    background-color: #c82333;
+}
+
+/* Añadir estilos para el tamaño deseado de los botones */
+
+.boton, .boton-rojo {
+    width: 20%;
+    height: 80px;
+    font-size: 1.2rem; /* Ajusta el tamaño de la fuente si es necesario */
+}
+.boton-administracion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 80px;
+    background: #4c90cf;
+    color: #f5f1f1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
