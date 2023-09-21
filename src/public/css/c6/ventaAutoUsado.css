@@ -1,0 +1,102 @@
+         body {
+                background: #e0eeee;
+                font-family: 'Roboto', Arial, Helvetica, sans-serif;
+                min-height: 100vh;
+                margin: 0;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+            }
+
+            header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            #encabezado {
+                display: flex;
+                align-items: center;
+            }
+
+            .image-container {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                max-width: 450px;
+                margin-top: 20px;
+            }
+
+            .image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .title {
+                font: bold 27px 'Helvetica';
+                color: #050505;
+                margin-top: 10px;
+            }
+
+            /* Estilos CSS personalizados aquí */
+
+            form#verificación {
+                background: rgb(231, 233, 231);
+                color: rgb(3, 3, 3);
+                font-size: 15px;
+                padding: 30px;
+                width: 100%;
+                max-width: 450px;
+                border: solid 10px LightSteelBlue;
+                border-radius: 1px;
+                -webkit-border-radius: 1px;
+                -moz-border-radius: 1px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            form#verificación fieldset {
+                border: none;
+            }
+
+            form#verificación input {
+                font-size: 12px;
+                background: rgb(241, 243, 241);
+                border: solid 1px rgb(22, 22, 22);
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 10px;
+                padding: 5px;
+            }
+
+            form#verificación label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            form#verificación [required] {
+                border: solid 1px rgb(150, 140, 140);
+            }
+
+            input:required {
+                outline: 1px solid rgb(41, 39, 39);
+            }
+
+            container .btn {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                margin-top: 10px;
+            }

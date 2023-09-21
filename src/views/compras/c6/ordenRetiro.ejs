@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Documento</title>
+  <link rel="stylesheet" href="/css/c6/ordenRetiro.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Activa el Dark Mode -->
+  <%- include('../../partials/head') %>
+</head>
+
+<body>
+  <%- include('../../partials/navigation') %>
+    <% if (typeof msg !=='undefined' ) { %>
+      <script>
+        alert('<%= msg %>');
+      </script>
+      <% } %>
+        <header>
+          <div id='imagen_div'>
+            <img src="/img/logo.png" alt="logo" height="100px">
+            <img src="/img/logoLPP.png" alt="logo" height="100px">
+          </div>
+          <div id="títulos">
+            <p class='título'> LPP Concesionaria de autos - Orden de Retiro del Automóvil </p>
+          </div>
+        </header>
+
+        <div id="elemento">
+          <div class="container">
+            <form>
+              <legend>ORDEN DE RETIRO NRO. <%=data.codR%>
+              </legend>
+              <fieldset>
+                <legend>Datos del Automóvil
+                </legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="n">Automóvil a Retirar</label>
+                    <input type="text" class="form-control" id="n" value="<%=data.auto%>" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="n">Matrícula del Automóvil</label>
+                    <input type="text" class="form-control" id="n" value="<%=data.mat%>" readonly>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Datos del Cliente que retira</legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="nombre">Cliente que retira</label>
+                    <input type="text" class="form-control" id="nombre" value="<%=data.cliente%>" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="apellido">Doc. de Cliente</label>
+                    <input type="text" class="form-control" id="apellido" value="<%=data.documento%>" readonly>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Fechas</legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="marca">Fecha de Emision</label>
+                    <input type="text" class="form-control" id="marca" value="<%=data.femision%>" readonly>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="modelo">Fecha de Vencimiento</label>
+                    <input type="text" class="form-control" id="modelo" value="<%=data.fvto%>" readonly>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Datos del Retiro</legend>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="tipoDocumentoActual">Motivo de Retiro</label>
+                    <input type="text" class="form-control" id="tipoDocumentoActual" value="<%=data.motivo%>" readonly>
+                  </div>
+                  <legend>El automóvil fue retirado: SI / NO</legend>
+                </div>
+                <legend>Este retiro corresponde al automóvil del contrato número <%=data.codC%>.</legend>
+                <legend>Responde a la factura de compra de auto usado número <%=data.nroF%>.</legend>
+              </fieldset>
+              <div style="text-align: center;">
+                <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                <a href="/c6" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+              </div>
+              <script>
+                function printOrDownload() {
+                  window.print();
+                }
+                document.getElementById('printButton').addEventListener('click', printOrDownload);
+              </script>
+            </form>
+          </div>
+        </div>
+        <!-- Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+          crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+</body>
+
+</html>

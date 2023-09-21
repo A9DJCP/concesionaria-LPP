@@ -33,6 +33,8 @@ router.get("/c4", isLoggedIn, (req, res) => res.render("./posventa/c4/index"));
 
 router.get("/c9", isLoggedIn, (req, res) => res.render("./compras/c9/index"));
 
+router.get("/c6", isLoggedIn, (req, res) => res.render("./compras/c6/index"));
+
 // RUTAS DE SECCION DE POSVENTAS
 
 export default router;

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/c6/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Estilo del botón -->
+    <link rel="stylesheet" href="menú.css">
+    <title>Menu de Ventas de Automóviles Usados</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Activa el dark mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="contenedor">
+                    <h1>Menu de Ventas de Automóviles Usados</h1>
+
+                    <div class="contenedor-botones1">
+                        <a class="boton menú" href="/c6/b1"><span>Procesar Solicitud de Compra de Auto Usado</span></a>
+                    </div>
+                    <div class="contenedor-botones">
+                        <form action="/c6/b2" method="POST">
+                            <input type="number" min="0" name="nroPres" class="form-control" id="inputNroPres"
+                                placeholder="Numero de Presupuesto de Auto Usado">
+
+                            <input type="submit" class="boton menú" value="Procesar Confirmación de Compra">
+                        </form>
+
+                        <form action="/c6/b3" method="POST">
+                            <input type="number" min="0" name="nroF" class="form-control" id="inputNroPres"
+                                placeholder="Ingrese el número de factura a pagar.">
+
+                            <input type="submit" class="boton menú"
+                                value="Procesar Recepción de pago del automóvil usado">
+                        </form>
+                    </div>
+                    <div class="contenedor-botones1">
+                        <form action="/c6/b4" method="POST" style="width: 100%">
+                            <input type="number" min="0" name="nroF" class="form-control" id="inputNroPres"
+                                placeholder="Ingrese el número de factura paga.">
+
+                            <input type="submit" class="boton menú" value="Procesar Solicitud de Retiro de Auto Usado">
+                        </form>
+                    </div>
+                    <div class="contenedor-botones">
+                        <form action="/c6/b5" method="POST" style="width: 100%">
+                            <input type="number" min="0" name="codR" class="form-control" id="inputCodR"
+                                placeholder="Ingrese el número de la órden de retiro.">
+                            <input type="submit" class="boton menú" value="Procesar Retiro de Automóvil Usado Vendido">
+                        </form>
+                        <form action="/c6/b6" method="POST" style="width: 100%">
+                            <input type="number" min="0" name="codORPAG" class="form-control" id="inputCodR"
+                                placeholder="Ingrese el número de la órden de pago a cobrar.">
+                            <input type="submit" class="boton menú" value="Procesar Pago al ExPropietario">
+                        </form>
+                    </div>
+                    <div class="contenedor-botones1">
+                        <a href="/menu" class="boton menú"><span>REGRESAR</span></a>
+                    </div>
+
+                </div>
+</body>
+
+</html>

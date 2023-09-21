@@ -1,3 +1,23 @@
+.boton.menú::after {
+	content: "";
+	width: 100%;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: calc(-100% - 80px);
+	border-bottom: solid 80px rgb(47, 70, 177)/*rgb(15, 51, 94)*/ /* #065596*//*rgb(95, 121, 131)*//*#286cff*/;
+	
+	border-right: 80px solid transparent;
+	transition: .4s ease-in-out all;
+	
+}
+a {
+	text-decoration: none !important;
+  }
+  
+.boton.menú:hover::after {
+	left: 0;
+}
 * {
 	margin: 0;
 	padding: 0;

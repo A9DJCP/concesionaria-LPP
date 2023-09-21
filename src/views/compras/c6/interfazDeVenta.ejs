@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Activa el Dark Mode-->
+    <%- include('../../partials/head') %>
+        <link rel="stylesheet" href="/css/c1/compra.css">
+</head>
+
+<body>
+
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+
+                    <div class="col-12 col-xl-6">
+                        <h2>Automóviles disponibles para su compra</h2>
+                        <h3 class="text-center text-light">Automoviles 0KM Disponibles</h3>
+                        <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+                            <tr style="background-color:white; color:black">
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Precio</th>
+                                <th>Propietario</th>
+                                <th>Doc. Propietario:</th>
+                                <th>Contrato</th>
+                                <th>Color</th>
+                                <th>Accion</th>
+                            </tr>
+                            <% for (let i=0; i < autos.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= autos[i].marca %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].modelo %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].precio %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].propietario %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].documento %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].contrato %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].color %>
+                                    </td>
+                                    <td class="button-cell"><button class="add-button">Seleccionar</button></td>
+                                </tr>
+                                <% } %>
+                        </table>
+                    </div>
+
+                    <div class="side-section">
+                        <h2>Cliente que compra</h2>
+                        <div class="data-display">
+                            <span>
+                                <%= nom %>
+                            </span>
+                            <span>
+                                <%= ape %> //
+                            </span>
+                            <span style="text-transform: uppercase;">
+                                <%= tdoc%>:
+                            </span>
+                            <span>
+                                <%= ndoc %>
+                            </span>
+                        </div>
+
+                        <h2>Propietario Actual del Auto</h2>
+                        <div class="data-display">
+                            <div id="chosenPropietario" class="data-display"></div>
+                        </div>
+
+                        <h2>Automóvil a comprar</h2>
+                        <div id="chosenCar" class="data-display"></div>
+                        <a id="submit" href="c6">Cancelar Compra</a>
+
+                        <form id="hiddenForm" action="/c6/b1/generarPedido" method="POST">
+
+                            <h2>Forma de pago</h2>
+                            <div name="payment" class="payment-methods">
+                                <input type="radio" name="seleccion" value="Credito Prendario">
+                                <label for="opcion1">Credito Prendario</label>
+                                <input type="radio" name="seleccion" value="Efectivo">
+                                <label for="opcion2">Efectivo</label>
+                            </div>
+
+                            <div style="display: none;">
+                                <input type="hidden" id="hiddenNom" name="nom" value='<%= nom %>'>
+                                <input type="hidden" id="hiddenApe" name="ape" value='<%= ape %>'>
+                                <input type="hidden" id="hiddenTdoc" name="tdoc" value='<%= tdoc %>'>
+                                <input type="hidden" id="hiddenNdoc" name="ndoc" value='<%= ndoc %>'>
+                                <input type="hidden" id="hiddenContrato" name="contrato" value="-1">
+                                <input type="hidden" id="hiddenPrecio" name="precio" value="-1">
+                            </div>
+
+                            <input id="submit" type="submit" class="btn btn-danger" style="margin-top:1%"
+                                value="Generar Pedido de Auto Usado">
+
+                        </form>
+                    </div>
+                </div>
+
+
+                <%- include('../../partials/footer') %>
+                    <script src="/js/c6/selecAuto.js"></script>
+                    <!-- Bootstrap JS -->
+                    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                        crossorigin="anonymous"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                        crossorigin="anonymous"></script>
+                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                        crossorigin="anonymous"></script>
+</body>
+
+</html>

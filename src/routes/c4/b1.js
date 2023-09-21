@@ -56,8 +56,4 @@ router.post("/c4/b1/registrar", isLoggedIn, async (req, res) => {
 	res.render("./posventa/c4/index", { msg });
 });
 
-
-
-
-
 export default router;
