@@ -31,6 +31,8 @@ router.get("/c3", isLoggedIn, (req, res) => res.render("./posventa/c3/index"));
 
 router.get("/c4", isLoggedIn, (req, res) => res.render("./posventa/c4/index"));
 
+router.get("/c5", isLoggedIn, (req, res) => res.render("./contratos/c5/index"));
+
 router.get("/c9", isLoggedIn, (req, res) => res.render("./compras/c9/index"));
 
 router.get("/c6", isLoggedIn, (req, res) => res.render("./compras/c6/index"));

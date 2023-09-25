@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="/css/c5/regAutoUsado.css">
+    <!-- Activa el Dark Mode -->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Abortar Proceso</a>
+                    <div class="margin">
+                        <form id="survey-form" action="/c5/b1/regAutoUsado" method="POST" required>
+                            <p id="principal-description">Información del Automóvil usado a Registrar para su venta en
+                                el contrato:</p>
+                            <label for="mat-label" id="mat-label">Matrícula</label>
+                            <input type="text" id="mat" placeholder="Matrícula del automóvil" name="mat" required>
+                            <label for="marca-label" id="marca-label">Marca</label>
+                            <input type="text" id="marca" placeholder="Marca del Automóvil" name="marca" required>
+                            <label for="modelo-label" id="modelo-label">Modelo</label>
+                            <input type="text" id="modelo" placeholder="Modelo del automóvil de la marca indicada"
+                                name="modelo" required>
+                            <label for="precio-label" id="direccion-label">Precio de Venta Base</label>
+                            <input type="number" id="precio" placeholder="Precio base de venta del automóvil"
+                                name="precio" required>
+                            <label for="fecha-label" id="fecha-label">Fecha de Fabricación del Automóvil</label>
+                            <input type="date" id="fecha" name="fecFab" required>
+                            <label for="propietario-label" id="propietario-label">Número de Propietario</label>
+                            <input type="hidden" id="propietario" value="<%=data.codP%>" name="codP">
+
+                            <label for="persona-label" id="persona-label">Número de Persona</label>
+                            <input type="hidden" id="persona" value="<%=data.codPer%>" name="codPer">
+
+                            <label for="uso-label" id="uso-label">Uso</label>
+                            <input type="text" id="uso" placeholder="Tipo de uso por defecto registrado del automóvil"
+                                name="uso" required>
+                            <label for="chasis-label" id="chasis-label">Chasis</label>
+                            <input type="text" id="chasis" placeholder="Código de Chasis del automóvil" name="chasis"
+                                required>
+                            <label for="motor-label" id="motor-label">Motor</label>
+                            <input type="text" id="motor" placeholder="Código de Motor del automóvil" name="motor"
+                                required>
+                            <label for="color-label" id="chasis-label">Color</label>
+                            <input type="text" id="color" placeholder="Color principal del automóvil" name="color"
+                                required>
+                            <div class="botones">
+                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
+                                    style="margin-top: 1%" value="Registrar Automóvil">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+</body>
+
+</html>

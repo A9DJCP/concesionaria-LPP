@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="/css/c5/regContrato.css">
+    <!-- Activa el Dark Mode -->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Abortar Proceso</a>
+                    <div class="margin">
+                        <form id="survey-form" action="/c5/b2/registrarContrato" method="POST" required>
+                            <p id="principal-description">Llene la informacion del contrato en base al contrato
+                                desarrollado por el sector de CONTRATACIONES presentado por el cliente:</p>
+                            <label for="codAU-label" id="mat-label">Número de Auto Usado</label>
+                            <input type="hidden" id="codAU" value="<%=codAU%>" name="codAU" required>
+                            <label for="femision-label" id="femision-label">Fecha de Emision del Contrato</label>
+                            <input type="date" id="femision" name="femision" required>
+                            <label for="fvto-label" id="fvto-label">Fecha de Vencimiento del Contrato</label>
+                            <input type="date" id="fvto" name="fvto" required>
+
+                            <label for="cond-label" id="cond-label">Condiciones de Contrato</label>
+                            <textarea id="condiciones" name="cond" rows="15" cols="70"></textarea>
+
+                            <br>
+                            <label for="porc-label" id="porc-label">Porcentaje de Ganancia para la
+                                Concesionaria LPP (%)</label>
+                            <input type="number" id="porc" placeholder="0%" name="porc" required>
+                            <div class="botones">
+                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
+                                    style="margin-top: 1%" value="Registrar Contrato">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+</body>
+
+</html>

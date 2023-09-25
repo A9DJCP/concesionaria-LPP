@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LPP Concesionaria de Autos</title>
+    <link rel="stylesheet" href="/css/c5/regFirma.css">
+    <!-- Activa el Dark Mode -->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Regresar</a>
+                    <div class="margin">
+                        <form id="survey-form" action="/c5/b3/regFirma" method="POST" required>
+                            <p id="principal-description">Ingrese los datos del contrato cuya firma de propietario se va
+                                a registrar:</p>
+                            <label for="nombre-label" id="nombre-label">Nombre del Propietario</label>
+                            <input type="text" id="nombre" placeholder="Nombre del Propietario" name="nom" required>
+                            <label for="apellido-label" id="apellido-label">Apellido del Propietario</label>
+                            <input type="text" id="apellido" placeholder="Apellido del Propietario" name="ape" required>
+                            <label for="tipo-documento-label" id="tipo-documento-label">Tipo de Documento del
+                                Propietario</label>
+                            <br>
+                            <select id="dropdown" name="tdoc">
+                                <option disable selected value>Elige una opción</option>
+                                <option value="dni">DNI</option>
+                                <option value="dni-extranjero">DNI Extranjero</option>
+                            </select>
+                            <br>
+                            <label for="ndoc-label" id="ndoc-label">Número de Documento del
+                                Propietario</label>
+                            <input type="number" id="ndoc" name="ndoc" required>
+                            <label for="codAU-label" id="codAU-label">Número de Auto Usado</label>
+                            <input type="number" id="codAU" name="codAU" required>
+
+                            <label for="femision-label" id="femision-label">Fecha de Emision del Contrato</label>
+                            <input type="date" id="femision" name="femision" required>
+
+                            <div class="botones">
+                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
+                                    style="margin-top: 1%" value="Registrar Contrato">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+</body>
+
+</html>

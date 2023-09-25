@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/c5/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Activa el Dark Mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+
+                <div class="container">
+                    <div id="espaciado"></div>
+                    <div class="margin">
+                        <form id="survey-form" required>
+                            <p id="principal-description"> Menu de Contratacion de Autos Usados:</p>
+                            <!--<p id="description">Secciones - Autos Usados </p>-->
+                            <div class="bloque-1">
+                                <a id="submit" href="/c5/b1">Procesar Solicitud de Contrato</a>
+                            </div>
+                            <div class="bloque-2">
+                                <a id="submit" href="/c5/b2">Procesar Registro de Contrato</a>
+                                <a id="submit" href="/c5/b3">Procesar Contrato Firmado</a>
+                            </div>
+                            <div class="bloque-1"><a id="submit" href="/menu">Regresar</a> </div>
+
+                        </form>
+                    </div>
+                </div>
+</body>
+<footer id="footer">
+    <p class="copyright">LPP Concesionario</p>
+    <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+</footer>
+
+</html>

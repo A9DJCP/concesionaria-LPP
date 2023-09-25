@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/c5/verifAuto.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Activa el Dark Mode -->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Regresar</a>
+                    <div class="margin">
+                        <form id="survey-form" action="/c5/b2/verifDatos" method="POST" required>
+                            <p id="principal-description">Información del Automóvil usado a Registrar para su venta en
+                                el contrato:</p>
+                            <label for="mat-label" id="mat-label">Matrícula</label>
+                            <input type="text" id="mat" placeholder="Matrícula del automóvil" name="mat" required>
+                            <label for="marca-label" id="marca-label">Marca</label>
+                            <input type="text" id="marca" placeholder="Marca del Automóvil" name="marca" required>
+                            <label for="modelo-label" id="modelo-label">Modelo</label>
+                            <input type="text" id="modelo" placeholder="Modelo del automóvil de la marca indicada"
+                                name="modelo" required>
+
+                            <label for="tipo-documento-label" id="tipo-documento-label">Tipo de Documento</label>
+                            <select id="dropdown" name="tdoc">
+                                <option disable selected value>Elige una opción</option>
+                                <option value="dni">DNI</option>
+                                <option value="dni-extranjero">DNI Extranjero</option>
+                            </select>
+                            <br>
+                            <label for="documento-label" id="documento-label">Número de Documento</label>
+                            <input type="documento" id="documento" placeholder="Nro. Documento" name="ndoc" required>
+                            <br>
+                            <label for="nombre-label" id="nombre-label">Nombre</label>
+                            <input type="text" id="nombre" placeholder="Nombre del Cliente" name="nom" required>
+                            <label for="apellido-label" id="apellido-label">Apellido</label>
+                            <input type="text" id="apellido" placeholder="Apellido del Cliente" name="ape" required>
+
+                            <div class="botones">
+                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
+                                    style="margin-top: 1%" value="Verificar Datos">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+</body>
+
+
+</html>
