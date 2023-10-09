@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/c8/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Activa el Dark Mode-->
+    <%- include('../../partials/head') %>
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="container">
+                    <div class="row justify-content-center py-5 h-100  ">
+                        <!--BOTON 1-->
+                        <div class="col-8 col-xl-5 m-4 mt-5 py-xl-3">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Actualizar Vigencias de Contratos</h5>
+                                    <p class="card-text"> Procesar Vigencia de Contratos</p>
+                                    <button id="btn"><a id="continueB1Button" href="/c8/b1">Procesar
+                                            Informes
+                                            de
+                                            Vigencia</a></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--BOTON 2-->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Retiro de Automovil</h5>
+                                    <p class="card-text">Procesar retiro de automovil usado con contrato sin vigencia.
+                                    </p>
+                                    <form name="myForm" action="/c8/b2" method="POST">
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingrese el número de contrato del
+                                                automóvil que
+                                                se viene a retirar.
+                                            </div>
+                                            <input type="number" name="codC" class="form-control" id="codCInput"
+                                                placeholder="Número de Contrato" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--BOTON 3 -->
+                        <div class="col-8 col-xl-5 m-4 mt-5">
+                            <div class="card text-center  text-light" style=" background-color: rgba(0, 0, 0, 0.603);">
+                                <div class="card-body">
+                                    <h5 class="card-title">Procesar Entrega de Automovil usado Sin vender</h5>
+                                    <p class="card-text">Procesar Entrega de Automovil usado Sin vender
+                                    </p>
+                                    <form name="myForm" action="/c8/b3" method="POST">
+                                        <div class="row row-cols-lg-auto g-3 align-items-center input-group"
+                                            style="margin: 10px auto">
+                                            <div class="input-group-text w-50">Ingrese el número de la órden de retiro
+                                                del automóvil a retirar.
+                                            </div>
+                                            <input type="number" name="codR" class="form-control" id="codRInput"
+                                                placeholder="Número de Orden de Retiro" style="width:40%">
+                                        </div>
+
+                                        <input id="continueB2Button" type="submit" class="btn btn-danger"
+                                            style="margin-top:1%" value="Continuar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</body>
+<footer id="footer">
+    <p class="copyright">LPP Concesionario</p>
+    <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+</footer>
+
+</html>

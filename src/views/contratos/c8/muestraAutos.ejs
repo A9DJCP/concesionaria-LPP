@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Activa el Dark Mode -->
+    <%- include('../../partials/head') %>
+        <link rel="stylesheet" href="/css/c8/muestraAutos.css">
+</head>
+
+<body>
+    <%- include('../../partials/navigation') %>
+        <% if (typeof msg !=='undefined' ) { %>
+            <script>
+                alert('<%= msg %>');
+            </script>
+            <% } %>
+                <div class="col-12 col-xl-6">
+                    <div class="table-container">
+                        <h2>Automóviles Sin vigencia en sus contratos (Vencidos)</h2>
+                        <br>
+                        <table id="tabla-original" class="caja w-95 border border-light">
+                            <tr>
+                                <th>Cod. Persona</th>
+                                <th>Cod. Auto</th>
+                                <th>Cod. Propietario</th>
+                                <th>Cod. Contrato</th>
+                                <th>Matricula</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                                <th>Fecha Vto. Contrato</th>
+                                <th>Accion</th>
+                            </tr>
+                            <% for (let i=0; i < autos.length; i++) { %>
+                                <tr id="fila-<%= i %>">
+                                    <td>
+                                        <%= autos[i].per %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].auto %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].prop %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].contrato %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].matricula %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].marca %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].modelo %>
+                                    </td>
+                                    <td>
+                                        <%= autos[i].fvto %>
+                                    </td>
+                                    <td class="button-cell">
+                                        <button class="add-button">Seleccionar</button>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </table>
+                    </div>
+                    <div style="text-align: center;">
+                        <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
+                        <a href="/c8" class="btn btn-success btn-lg ">Finalizar Operacion</a>
+                    </div>
+                    <script>
+                        function printOrDownload() {
+                            window.print();
+                        }
+                        document.getElementById('printButton').addEventListener('click', printOrDownload);
+                    </script>
+
+
+
+</body>
+
+</html>

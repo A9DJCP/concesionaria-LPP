@@ -1,5 +1,5 @@
 html {
-    background-image: url(fondo.jpg);
+    background-image: url(/img/fondo.jpg);
     background-attachment: fixed;
     background-position: right center;
     max-width: 100%;
@@ -15,16 +15,14 @@ a:link, a:visited, a:active {
   }
 
   #submit {
-    text-align: center;
     display: inline-block;
     background-color: red;
-    padding: 20px 10px;
+    padding: 20px 6px;
     border: 0;
     border-radius: 5px;
     color: white;
-    font-weight: bold;
     min-width: 20px;
-    margin: 10px;
+    margin: 5px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
   }
@@ -54,13 +52,6 @@ h2 {
     font-family: calibri, monospace;
 }
 
-.logo {
-    position: fixed;
-    width: 100px;
-    top: -10px;
-    left: 30px;
-    margin: -3;
-}
 #title {
     margin: 0;
     display: inline-block;
@@ -105,14 +96,14 @@ h2 {
     text-align: center;
     margin-top: 140px;
 }
-/*.side-section h2 {
+.side-section h2 {
     display: block;
     margin: 10px;
     text-align: center;
-}*/
+}
 .side-section .data-display {
     width: 80%;
-    height: 50px;
+    height: 100px;
     margin: 10px auto;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
@@ -149,7 +140,7 @@ h2 {
     background-color: yellow;
     color: black;
 
-}*/
+}
 
 .side-section button:hover {
     transform: scale(0.95);
@@ -199,4 +190,33 @@ p {
 img {
     overflow-clip-margin: content-box;
     overflow: clip;
+}
+
+#tabla-original {
+    width: 80%; /* Ajusta el ancho según tus preferencias */
+    margin: 0 auto; /* Centrar la tabla en la página horizontalmente */
+    border-collapse: collapse;
+}
+
+#tabla-original th, #tabla-original td {
+    border: 1px solid white;
+    padding: 12px; /* Ajusta el espaciado interno según tus preferencias */
+}
+
+#tabla-original th {
+    background-color: white;
+    color: black;
+    text-align: left;
+}
+
+#tabla-original td {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Utiliza min-height para asegurarte de que la tabla esté centrada verticalmente incluso si no hay suficiente contenido para ocupar toda la altura de la ventana. */
 }

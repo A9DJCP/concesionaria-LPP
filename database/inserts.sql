@@ -196,18 +196,18 @@ insert INTO Accesorio values
 
 Insert Into Condicion values
 (5001,'Vidrio Roto'),
-('','Perjuicio por accidente'),
+('','Daños por accidente'),
 ('', 'Robo'),
-('','Perjuicio climatico'),
-('','Perjuicio a terceros'),
+('','Daños climatico'),
+('','Daños a terceros'),
 ('','Incendio'),
-('','Perjuicio por arboles o elementos del entorno'),
-('','Perjuicio por Tormenta Electrica'),
-('','Perjuicio por Granizo'),
-('','Cualquier tipo de perjuicio de cualquier fuente');
+('','Daños por arboles o elementos del entorno'),
+('','Daños por Tormenta Electrica'),
+('','Daños por Granizo'),
+('','Cualquier tipo de daño de cualquier fuente');
 
 insert into tiposeguro values
-('',"Seguro Ante Todo Riesgo",'este seguro cubre todos los tipos de riesgo y asegura todos los perjuicio de cualquier fuente.');
+('',"Seguro Ante Todo Riesgo",'este seguro cubre todos los tipos de riesgo y asegura todos los daños de cualquier fuente.');
 
 insert into CondicionTipoSeguro VALUES 
 ('',5010,1);
@@ -293,17 +293,17 @@ INSERT INTO DocAuto0KM VALUES ('','Fiat', 'Cubo','ZZ222KK','Domestico','CCHH3332
  
 /*INSERTS DE AUTOS USADOS*/
 INSERT INTO AUTOUSADO VALUES
-('','XXJJ22','Fiat','Toro',200000,"2013/10/20",200,"Domestico","CHCH222333555","MMMM20001111",0,0,0,'Rojo'),
-('','KKLL33','Fiat','Cubo',150000,"2014/08/18",201,"Laboral","CHCH888999","MMMM200111",0,0,0,'Verde'),
-('','MSUI56','Ford','Mustang',149999,"2015/12/30",202,"Laboral","CHCH111222","MMMM898976",0,0,0,'Azul'),
-('','POLO77','Ford','Fiesta',2000000,"2012/05/06",203,"Personal","CHCH123456","MMMM483763",0,0,0,'Amarillo'),
-('','POLN98','Ford','Ecosport',950000,"2017/07/23",204,"Domestico","CHCH738474","MMMM673829",0,0,0,'Violeta');
+('','XXJJ22','Fiat','Toro',200000,"2013/10/20",200,"Domestico","CHCH222333555","MMMM20001111",0,0,'Rojo'),
+('','KKLL33','Fiat','Cubo',150000,"2014/08/18",201,"Laboral","CHCH888999","MMMM200111",0,0,'Verde'),
+('','MSUI56','Ford','Mustang',149999,"2015/12/30",202,"Laboral","CHCH111222","MMMM898976",0,0,'Azul'),
+('','POLO77','Ford','Fiesta',2000000,"2012/05/06",203,"Personal","CHCH123456","MMMM483763",0,0,'Amarillo'),
+('','POLN98','Ford','Ecosport',950000,"2017/07/23",204,"Domestico","CHCH738474","MMMM673829",0,0,'Violeta');
 INSERT INTO CONTRATO VALUES
-('',1,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
-('',2,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
-('',3,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
-('',4,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20),
-('',5,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"ABIERTO",'Condiciones Tipicas de contrato.',20);
+('',1,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"Abierto",'Condiciones Tipicas de contrato.',20),
+('',2,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"Abierto",'Condiciones Tipicas de contrato.',20),
+('',3,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"Abierto",'Condiciones Tipicas de contrato.',20),
+('',4,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"Abierto",'Condiciones Tipicas de contrato.',20),
+('',5,curdate(),DATE_ADD(curdate(), INTERVAL 1 year),1,"Abierto",'Condiciones Tipicas de contrato.',20);
 
 /*INSERTS DE UN CLIENTE DEUDOR NO MOROSO*/
 

@@ -53,6 +53,11 @@ import routesc6b4 from "./routes/c6/b4.js";
 import routesc6b5 from "./routes/c6/b5.js";
 import routesc6b6 from "./routes/c6/b6.js";
 
+//c8
+import routesc8b1 from "./routes/c8/b1.js";
+import routesc8b2 from "./routes/c8/b2.js";
+import routesc8b3 from "./routes/c8/b3.js";
+
 //c9
 import routesc9b1 from "./routes/c9/b1.js";
 import routesc9b2 from "./routes/c9/b2.js";
@@ -136,6 +141,11 @@ app.use(routesc6b3);
 app.use(routesc6b4);
 app.use(routesc6b5);
 app.use(routesc6b6);
+
+//c8
+app.use(routesc8b1);
+app.use(routesc8b2);
+app.use(routesc8b3);
 
 //c9
 app.use(routesc9b1);

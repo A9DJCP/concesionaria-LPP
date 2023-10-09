@@ -327,7 +327,6 @@ uso varchar(100),
 chasis varchar(100),
 motor varchar(100),
 sinvigencia boolean,
-checkeado boolean,
 borrado boolean,
 color varchar(30),
 constraint fk_autousado_propietario foreign key (codP) references propietario(codP)
