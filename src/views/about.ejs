@@ -14,14 +14,15 @@
 
 <body>
     <%- include('partials/navigation') %>
-        <main class="vh-100 container pt-2 text-center d-flex justify-content-center align-items-center">
+        <main>
             <section>
                 <h1 class="display-1">Historia de la Empresa</h1>
                 <p id="pHistory">La empresa concesionaria de autos LPP es reconocida en
                     el
                     mercado por su
                     buen servicio y la
-                    satisfacción de sus clientes atendidos. Con el objetivo de brindar un servicio mejor que el promedio
+                    satisfacción de sus clientes atendidos.<br><br> Con el objetivo de brindar un servicio mejor que el
+                    promedio
                     de las empresas del ramo se administran las actividades de forma tal que se le garantiza al cliente
                     la satisfacción de todos sus requerimientos y expectativas.<br><br>
                     Por esta razón la empresa ha decidido invertir en un sistema digitalizado que cumpla con el objetivo
@@ -37,7 +38,8 @@
                     sobre cualquiera de los motivos de reclamo que considera la concesionaria (los mismos serán
                     informados al cliente en el momento de la compra).<br><br>
                     El seguro se otorgará por un plazo de 2 años y cubre todo el vehículo siempre y cuando no tenga este
-                    incluidos accesorios que no correspondan al modelo directo de fábrica. Si el cliente desea agregar
+                    incluidos accesorios que no correspondan al modelo directo de fábrica.<br><br>Si el cliente desea
+                    agregar
                     un accesorio al automóvil cero kilómetros y conservar su seguro, lo deber hacer en la misma
                     concesionaria dentro del plazo de los 2 años otorgados (abonando el costo de la
                     instalación).<br><br>
@@ -49,8 +51,273 @@
                 </p>
             </section>
         </main>
-        <br><br>
-        <%- include('partials/footer') %>
+        <footer id="footer">
+            <p class="footer-text">LPP Concesionario</p>
+            <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+        </footer>
+        <style>
+            html {
+                height: 100% !important;
+            }
+
+            body {
+                display: flex !important;
+                flex-direction: column !important;
+                min-height: 100% !important;
+
+            }
+
+            .vh-100 {
+                display: none;
+            }
+
+            #footer {
+                background-color: rgba(33, 37, 41, 1) !important;
+                padding: 50px !important;
+                text-align: center;
+                font-family: sans-serif !important;
+                /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+                text-align: center !important;
+                /* Centra el contenido del footer */
+                /* Agrega espacio alrededor del contenido del footer */
+                color: white !important;
+                margin-top: auto;
+            }
+
+            body {
+
+                font-family: sans-serif !important;
+                padding: 0 !important;
+                display: block !important;
+                color: black !important;
+                background: #e0e0e0 !important;
+            }
+
+            .display-1 {
+                font-size: 50px !important;
+                text-align: center !important;
+            }
+
+            #pHistory {
+                margin: 40px auto !important;
+                text-align: left !important;
+                width: 70%;
+                font-size: 20px !important;
+                font-family: sans-serif !important;
+                color: black !important;
+                letter-spacing: 0 !important;
+                line-height: 30px;
+            }
+
+            #footer {
+                background-color: rgba(33, 37, 41, 1) !important;
+                padding: 50px !important;
+                text-align: center;
+                font-family: sans-serif !important;
+                clear: both !important;
+                /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+                text-align: center !important;
+                /* Centra el contenido del footer */
+                /* Agrega espacio alrededor del contenido del footer */
+                background-color: rgba(33, 37, 41, 1);
+                color: black;
+                position: relative !important;
+            }
+
+
+            table[id="tabla-original"] {
+                border: solid black 5px !important;
+                border-radius: 10px !important;
+                width: 450px !important;
+            }
+
+            .survey-form {
+                display: block !important;
+                margin: 50px auto 70px !important;
+                font-family: sans-serif !important;
+                color: black !important;
+                background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                opacity: 1 !important;
+                border-radius: 20px;
+                border: 0;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                margin-top: -5px !important;
+                display: block;
+                width: 200px !important;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+            select[id="tipo-documento"] {
+                width: 200px !important;
+                margin-top: -5px !important;
+                display: block;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+
+            .navbar {
+                z-index: 100;
+            }
+
+
+            h2 {
+                width: 60%;
+                font-size: 24px !important;
+                font-family: sans-serif !important;
+                margin: 30px auto 20px !important;
+                font-weight: bold !important;
+                color: white !important;
+            }
+
+            .add-button {
+                border: 0;
+                border-radius: 5px;
+                margin: 5px;
+            }
+
+            .data-display {
+                background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                padding: 30px;
+                border-radius: 10px !important;
+            }
+
+            .add-button:hover {
+                background-color: black;
+                color: white;
+            }
+
+            .side-section {
+                margin-top: 50px !important;
+            }
+
+            td {
+                color: black;
+            }
+
+            tr {
+                margin: 10px !important;
+                border: solid 2px black;
+            }
+
+            table {
+                margin-top: 20px !important;
+                margin: 0 auto !important;
+            }
+
+            .text-light {
+                font-weight: bold !important;
+                margin-bottom: 50px !important;
+                color: white !important;
+            }
+
+            #principal-description {
+                color: white !important;
+                text-align: center !important;
+                margin: 20px;
+                font-family: sans-serif !important;
+            }
+
+            label,
+            #description {
+                color: white !important;
+                font-family: sans-serif !important;
+            }
+
+
+            html {
+                width: 100% !important;
+            }
+
+            body {
+                height: 100vh !important;
+                font-family: sans-serif !important;
+                padding: 0 !important;
+                position: relative !important;
+                color: black !important;
+            }
+
+            h1 {
+                color: black;
+                font-weight: bold !important;
+                text-align: center;
+                font-size: 30px;
+                margin-top: 20px;
+                font-family: sans-serif !important;
+            }
+
+            .container-fluid {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .container-fluid {
+                width: 100% !important;
+            }
+
+
+            .btn-danger,
+            #submit {
+                width: 300px;
+                margin: 30px auto;
+                border: 0;
+                border-radius: 10px;
+                padding: 20px;
+                opacity: 1 !important;
+                background-color: black !important;
+                color: white;
+                font-size: 18px;
+                text-decoration: none !important;
+            }
+
+            .payment-methods {
+                margin-bottom: 20px;
+            }
+
+            .btn-danger:hover,
+            #submit:hover {
+                transition: none;
+                transform: none;
+                padding: 20px !important;
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-danger:active {
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-dark {
+                font-size: 15px !important;
+                color: white !important
+            }
+
+            button[class=btn-dark] {
+                background-color: black !important;
+                font-size: 16px !important;
+            }
+
+            /* Responsiveness */
+
+            .bg-pan-left {
+                -webkit-animation: bg-pan-left 8s both;
+                animation: bg-pan-left 8s both
+            }
+        </style>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

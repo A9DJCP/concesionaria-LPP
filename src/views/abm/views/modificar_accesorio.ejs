@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modificar_accesorio.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Modificar Accesorio - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Modifica un accesorio de tu inventario</p>
+                <p id="description">Accesorio a modificar:</p>
+                <label for="busqueda-nombre" id="nombre-label">Busqueda por Nombre</label>
+                <input type="text" id="busqueda-nombre" placeholder="Nombre del accesorio">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-accesorios">
+                                <!-- La lista de autos se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="nombre" id="nombre-label">Nombre</label>
+                <input type="text" id="nombre" placeholder="Nombre del accesorio" disabled>
+                <label for="PU" id="precio-label">Precio</label>
+                <input type="number" id="PU" placeholder="Precio por unidad" disabled>
+                <label for="stock" id="stock-label">Stock</label>
+                <input type="number" id="stock" placeholder="Cantidad del producto" disabled>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const nombreInput = document.getElementById('nombre');
+        const precioInput = document.getElementById('PU');
+        const stockInput = document.getElementById('stock');
+        const busquedaNombreInput = document.getElementById('busqueda-nombre');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let accesorioSeleccionadoId = null;
+        let accesorioSeleccionadoNombre = null;
+        let accesorioSeleccionadoPrecio = null;
+        let accesorioSeleccionadoStock = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaAccesorios = document.getElementById('lista-accesorios');
+        listaAccesorios.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const accesorioId = targetRow.getAttribute('data-accesorio-id');
+                const nombre = targetRow.querySelector('.nombre').innerText;
+                const PU = targetRow.querySelector('.PU').innerText;
+                const stock = targetRow.querySelector('.stock').innerText;
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('PU').value = PU;
+                document.getElementById('stock').value = stock;
+                accesorioSeleccionadoId = accesorioId;
+                accesorioSeleccionadoNombre = nombre;
+                accesorioSeleccionadoPrecio = PU;
+                accesorioSeleccionadoStock = stock;
+            }
+        });
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const accesorioId = accesorioSeleccionadoId;
+
+            if (!accesorioId) {
+                alert('Debes seleccionar un accesorio para modificar.');
+                return;
+            }
+
+            const nombre = document.getElementById('nombre').value;
+            const PU = document.getElementById('PU').value;
+            const stock = document.getElementById('stock').value;
+
+            if (nombre === accesorioSeleccionadoNombre && PU === accesorioSeleccionadoPrecio && stock === accesorioSeleccionadoStock) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codACC: accesorioId,
+                nombre: nombre,
+                PU: PU,
+                stock: stock
+            };
+
+            console.log(data);
+
+            fetch('/modificar-accesorio', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nNombre: ' + nombre +
+                            '\nPrecio Unitario: ' + "$" + PU +
+                            '\nStock: ' + stock;
+                        alert(message);
+
+                        edicionHabilitada = false; // Asegúrate de que la edición se deshabilite
+                        // Actualizar los campos solo en caso de éxito
+                        document.getElementById('nombre').value = '';
+                        document.getElementById('PU').value = '';
+                        document.getElementById('stock').value = '';
+
+                        // Limpiar la selección
+                        deselectRows();
+                        accesorioSeleccionadoNombre = null;
+                        accesorioSeleccionadoId = null;
+                        accesorioSeleccionadoPrecio = null;
+                        accesorioSeleccionadoStock = null;
+
+                        // Limpiar la tabla
+                        listaAccesorios.innerHTML = '';
+
+                        // Limpiar el input de búsqueda
+                        document.getElementById('busqueda-nombre').value = '';
+
+                        // Deshabilitar la edición y restaurar los campos
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        nombreInput.disabled = true;
+                        precioInput.disabled = true;
+                        stockInput.disabled = true;
+
+                        // Aquí puedes redirigir al usuario a otra página si lo deseas.
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            const nombreInput = document.getElementById('nombre');
+            const precioInput = document.getElementById('PU');
+            const stockInput = document.getElementById('stock');
+            const busquedaNombreInput = document.getElementById('busqueda-nombre');
+
+            nombreInput.disabled = !edicionHabilitada;
+            precioInput.disabled = !edicionHabilitada;
+            stockInput.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaNombre = document.getElementById('busqueda-nombre');
+        busquedaNombre.addEventListener('input', () => {
+            const nombre = busquedaNombre.value;
+            loadAccesoriosByNombre(nombre);
+        });
+
+        function loadAccesoriosByNombre(nombre) {
+            // Limpiar la tabla al cargar nuevos datos
+            listaAccesorios.innerHTML = '';
+
+            fetch(`/obtener-accesorios-por-nombre?nombre=${nombre}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(accesorio => {
+                        if (accesorio.borrado === 0) {  // Verifica si el accesorio está marcado como borrado
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-accesorio-id', accesorio.codACC);
+                            tableRow.innerHTML = `
+                                            <td class="nombre">${accesorio.nombre}</td>
+                                            <td class="PU">${accesorio.PU}</td>
+                                            <td class="stock">${accesorio.stock}</td>
+                                        `;
+                            listaAccesorios.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+
+
+</html>

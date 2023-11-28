@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modificar_porcentaje.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Modificar Porcentaje - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Actualiza el valor o descripción de un porcentaje</p>
+                <p id="description">Porcentaje a modificar:</p>
+                <label for="busqueda-descripcion" id="descripcion-label">Busqueda por descripción</label>
+                <input type="text" id="busqueda-descripcion" placeholder="Descripción del Porcentaje">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Porcentaje</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-porcentajes">
+                                <!-- La lista de porcentajes se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="descripcion" id="descripcion-label">Descripción</label>
+                <input type="text" id="descripcion" class="descripcion" placeholder="Descripción del Porcentaje"
+                    disabled>
+                <label for="porcentaje" id="porcentaje-label">Porcentaje</label>
+                <input type="text" id="porcentaje" placeholder="Valor del Porcentaje" disabled>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const descripcionInput = document.getElementById('descripcion');
+        const porcentajeInput = document.getElementById('porcentaje');
+        const busquedaDescripcionInput = document.getElementById('busqueda-descripcion');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let porcentajeSeleccionadoId = null;
+        let porcentajeSeleccionadoDescripcion = null;
+        let porcentajeSeleccionadoValor = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaPorcentajes = document.getElementById('lista-porcentajes');
+        listaPorcentajes.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const porcentajeId = targetRow.getAttribute('data-porcentaje-id');
+                const descripcion = targetRow.querySelector('.descripcion').innerText;
+                const porcentaje = targetRow.querySelector('.porcentaje').innerText;
+                document.getElementById('descripcion').value = descripcion;
+                document.getElementById('porcentaje').value = porcentaje;
+                porcentajeSeleccionadoId = porcentajeId;
+                porcentajeSeleccionadoDescripcion = descripcion;
+                porcentajeSeleccionadoValor = porcentaje;
+            }
+        });
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const porcentajeId = porcentajeSeleccionadoId;
+
+            if (!porcentajeId) {
+                alert('Debes seleccionar un porcentaje para modificar.');
+                return;
+            }
+
+            const descripcion = document.getElementById('descripcion').value;
+            const porcentaje = document.getElementById('porcentaje').value;
+
+            if (descripcion === porcentajeSeleccionadoDescripcion && porcentaje === porcentajeSeleccionadoValor) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codPORC: porcentajeId,
+                descripcion: descripcion,
+                porcentaje: porcentaje
+            };
+
+            console.log(data);
+
+            fetch('/modificar-porcentaje', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nDescripción: ' + descripcion +
+                            '\nPorcentaje: ' + porcentaje + '%';
+                        alert(message);
+
+                        edicionHabilitada = false; // Asegúrate de que la edición se deshabilite
+
+                        // Actualizar los campos solo en caso de éxito
+                        document.getElementById('descripcion').value = '';
+                        document.getElementById('porcentaje').value = '';
+
+                        // Limpiar la selección
+                        deselectRows();
+                        porcentajeSeleccionadoDescripcion = null;
+                        porcentajeSeleccionadoId = null;
+                        porcentajeSeleccionadoValor = null;
+
+                        // Limpiar la tabla
+                        listaPorcentajes.innerHTML = '';
+
+                        // Limpiar el input de búsqueda
+                        document.getElementById('busqueda-descripcion').value = '';
+
+                        // Deshabilitar la edición y restaurar los campos
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        descripcionInput.disabled = true;
+                        porcentajeInput.disabled = true;
+
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            descripcionInput.disabled = !edicionHabilitada;
+            porcentajeInput.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaDescripcion = document.getElementById('busqueda-descripcion');
+        busquedaDescripcion.addEventListener('input', () => {
+            const descripcion = busquedaDescripcion.value;
+            loadPorcentajesByDescripcion(descripcion);
+        });
+
+        function loadPorcentajesByDescripcion(descripcion) {
+            // Limpiar la tabla al cargar nuevos datos
+            listaPorcentajes.innerHTML = '';
+
+            fetch(`/obtener-porcentajes-por-descripcion?descripcion=${descripcion}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(porcentaje => {
+
+                        const tableRow = document.createElement('tr');
+                        tableRow.setAttribute('data-porcentaje-id', porcentaje.codPORC);
+                        tableRow.innerHTML = `
+                            <td class="descripcion">${porcentaje.descripcion}</td>
+                            <td class="porcentaje">${porcentaje.porcentaje}</td>
+                        `;
+                        listaPorcentajes.appendChild(tableRow);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>

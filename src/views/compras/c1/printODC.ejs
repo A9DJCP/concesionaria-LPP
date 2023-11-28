@@ -4,166 +4,395 @@
 <head>
     <!--PASAR A BOOTSTRAP-->
     <link rel="stylesheet" href="/css/c1/printODC.css">
-    <!-- Bootstrap 5 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <!-- Bootstrap 5 -->
+    <!--   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
 -->
 </head>
 
 <body>
-    <%- include('../../partials/navigation') %>
-        <div class="container">
-            <div id="encabezado">
-                <h1 id="titulo">LPP Concesionaria de Autos</h1>
-                <img src="/img/logo.png" alt="logo" height="100px">
-                <img src="/img/logoLPP.png" alt="logo" height="100px">
-            </div>
-            <table id="orden-retiro">
-                <tr>
-                    <th class="espacio"></th>
-                    <td class="espacio">
-                        </th>
-                    <th>Orden de Compra</th>
-                </tr>
-                <tr>
-                    <th class="espacio"></th>
-                    <td class="espacio"></td>
-                    <td><b>Nro: <%=data.codODC%></b></td>
-                </tr>
-            </table>
+    <!--<%=include('../../partials/navigation') %>-->
+    <div class="container">
+        <div id="encabezado">
+            <h1 id="titulo">LPP Concesionaria de Autos</h1>
+            <img src="/img/logo.png" alt="logo" height="100px">
+            <img src="/img/logoLPP.png" alt="logo" height="100px">
+        </div>
+        <table id="orden-retiro">
+            <tr>
+                <th class="espacio"></th>
+                <td class="espacio">
+                    </th>
+                <th>Orden de Compra</th>
+            </tr>
+            <tr>
+                <th class="espacio"></th>
+                <td class="espacio"></td>
+                <td><b>Nro: <%=data.codODC%></b></td>
+            </tr>
+        </table>
 
-            <div>
-                <th>Fecha: </th>
+        <div>
+            <th>Fecha: </th>
+            <td>
+                <%=data.fecha%>
+            </td>
+        </div>
+
+        <table id="orden-nro">
+            <tr>
+                <th class="categoria">Datos de la Compra</th>
+            </tr>
+            <tr>
+                <th>Ciudad</th>
+                <td class="ciudad">CABA</td>
+                <th>Proveedor</th>
+                <td>Concesionaria LPP</td>
+            </tr>
+            <tr>
+                <th>Comprador</th>
                 <td>
-                    <%=data.fecha%>
+                    <%= data.comprador%>
                 </td>
-            </div>
-
-            <table id="orden-nro">
-                <tr>
-                    <th class="categoria">Datos de la Compra</th>
-                </tr>
-                <tr>
-                    <th>Ciudad</th>
-                    <td class="ciudad">CABA</td>
-                    <th>Proveedor</th>
-                    <td>Concesionaria LPP</td>
-                </tr>
-                <tr>
-                    <th>Comprador</th>
-                    <td>
-                        <%= data.comprador%>
-                    </td>
-                    <th>Estado</th>
-                    <td>Vigente / No Vigente</td>
-                </tr>
-                <tr>
-                    <th>Doc. Comprador</th>
-                    <td>
-                        <%=data.docComprador%>
-                    </td>
-                    <th>Teléfono</th>
-                    <td>
-                        <%=data.tel%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Dirección</th>
-                    <td>
-                        <%=data.direc%>
-                    </td>
-                    <th>Forma de Pago</th>
-                    <td>
-                        <%=data.formaPago%>
-                    </td>
-                </tr>
-            </table>
-            <table id="condiciones">
-                <tr>
-                    <td>Detalles del Automóvil Cero Kilómetros<br> seleccionado para su compra</td>
-                    <td>Cantidad: 1</td>
-                </tr>
-            </table>
+                <th>Estado</th>
+                <td>Vigente / No Vigente</td>
+            </tr>
+            <tr>
+                <th>Doc. Comprador</th>
+                <td>
+                    <%=data.docComprador%>
+                </td>
+                <th>Teléfono</th>
+                <td>
+                    <%=data.tel%>
+                </td>
+            </tr>
+            <tr>
+                <th>Dirección</th>
+                <td>
+                    <%=data.direc%>
+                </td>
+                <th>Forma de Pago</th>
+                <td>
+                    <%=data.formaPago%>
+                </td>
+            </tr>
+        </table>
+        <table id="condiciones">
+            <tr>
+                <td>Detalles del Automóvil Cero Kilómetros<br> seleccionado para su compra</td>
+                <td>Cantidad: 1</td>
+            </tr>
+        </table>
+        <table id="auto">
+            <tr>
+                <th>Automovil</th>
+            </tr>
+            <tr>
+                <th>Marca</th>
+                <td>
+                    <%=data.marca%>
+                </td>
+            </tr>
+            <tr>
+                <th>Modelo</th>
+                <td>
+                    <%=data.modelo%>
+                </td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>
+                    <%=data.precio%>
+                </td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>
+                    <%=data.color%>
+                </td>
+            </tr>
+        </table>
+        <table id="condiciones-2">
+            <tr>
+                <td>La compra corresponde a 1 (uno) solo automóvil de la marca y modelo especificados</td>
+            </tr>
+        </table>
+        <!--Los datos de aca abajo se dejan vacios para que a la hora de imprimirlos o editar el PDF virtualmente los complete el empleado manualmente-->
+        <table id="orden-nro" class="espaciado">
+            <tr>
+                <th>Observaciones (Datos de la Empresa)</th>
+            </tr>
+            <tr>
+                <th>Fecha de Despacho</th>
+                <th>Aprobado Por</th>
+                <th>Aceptado</th>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
             <table id="auto">
                 <tr>
-                    <th>Automovil</th>
-                </tr>
-                <tr>
-                    <th>Marca</th>
-                    <td>
-                        <%=data.marca%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Modelo</th>
-                    <td>
-                        <%=data.modelo%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Precio</th>
-                    <td>
-                        <%=data.precio%>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Color</th>
-                    <td>
-                        <%=data.color%>
-                    </td>
-                </tr>
-            </table>
-            <table id="condiciones-2">
-                <tr>
-                    <td>La compra corresponde a 1 (uno) solo automóvil de la marca y modelo especificados</td>
-                </tr>
-            </table>
-            <!--Los datos de aca abajo se dejan vacios para que a la hora de imprimirlos o editar el PDF virtualmente los complete el empleado manualmente-->
-            <table id="orden-nro" class="espaciado">
-                <tr>
-                    <th>Observaciones (Datos de la Empresa)</th>
-                </tr>
-                <tr>
-                    <th>Fecha de Despacho</th>
-                    <th>Aprobado Por</th>
-                    <th>Aceptado</th>
-                </tr>
-                <tr>
+                    <th>Elaborado Por</th>
                     <td><input type="text"></td>
-                    <td><input type="text"></td>
+                    <th>Firma y Cédula</th>
                     <td><input type="text"></td>
                 </tr>
-                <table id="auto">
-                    <tr>
-                        <th>Elaborado Por</th>
-                        <td><input type="text"></td>
-                        <th>Firma y Cédula</th>
-                        <td><input type="text"></td>
-                    </tr>
-                </table>
             </table>
+        </table>
+    </div>
+    <div class="botones" style="text-align: center;">
+        <button id="printButton" class=" btn btn-danger btn-lg btn">Imprimir o Descargar</button>
+        <a id="finalizar" href="/c1" class="btn btn-danger btn-lg btn">Finalizar Operación</a>
+    </div>
+    <style>
+        .btn-group-lg>.btn,
+        .btn-lg {
+            --bs-btn-padding-y: 0.5rem;
+            --bs-btn-padding-x: 1rem;
+            --bs-btn-font-size: 1.25rem;
+            --bs-btn-border-radius: var(--bs-border-radius-lg);
+        }
 
-            <div style="text-align: center;">
-                <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
-                <a href="/c1" class="btn btn-success btn-lg ">Finalizar Operacion</a>
-            </div>
-            <script>
-                function printOrDownload() {
-                    window.print();
-                }
-                document.getElementById('printButton').addEventListener('click', printOrDownload);
-            </script>
+        .btn-danger {
+            --bs-btn-color: #fff;
+            --bs-btn-bg: #dc3545;
+            --bs-btn-border-color: #dc3545;
+            --bs-btn-hover-color: #fff;
+            --bs-btn-hover-bg: #bb2d3b;
+            --bs-btn-hover-border-color: #b02a37;
+            --bs-btn-focus-shadow-rgb: 225, 83, 97;
+            --bs-btn-active-color: #fff;
+            --bs-btn-active-bg: #b02a37;
+            --bs-btn-active-border-color: #a52834;
+            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            --bs-btn-disabled-color: #fff;
+            --bs-btn-disabled-bg: #dc3545;
+            --bs-btn-disabled-border-color: #dc3545;
+        }
 
-        </div>
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        .btn {
+            --bs-btn-padding-x: 0.75rem;
+            --bs-btn-padding-y: 0.375rem;
+            --bs-btn-font-family: ;
+            --bs-btn-font-size: 1rem;
+            --bs-btn-font-weight: 400;
+            --bs-btn-line-height: 1.5;
+            --bs-btn-color: var(--bs-body-color);
+            --bs-btn-bg: transparent;
+            --bs-btn-border-width: var(--bs-border-width);
+            --bs-btn-border-color: transparent;
+            --bs-btn-border-radius: var(--bs-border-radius);
+            --bs-btn-hover-border-color: transparent;
+            --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+            --bs-btn-disabled-opacity: 0.65;
+            --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+            display: inline-block;
+            padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+            font-family: var(--bs-btn-font-family);
+            font-size: var(--bs-btn-font-size);
+            font-weight: var(--bs-btn-font-weight);
+            line-height: var(--bs-btn-line-height);
+            color: var(--bs-btn-color);
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+            border-radius: var(--bs-btn-border-radius);
+            background-color: var(--bs-btn-bg);
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        a {
+            color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+            text-decoration: underline;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        user agent stylesheet a:-webkit-any-link {
+            color: -webkit-link;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        style attribute {
+            text-align: center;
+        }
+
+        body {
+            font-family: sans-serif !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #202020;
+            color: white;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--bs-body-font-family);
+            font-size: var(--bs-body-font-size);
+            font-weight: var(--bs-body-font-weight);
+            line-height: var(--bs-body-line-height);
+            color: var(--bs-body-color);
+            text-align: var(--bs-body-text-align);
+            background-color: var(--bs-body-bg);
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        nav {
+            display: none !important;
+        }
+
+        .botones {
+            text-align: center;
+            margin: auto !important;
+        }
+
+        #printButton,
+        #finalizar {
+            margin-bottom: 20px !important;
+        }
+
+        html {
+            height: 100% !important;
+        }
+
+        body {
+            display: flex !important;
+            flex-direction: column !important;
+            min-height: 100% !important;
+        }
+
+        #footer {
+            margin-top: auto !important;
+            background-color: rgba(33, 37, 41, 1) !important;
+            padding: 40px;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            text-align: center;
+        }
+
+        .input-group-text {
+            width: 300px !important;
+            margin: 70px auto 20px auto;
+            border: 0;
+            border-radius: 5px !important;
+            background-color: #e0e0e0;
+        }
+
+
+        #principal-description {
+            text-align: center !important;
+            margin: 50px;
+        }
+
+        html,
+        body {
+            background: #e0e0e0;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+
+
+        body {
+            font-family: sans-serif !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 25%;
+            margin: 10px;
+            border: 0;
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, rgb(64, 64, 238), rgb(243, 33, 33));
+        }
+
+
+
+        .btn-danger {
+            width: 300px;
+            margin: 0 auto;
+            border: 0;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: black;
+            opacity: 1 !important;
+            color: white;
+        }
+
+        .btn-danger:active {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        .btn-danger:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .btn-dark {
+            font-size: 15px;
+            color: white !important
+        }
+
+        button[class=btn-dark] {
+            font-size: 16px !important;
+        }
+
+        /* Responsiveness */
+
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card {
+                width: 100%;
+            }
+        }
+
+        #printButton,
+        #finalizar {
+            margin-bottom: 20px !important;
+        }
+    </style>
+    <script>
+
+
+        function printOrDownload() {
+            window.print();
+        }
+        document.getElementById('printButton').addEventListener('click', printOrDownload);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

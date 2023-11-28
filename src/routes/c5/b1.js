@@ -116,7 +116,7 @@ router.post("/c5/b1/regAutoUsado", isLoggedIn, async (req, res) => {
 			res.render("./contratos/c5/regAutoUsado", { msg, data });
 		} else {
 			sql = `INSERT into autousado VALUES ('','${mat}','${marca}','${modelo}',${precio},
-            '${fecFab}',${codP},'${uso}','${chasis}','${motor}',0,0,'${color}')`;
+            '${fecFab}',${codP},'${uso}','${chasis}','${motor}',0,0,0,'${color}')`;
 			await pool.query(sql);
 			msg =
 				"Se ha registrado el automóvil usado y está listo para que su documentación sea enviada a CONTRATACIONES para elaborar el correspondiente contrato.";

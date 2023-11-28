@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  background-image: url("/images/fondo.png");
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; /* Añade esta propiedad para que la imagen de fondo se ajuste y cubra todo el fondo */
+  display: flex; /* Asegúrate de que el cuerpo use flexbox para ocupar todo el espacio verticalmente */
+  flex-direction: column;
+  min-height: 100vh; /* Establece la altura mínima del cuerpo como 100% del viewport height (vh) */
+}
+
+
+/* Estilos del header */
+#header {
+  background-color: black;
+  top: 0;
+  text-align: center;
+  position: fixed;
+  z-index: 100;
+  color: white;
+  padding: 25px;
+  right: 0;
+  left: 0;
+}
+
+/* Resto de estilos */
+.logo {
+  position: absolute;
+  font-size: 0.5em;
+  width: 100px;
+  margin: -3px;
+  left: 30px;
+  top: -10px;
+  border-radius: 50%;
+  border: 0;
+}
+
+#espaciado {
+  margin-bottom: 150px;
+}
+
+#title {
+  font-family: Calibri, Sans-Serif;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 0;
+  border-radius: 20px;
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.section {
+  background-color: rgba(183, 1, 1, 0.6);
+  border-radius: 20px;
+  color: white;
+  display: inline-block;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  vertical-align: top;
+  width: calc(20% - 40px);
+  font-weight: bold;
+}
+
+.container button {
+  display: block;
+  margin-bottom: 10px;
+  background-color: #e0e0e0;
+  color: black;
+  text-decoration: none;
+  padding: 12px;
+  margin: 5px auto !important;
+  border-radius: 5px;
+  border: 0;
+  opacity: 0.8;
+  width: 100%;
+  margin: 0 auto;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.container button:hover {
+  opacity: 1;
+}
+
+.container .volver {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: monospace, calibri;
+}
+
+.container .volver button {
+  background-color: #e0e0e0;
+  color: black;
+}
+
+#footer {
+  position: relative;
+  margin: 0;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  padding: 20px;
+  right: 0;
+  text-align: center;
+}
+
+/* Resto de estilos */
+p {
+  margin: 0 !important;
+}
+
+.footer-text {
+  padding: 15px;
+  color: white; /* Agregamos el color blanco */
+  font-size: 14px;
+  font-family: monospace, calibri;
+  margin: 0;
+}

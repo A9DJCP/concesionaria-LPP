@@ -28,18 +28,15 @@
       }
     </style>
     <!-- Contenido principal -->
-    <div class="container-fluid  h-75" style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center;">
+    <div class="container-fluid  h-75" style="height: calc(100vh); padding: 40px;">
 
 
 
-      <div class="row container mx-auto   pt-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);"
+      <div class="row container mx-auto pt-4 my-4 survey-form" style=" background: linear-gradient(45deg, black, gray);"
         style="width: 60%;">
         <% if (typeof codF !=='undefined' ) {%>
           <div class="col-12 col-xl-12">
-            <h3 class="text-center text-light">Accesorios registrados en la consesionaria LPP del automovil ingresado
+            <h3 class="text-center text-light">Accesorios registrados en la Concesionaria LPP del automóvil ingresado
             </h3>
             <div class="caja w-95  border border-light" style="min-height: 400px;">
               <% if (accesorios.length>0) {%>
@@ -52,22 +49,22 @@
                     <% } %>
                 </ol>
                 <% } else{ %>
-                  <h4>El automovil ingresado no tiene accesorios registrados en la concesionaria</h4>
+                  <h4>El auto ingresado no tiene accesorios registrados en la concesionaria</h4>
                   <% } %>
             </div>
           </div>
           <% } %>
 
-            <h5>*Recuerde que el automovil ingresado debe tener todos sus accesorios registrados en la concesionaria
+            <h5>*Recuerde que el automóvil ingresado debe tener todos sus accesorios registrados en la concesionaria
               para poder acceder a las reparaciones dentro de la garantía*
             </h5>
-            <h6>*Al presionar "Seleccionar Reparaciones" confirma haber comprobado que el automovil ingresado tiene
+            <h6>*Al presionar "Seleccionar Reparaciones" confirma haber comprobado que el automóvil ingresado tiene
               todos sus accesorios registrados en la concesionaria</h6>
 
             <div class="col-12 py-3">
               <form name="myForm" action="/c2/b2/selecRep" method="POST">
                 <input type="hidden" id="codA" name="codA">
-                <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-success col-6"
+                <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-danger"
                   style="margin-top:1%" value="Selecionar Reparaciones">
               </form>
             </div>
@@ -76,8 +73,8 @@
             <div class="col-12 py-3">
               <form name="myForm" action="/c2/b2/anular" method="POST">
                 <input type="hidden" id="codA2" name="codA">
-                <input name="btnSelecRep" id="continueB2Button" type="submit" class="btn btn-danger col-6"
-                  style="margin-top:1%" value="El automovil no tiene sus accesorios registrados">
+                <input name="btnSelecRep" id="finalizar" type="submit" class="btn btn-danger" style="margin-top:1%"
+                  value="El auto no tiene sus accesorios registrados">
               </form>
             </div>
 
@@ -93,18 +90,260 @@
 
     </div>
 
+    <footer id="footer">
+      <p class="footer-text">LPP Concesionario</p>
+      <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <style>
+      .py-3 {
+        text-align: center !important;
+      }
+
+      #footer {
+        background-color: rgba(33, 37, 41, 1) !important;
+        padding: 50px !important;
+        text-align: center;
+        font-family: sans-serif !important;
+        clear: both !important;
+        /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+        text-align: center !important;
+        /* Centra el contenido del footer */
+        /* Agrega espacio alrededor del contenido del footer */
+        background-color: rgba(33, 37, 41, 1);
+        color: white;
+        position: relative !important;
+      }
 
 
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
+      table[id="tabla-original"] {
+        border: solid black 5px !important;
+        border-radius: 10px !important;
+        width: 450px !important;
+      }
+
+      .survey-form {
+        display: block !important;
+        margin: 50px auto 70px !important;
+        font-family: sans-serif !important;
+        color: white !important;
+        opacity: 1 !important;
+        border-radius: 5px;
+        border: 0;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        margin-top: -5px !important;
+        display: block;
+        width: 200px !important;
+        margin: 0 auto 30px !important;
+        border: 0;
+        height: 25px;
+        border-radius: 5px !important;
+        text-align: center !important;
+      }
+
+      select[id="tipo-documento"] {
+        width: 200px !important;
+        margin-top: -5px !important;
+        display: block;
+        margin: 0 auto 30px !important;
+        border: 0;
+        height: 25px;
+        border-radius: 5px !important;
+        text-align: center !important;
+      }
+
+
+      .navbar {
+        z-index: 100;
+      }
+
+
+      h2 {
+        width: 60%;
+        font-size: 24px !important;
+        font-family: sans-serif !important;
+        margin: 30px auto 20px !important;
+        font-weight: bold !important;
+        color: black !important;
+      }
+
+      .add-button {
+        border: 0;
+        border-radius: 5px;
+        margin: 5px;
+      }
+
+      .data-display {
+        background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+        padding: 30px;
+        border-radius: 10px !important;
+      }
+
+      .add-button:hover {
+        background-color: black;
+        color: white;
+      }
+
+      .side-section {
+        margin-top: 50px !important;
+      }
+
+      td {
+        color: black;
+      }
+
+      tr {
+        margin: 10px !important;
+        border: solid 2px black;
+      }
+
+      table {
+        margin-top: 20px !important;
+        margin: 0 auto !important;
+      }
+
+      .text-light {
+        font-weight: bold !important;
+        margin-bottom: 50px !important;
+        color: white !important;
+      }
+
+      .border {
+        border: 0 !important;
+      }
+
+      #principal-description {
+        color: white !important;
+        text-align: center !important;
+        margin: 20px;
+        font-family: sans-serif !important;
+      }
+
+      label,
+      #description {
+        color: white !important;
+        font-family: sans-serif !important;
+      }
+
+
+      html {
+        width: 100% !important;
+      }
+
+      body {
+        font-family: sans-serif !important;
+        background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+        margin: 0 !important;
+        padding: 0 !important;
+        position: relative !important;
+      }
+
+      h1 {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        font-size: 30px;
+        margin-top: 20px;
+        font-family: sans-serif !important;
+      }
+
+      .container-fluid {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .container-fluid {
+        width: 100% !important;
+      }
+
+
+      .btn-danger,
+      #submit {
+        text-align: center !important;
+        width: 400px !important;
+        margin: 30px auto;
+        border: 0;
+        border-radius: 10px;
+        padding: 20px;
+        opacity: 1 !important;
+        background-color: white !important;
+        color: black;
+        font-size: 18px;
+        text-decoration: none !important;
+      }
+
+      .payment-methods {
+        margin-bottom: 20px;
+      }
+
+      .btn-danger:hover,
+      #submit:hover {
+        transition: none;
+        transform: none;
+        padding: 20px !important;
+        background-color: black !important;
+        color: white !important;
+      }
+
+      .btn-danger:active {
+        background-color: white !important;
+        color: black !important;
+      }
+
+      .btn-dark {
+        font-size: 15px !important;
+        color: white !important
+      }
+
+      button[class=btn-dark] {
+        background-color: black !important;
+        font-size: 16px !important;
+      }
+
+      /* Responsiveness */
+
+      .bg-pan-left {
+        -webkit-animation: bg-pan-left 8s both;
+        animation: bg-pan-left 8s both
+      }
+
+      /* ----------------------------------------------
+* Generated by Animista on 2023-9-8 19:42:4
+* Licensed under FreeBSD License.
+* See http://animista.net/license for more info. 
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+      @-webkit-keyframes bg-pan-left {
+        0% {
+          background-position: 100% 50%
+        }
+
+        100% {
+          background-position: 0 50%
+        }
+      }
+
+      @keyframes bg-pan-left {
+        0% {
+          background-position: 100% 50%
+        }
+
+        100% {
+          background-position: 0 50%
+        }
+      }
+
+      @media (max-width: 576px) {
+        .survey-form {
+          width: 100%;
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

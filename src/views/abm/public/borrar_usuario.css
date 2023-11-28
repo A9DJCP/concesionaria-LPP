@@ -1,0 +1,255 @@
+.header-row {
+  position: sticky;
+  top: 0;
+  background-color: #f5f5f5; /* Puedes ajustar el color de fondo según tus preferencias */
+  z-index: 2; /* Para asegurarse de que el encabezado esté por encima del contenido */
+}
+table {
+  width: 100%;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+
+
+/* Estilos para la tabla y las columnas */
+.table-container {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll !important; /* Mostrar siempre la barra de desplazamiento vertical */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  /* Fijar el ancho de las columnas */
+  width: 25%; /* Puedes ajustar este valor según tus necesidades */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para la tabla cuando se selecciona una fila */
+tr.selected {
+  background-color: #dcdcdc;
+  cursor: pointer;
+}
+
+/* Otros estilos */
+/* ... (otros estilos que puedas tener) ... */
+
+
+
+.pantalla {
+  width: 350px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 200px;
+  margin: 10px auto;
+  overflow: auto; /* Agregamos esta propiedad para mostrar la barra de desplazamiento si el contenido es más grande */
+}
+
+
+/* Estilos para el borde inferior de la última fila */
+tbody tr:last-child td {
+  border-bottom: none; /* Eliminamos el borde inferior de la última fila */
+}
+
+
+/* Estilos para la tabla */
+.table-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para la tabla cuando se selecciona una fila */
+tr.selected {
+  background-color: #c0b9b9;
+  cursor: pointer;
+}
+
+.pantalla {
+  width: 350px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 200px;
+  margin: 10px auto;
+}
+
+#header {
+    background-color: black;
+    top: 0;
+    text-align: center;
+    position: fixed;
+    z-index: 100;
+    color: white;
+    padding: 25px;
+    right: 0;
+    left: 0;
+  }
+  
+  #espaciado {
+   margin-bottom: 150px;
+  }
+  
+  #description {
+    font-size: 15px;
+    margin: 15px;
+    color: white;
+    font-family: monospace, Calibri;
+    font-weight: bold;
+  }
+  
+  label {
+    font-family: monospace;
+  }
+  
+  #username, #busqueda-username {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
+  
+  body {
+    margin: 0;
+    background-image: url("/images/fondo.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover; /* Añade esta propiedad para que la imagen de fondo se ajuste y cubra todo el fondo */
+    display: flex; /* Asegúrate de que el cuerpo use flexbox para ocupar todo el espacio verticalmente */
+    flex-direction: column;
+    min-height: 100vh; /* Establece la altura mínima del cuerpo como 100% del viewport height (vh) */
+  }
+  
+  
+  #title {
+    font-family: Calibri, Sans-Serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  .logo {
+    position: absolute;
+    font-size: 0.5em;
+    width: 100px;
+    margin: -3px;
+    left: 30px;
+    top: -10px;
+    border-radius: 50%;
+    border: 0;
+  }
+  
+  #principal-description {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color:#F9ea6e;
+    font-family: monospace, Calibri;
+  }
+  
+  #survey-form {
+    opacity: 0.9;
+    background-color: black;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 120px;
+    min-width: 250px;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+  }
+  
+  #footer {
+    position: relative;
+    margin-top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    padding: 28px;
+    right: 0;
+    text-align: center;
+    color: white;
+  }
+  
+  a:link, a:visited, a:active {
+    text-decoration: none;
+    font-family: calibri, monospace;
+    border: 0;
+  }
+
+  .submit {
+    display: inline-block;
+    background-color: red;
+    padding: 20px 10px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    min-width: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .submit:hover {
+    transform: scale(0.95);
+  }
+
+  .copyright {
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 10px;
+  }
+  
+  label {
+    color: #F9ea6e;
+    font-weight: bold;
+  }
+
+  .footer-text {
+    padding: 15px;
+    color: white;
+    font-size: 14px;
+    font-family: monospace, calibri;
+    margin: 0;
+  }

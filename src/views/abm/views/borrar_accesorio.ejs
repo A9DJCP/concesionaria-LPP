@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="borrar_accesorio.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Borrar Accesorio - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Borra un accesorio de tu inventario</p>
+                <p id="description">Accesorio a borrar:</p>
+                <label for="busqueda-nombre" id="nombre-label">Busqueda por Nombre</label>
+                <input type="text" id="busqueda-nombre" placeholder="Nombre del accesorio">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Stock</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-accesorios">
+                                <!-- La lista de accesorios se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaAccesorios = document.getElementById('lista-accesorios');
+        listaAccesorios.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const accesorioId = targetRow.getAttribute('data-accesorio-id');
+                // Resto del código para mostrar los detalles del accesorio seleccionado
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un accesorio para borrar.');
+                return;
+            }
+
+            const accesorioId = selectedRow.getAttribute('data-accesorio-id');
+
+            // Obtener el nombre, precio y stock del accesorio seleccionado
+            const nombre = selectedRow.querySelector('td:nth-child(1)').innerText;
+            const PU = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const stock = selectedRow.querySelector('td:nth-child(3)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este accesorio?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-accesorio/${accesorioId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nAccesorio eliminado:' +
+                            '\nNombre: ' + nombre +
+                            '\nPrecio: ' + "$" + PU +
+                            '\nStock: ' + stock;
+                        alert(message);
+
+                        // Actualizar la tabla de accesorios (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadAutosByMarca(nombre) {
+            fetch(`/obtener-accesorios-por-nombre?nombre=${nombre}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaAccesorios = document.getElementById('lista-accesorios');
+                    listaAccesorios.innerHTML = '';
+
+                    data.forEach(accesorio => {
+                        if (accesorio.borrado === 0) {  // Verifica si el accesorio está marcado como borrado
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-accesorio-id', accesorio.codACC);
+                            tableRow.innerHTML = `
+                                            <td>${accesorio.nombre}</td>
+                                            <td>${accesorio.PU}</td>
+                                            <td>${accesorio.stock}</td>
+                                        `;
+                            listaAccesorios.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaNombre = document.getElementById('busqueda-nombre');
+        busquedaNombre.addEventListener('input', () => {
+            const nombre = busquedaNombre.value;
+            loadAutosByMarca(nombre);
+        });
+    </script>
+</body>
+
+
+</html>

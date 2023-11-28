@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/modificar_usuario.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Modificar Usuario - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Actualiza los datos de un usuario del sistema</p>
+                <p id="description">Usuario a modificar:</p>
+                <label for="busqueda-username" class="username-label">Buscar por Nickname</label>
+                <input type="text" id="busqueda-username" placeholder="Nickname del Usuario">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nickname</th>
+                                    <th>Password</th>
+                                    <th>PermisoAdmin</th>
+                                    <th>ABM</th>
+                                    <th>Compras</th>
+                                    <th>Posventa</th>
+                                    <th>Contratos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-usuarios">
+                                <!-- La lista de usuarios se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="username" class="username-label">Nickname</label>
+                <input type="text" id="username" placeholder="Nickname del Usuario" disabled>
+                <label for="password" class="password-label">Nueva Contraseña</label>
+                <input type="password" id="password" placeholder="Nueva Contraseña" disabled>
+                <div class="contenedor-label">
+                    <label><input type="checkbox" id="password-check" disabled><span>Mostrar/Ocultar
+                            Contraseña</span></label>
+                </div>
+                <p id="description">Permisos:</p>
+                <div class="contenedor-checkbox">
+                    <div class="contenedor-label">
+                        <label><input type="checkbox" id="p_PermisoAdmin" class="permisos" disabled><span>Permisos de
+                                Administrador</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label><input type="checkbox" id="p_ABM" class="permisos" disabled><span>Permisos de
+                                ABM</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label><input type="checkbox" id="p_Compras" class="permisos" disabled><span>Permisos de Acceso
+                                a los circuitos de Compras</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label><input type="checkbox" id="p_Posventa" class="permisos" disabled><span>Permisos de Acceso
+                                a los circuitos de Posventa</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label><input type="checkbox" id="p_Contrataciones" class="permisos" disabled><span>Permisos de
+                                Acceso a los circuitos de Contrataciones</span></label>
+                    </div>
+                </div>
+                <div class="botones">
+                    <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                    <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                    <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const busquedaUsernameInput = document.getElementById('busqueda-username');
+        const listaUsuarios = document.getElementById('lista-usuarios');
+        let edicionHabilitada = false;
+        let usuarioSeleccionado = null;
+        let usuarioOriginal = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function convertirASiNo(valor) {
+            return valor === 1 ? 'Sí' : 'No';
+        }
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        listaUsuarios.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const username = targetRow.querySelector('.username').innerText;
+                const passwordCell = targetRow.querySelector('.password');
+                const realPassword = passwordCell.getAttribute('data-realpassword');
+                const permisoAdmin = targetRow.querySelector('.permiso-admin').innerText;
+                const abm = targetRow.querySelector('.abm').innerText;
+                const compras = targetRow.querySelector('.compras').innerText;
+                const posventa = targetRow.querySelector('.posventa').innerText;
+                const contratos = targetRow.querySelector('.contratos').innerText;
+
+                document.getElementById('username').value = username;
+                document.getElementById('password').value = realPassword;
+                document.getElementById('p_PermisoAdmin').checked = permisoAdmin === 'Sí';
+                document.getElementById('p_ABM').checked = abm === 'Sí';
+                document.getElementById('p_Compras').checked = compras === 'Sí';
+                document.getElementById('p_Posventa').checked = posventa === 'Sí';
+                document.getElementById('p_Contrataciones').checked = contratos === 'Sí';
+                usuarioSeleccionado = username;
+                usuarioOriginal = {
+                    username: username,
+                    password: realPassword,
+                    PermisoAdmin: permisoAdmin === 'Sí' ? 1 : 0,
+                    ABM: abm === 'Sí' ? 1 : 0,
+                    Compras: compras === 'Sí' ? 1 : 0,
+                    Posventa: posventa === 'Sí' ? 1 : 0,
+                    Contratos: contratos === 'Sí' ? 1 : 0
+                };
+            }
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const permisoAdminInput = document.getElementById('p_PermisoAdmin');
+            const abmInput = document.getElementById('p_ABM');
+            const comprasInput = document.getElementById('p_Compras');
+            const posventaInput = document.getElementById('p_Posventa');
+            const contratosInput = document.getElementById('p_Contrataciones');
+            const checkPassword = document.getElementById('password-check');
+
+            passwordInput.disabled = !edicionHabilitada;
+            permisoAdminInput.disabled = !edicionHabilitada;
+            abmInput.disabled = !edicionHabilitada;
+            comprasInput.disabled = !edicionHabilitada;
+            posventaInput.disabled = !edicionHabilitada;
+            contratosInput.disabled = !edicionHabilitada;
+            checkPassword.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+            }
+
+            checkPassword.addEventListener('click', function () {
+                if (checkPassword.checked) {
+                    passwordInput.type = 'text';
+                } else {
+                    passwordInput.type = 'password';
+                }
+            });
+        });
+
+        const busquedaUsername = document.getElementById('busqueda-username');
+        busquedaUsername.addEventListener('input', () => {
+            const username = busquedaUsername.value;
+            loadUsuariosByUsername(username);
+        });
+
+        function loadUsuariosByUsername(username) {
+            listaUsuarios.innerHTML = '';
+
+            fetch(`/obtener-usuarios-por-username?username=${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(usuario => {
+                        if (usuario.borrado === 0) {
+                            const tableRow = document.createElement('tr');
+                            tableRow.innerHTML = `
+                        <td class="username">${usuario.username}</td>
+                        <td class="password" data-realpassword="${usuario.password}">${"*******"}</td>
+                        <td class="permiso-admin">${usuario.PermisoAdmin === 1 ? 'Sí' : 'No'}</td>
+                        <td class="abm">${usuario.ABM === 1 ? 'Sí' : 'No'}</td>
+                        <td class="compras">${usuario.Compras === 1 ? 'Sí' : 'No'}</td>
+                        <td class="posventa">${usuario.Posventa === 1 ? 'Sí' : 'No'}</td>
+                        <td class="contratos">${usuario.Contratos === 1 ? 'Sí' : 'No'}</td>
+                    `;
+                            listaUsuarios.appendChild(tableRow);
+
+                            if (usuario.username === usuarioSeleccionado) {
+                                document.getElementById('p_PermisoAdmin').checked = usuario.PermisoAdmin === 1;
+                                document.getElementById('p_ABM').checked = usuario.ABM === 1;
+                                document.getElementById('p_Compras').checked = usuario.Compras === 1;
+                                document.getElementById('p_Posventa').checked = usuario.Posventa === 1;
+                                document.getElementById('p_Contrataciones').checked = usuario.Contratos === 1;
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const username = usuarioSeleccionado;
+
+            if (!username) {
+                alert('Debes seleccionar un usuario para modificar.');
+                return;
+            }
+
+            const usernameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            const permisoAdmin = document.getElementById('p_PermisoAdmin').checked ? 1 : 0;
+            const abm = document.getElementById('p_ABM').checked ? 1 : 0;
+            const compras = document.getElementById('p_Compras').checked ? 1 : 0;
+            const posventa = document.getElementById('p_Posventa').checked ? 1 : 0;
+            const contratos = document.getElementById('p_Contrataciones').checked ? 1 : 0;
+
+            const cambiosRealizados = (
+                username !== usuarioOriginal.username ||
+                passwordInput !== usuarioOriginal.password ||
+                permisoAdmin !== usuarioOriginal.PermisoAdmin ||
+                abm !== usuarioOriginal.ABM ||
+                compras !== usuarioOriginal.Compras ||
+                posventa !== usuarioOriginal.Posventa ||
+                contratos !== usuarioOriginal.Contratos
+            );
+
+            if (!cambiosRealizados) {
+                alert('Debes realizar un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                username: username,
+                password: passwordInput,
+                PermisoAdmin: permisoAdmin,
+                ABM: abm,
+                Compras: compras,
+                Posventa: posventa,
+                Contratos: contratos
+            };
+
+            fetch('/modificar-usuario', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    edicionHabilitada = false;
+                    habilitarBtn.textContent = 'Habilitar Edición';
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nNickname: ' + username +
+                            '\nPassword: ' + "******" +
+                            '\nPermiso de Admin: ' + convertirASiNo(permisoAdmin) +
+                            '\nPermiso de ABM: ' + convertirASiNo(abm) +
+                            '\nPermiso de Acceso Compras: ' + convertirASiNo(compras) +
+                            '\nPermiso de Acceso Posventa: ' + convertirASiNo(posventa) +
+                            '\nPermiso de Acceso Contrataciones: ' + convertirASiNo(contratos);
+                        alert(message);
+                        // Limpiar la pantalla y restablecer los campos después de la modificación exitosa
+                        listaUsuarios.innerHTML = '';
+                        busquedaUsernameInput.value = '';
+                        document.getElementById('username').value = '';
+                        document.getElementById('password').value = '';
+                        document.getElementById('p_PermisoAdmin').checked = false;
+                        document.getElementById('p_ABM').checked = false;
+                        document.getElementById('p_Compras').checked = false;
+                        document.getElementById('p_Posventa').checked = false;
+                        document.getElementById('p_Contrataciones').checked = false;
+
+                        // Deseleccionar filas y restablecer valores
+                        deselectRows();
+                        usuarioSeleccionado = null;
+
+                        // Restablecer el estado de edición
+                        edicionHabilitada = false;
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        document.getElementById('username').disabled = true;
+                        document.getElementById('password').disabled = true;
+                        document.getElementById('password-check').disabled = true;
+                        document.getElementById('p_PermisoAdmin').disabled = true;
+                        document.getElementById('p_ABM').disabled = true;
+                        document.getElementById('p_Compras').disabled = true;
+                        document.getElementById('p_Posventa').disabled = true;
+                        document.getElementById('p_Contrataciones').disabled = true;
+
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -13,8 +13,7 @@
         <div class="container">
 
             <div class="col-12 col-xl-6">
-                <h2>Automóviles disponibles para su compra</h2>
-                <h3 class="text-center text-light">Automoviles 0KM Disponibles</h3>
+                <h2>Automóviles 0KM disponibles para su compra</h2>
                 <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
                     <tr style="background-color:white; color:black">
                         <th>Marca</th>
@@ -67,7 +66,7 @@
 
                 <h2>Automóvil a comprar</h2>
                 <div id="chosenCar" class="data-display"></div>
-                <a id="submit" href="../Verificar Cliente parte 2/index.html">Cancelar Compra</a>
+                <a id="submit" href="/c1/b1/start">Cancelar Compra</a>
 
                 <form id="hiddenForm" action="/c1/b1/ordenCompra" method="POST">
 
@@ -101,9 +100,253 @@
             </div>
         </div>
 
+        <script src="/js/c1/selecAuto.js"></script>
+        <footer id="footer">
+            <p class="footer-text">LPP Concesionario</p>
+            <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+        </footer>
+        <style>
+            #footer {
+                background-color: rgba(33, 37, 41, 1) !important;
+                padding: 50px !important;
+                text-align: center;
+                font-family: sans-serif !important;
+                clear: both !important;
+                /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+                text-align: center !important;
+                /* Centra el contenido del footer */
+                /* Agrega espacio alrededor del contenido del footer */
+                background-color: rgba(33, 37, 41, 1);
+                color: white;
+                position: relative !important;
+            }
 
-        <%- include('../../partials/footer') %>
-            <script src="/js/c1/selecAuto.js"></script>
+
+            table[id="tabla-original"] {
+                border: solid black 5px !important;
+                border-radius: 10px !important;
+                width: 450px !important;
+            }
+
+            .survey-form {
+                display: block !important;
+                margin: 50px auto 70px !important;
+                font-family: sans-serif !important;
+                color: white !important;
+                background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                opacity: 1 !important;
+                border-radius: 20px;
+                border: 0;
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                margin-top: -5px !important;
+                display: block;
+                width: 200px !important;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+            select[id="tipo-documento"] {
+                width: 200px !important;
+                margin-top: -5px !important;
+                display: block;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+
+            .navbar {
+                z-index: 100;
+            }
+
+
+            h2 {
+                width: 60%;
+                font-size: 24px !important;
+                font-family: sans-serif !important;
+                margin: 30px auto 20px !important;
+                font-weight: bold !important;
+                color: black !important;
+            }
+
+            .add-button {
+                border: 0;
+                border-radius: 5px;
+                margin: 5px;
+            }
+
+            .data-display {
+                background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                padding: 30px;
+                border-radius: 10px !important;
+            }
+
+            .add-button:hover {
+                background-color: black;
+                color: white;
+            }
+
+            .side-section {
+                margin-top: 50px !important;
+            }
+
+            td {
+                color: black;
+            }
+
+            tr {
+                margin: 10px !important;
+                border: solid 2px black;
+            }
+
+            table {
+                margin-top: 20px !important;
+                margin: 0 auto !important;
+            }
+
+            .text-light {
+                font-weight: bold !important;
+                margin-bottom: 50px !important;
+                color: black !important;
+            }
+
+            #principal-description {
+                color: white !important;
+                text-align: center !important;
+                margin: 20px;
+                font-family: sans-serif !important;
+            }
+
+            label,
+            #description {
+                color: white !important;
+                font-family: sans-serif !important;
+            }
+
+
+            html {
+                width: 100% !important;
+            }
+
+            body {
+                font-family: sans-serif !important;
+                background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative !important;
+            }
+
+            h1 {
+                color: black;
+                font-weight: bold;
+                text-align: center;
+                font-size: 30px;
+                margin-top: 20px;
+                font-family: sans-serif !important;
+            }
+
+            .container-fluid {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .container-fluid {
+                width: 100% !important;
+            }
+
+
+            .btn-danger,
+            #submit {
+                width: 300px;
+                margin: 30px auto;
+                border: 0;
+                border-radius: 10px;
+                padding: 20px;
+                opacity: 1 !important;
+                background-color: black !important;
+                color: white;
+                font-size: 18px;
+                text-decoration: none !important;
+            }
+
+            .payment-methods {
+                margin-bottom: 20px;
+            }
+
+            .btn-danger:hover,
+            #submit:hover {
+                transition: none;
+                transform: none;
+                padding: 20px !important;
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-danger:active {
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-dark {
+                font-size: 15px !important;
+                color: white !important
+            }
+
+            button[class=btn-dark] {
+                background-color: black !important;
+                font-size: 16px !important;
+            }
+
+            /* Responsiveness */
+
+            .bg-pan-left {
+                -webkit-animation: bg-pan-left 8s both;
+                animation: bg-pan-left 8s both
+            }
+
+            /* ----------------------------------------------
+ * Generated by Animista on 2023-9-8 19:42:4
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+            @-webkit-keyframes bg-pan-left {
+                0% {
+                    background-position: 100% 50%
+                }
+
+                100% {
+                    background-position: 0 50%
+                }
+            }
+
+            @keyframes bg-pan-left {
+                0% {
+                    background-position: 100% 50%
+                }
+
+                100% {
+                    background-position: 0 50%
+                }
+            }
+
+            @media (max-width: 576px) {
+                .survey-form {
+                    width: 100%;
+                }
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

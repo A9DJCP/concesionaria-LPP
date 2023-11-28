@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="borrar_usuario.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Borrar Usuario - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Elimina un usuario del sistema</p>
+                <p id="description">Usuario a borrar:</p>
+                <label for="busqueda-username" id="username-label">Búsqueda por Username</label>
+                <input type="text" id="busqueda-username" placeholder="Username del Usuario">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>PermisoAdmin</th>
+                                    <th>ABM</th>
+                                    <th>Compras</th>
+                                    <th>Posventa</th>
+                                    <th>Contratos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-usuarios">
+                                <!-- La lista de usuarios se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaUsuarios = document.getElementById('lista-usuarios');
+        listaUsuarios.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const usuarioId = targetRow.getAttribute('data-usuario-id');
+                // Resto del código para mostrar los detalles del usuario seleccionado
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un usuario para borrar.');
+                return;
+            }
+
+            const usuarioId = selectedRow.getAttribute('data-usuario-id');
+
+            // Obtener el username, password, PermisoAdmin, ABM, Compras, Posventa, Contratos del usuario seleccionado
+            const username = selectedRow.querySelector('td:nth-child(1)').innerText;
+            const password = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const PermisoAdmin = selectedRow.querySelector('td:nth-child(3)').innerText;
+            const ABM = selectedRow.querySelector('td:nth-child(4)').innerText;
+            const Compras = selectedRow.querySelector('td:nth-child(5)').innerText;
+            const Posventa = selectedRow.querySelector('td:nth-child(6)').innerText;
+            const Contratos = selectedRow.querySelector('td:nth-child(7)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este usuario?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-usuario/${usuarioId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nUsuario eliminado:' +
+                            '\nNickname: ' + username +
+                            '\nPassword: ' + password +
+                            '\nPermiso de Admin: ' + PermisoAdmin +
+                            '\nPermiso de ABM: ' + ABM +
+                            '\nPermiso de Acceso Compras : ' + Compras +
+                            '\nPermiso de Acceso Posventa: ' + Posventa +
+                            '\nPermiso de Acceso Contratos: ' + Contratos;
+                        alert(message);
+
+                        // Actualizar la tabla de usuarios (borrar los usuarios)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadUsuariosByUsername(username) {
+            fetch(`/obtener-usuarios-por-username?username=${username}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaUsuarios = document.getElementById('lista-usuarios');
+                    listaUsuarios.innerHTML = '';
+
+                    data.forEach(usuario => {
+                        if (usuario.borrado === 0) {  // Verifica si el usuario está marcado como borrado
+                            // Mapea los valores de PermisoAdmin, ABM, Compras, Posventa y Contratos a "Si" o "No"
+                            const tienePermisoAdmin = usuario.PermisoAdmin === 1 ? 'Si' : 'No';
+                            const tieneABM = usuario.ABM === 1 ? 'Si' : 'No';
+                            const tieneCompras = usuario.Compras === 1 ? 'Si' : 'No';
+                            const tienePosventa = usuario.Posventa === 1 ? 'Si' : 'No';
+                            const tieneContratos = usuario.Contratos === 1 ? 'Si' : 'No';
+
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-usuario-id', usuario.codUsuario);
+                            tableRow.innerHTML = `
+                        <td>${usuario.username}</td>
+                        <td>${"*******"}</td>
+                        <td>${tienePermisoAdmin}</td>
+                        <td>${tieneABM}</td>
+                        <td>${tieneCompras}</td>
+                        <td>${tienePosventa}</td>
+                        <td>${tieneContratos}</td>
+                    `;
+                            listaUsuarios.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaUsername = document.getElementById('busqueda-username');
+        busquedaUsername.addEventListener('input', () => {
+            const username = busquedaUsername.value;
+            loadUsuariosByUsername(username);
+        });
+    </script>
+</body>
+
+</html>

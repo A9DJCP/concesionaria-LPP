@@ -9,205 +9,449 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!-- Activa el Dark Mode -->
-  <%- include('../../partials/head') %>
 </head>
 
 <body>
-  <%- include('../../partials/navigation') %>
-    <% if (typeof msg !=='undefined' ) { %>
-      <script>
-        alert('<%= msg %>');
-      </script>
-      <% } %>
-        <header>
-          <div id='imagen_div'>
-            <img src="/img/logo.png" alt="logo" height="100px">
-            <img src="/img/logoLPP.png" alt="logo" height="100px">
+  <header>
+    <div id="títulos">
+      <p class='título'> LPP Concesionaria de autos </p>
+    </div>
+  </header>
+
+  <div id="elemento">
+    <div class="container">
+      <form>
+        <fieldset>
+          <legend>Presupuesto de Auto Usado N°</legend>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="n">Número</label>
+              <input type="number" class="form-control" id="n" value="<%=data.nroPres%>" readonly>
+            </div>
           </div>
-          <div id="títulos">
-            <p class='título'> LPP Concesionaria de autos </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Cliente Comprador</legend>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" id="nombre" value="<%=data.nom%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="apellido">Apellido</label>
+              <input type="text" class="form-control" id="apellido" value="<%=data.ape%>" readonly>
+            </div>
           </div>
-        </header>
-
-        <div id="elemento">
-          <div class="container">
-            <form>
-              <fieldset>
-                <legend>Presupuesto de Auto Usado N°</legend>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="n">Número</label>
-                    <input type="number" class="form-control" id="n" value="<%=data.nroPres%>" readonly>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend>Cliente Comprador</legend>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" value="<%=data.nom%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" value="<%=data.ape%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="teléfono">Teléfono</label>
-                    <input type="text" class="form-control" id="teléfono" value="<%=data.tel%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="mail">Mail</label>
-                    <input type="text" class="form-control" id="mail" value="<%=data.mail%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="tipoDocumento">Tipo de Documento</label>
-                    <input type="text" class="form-control" id="tipoDocumento" value="<%=data.tdoc%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="numDocumento">Número de Documento</label>
-                    <input type="text" class="form-control" id="numDocumento" value="<%=data.ndoc%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="dirección">Dirección</label>
-                    <input type="text" class="form-control" id="dirección" value="<%=data.direc%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="ciudadFecha">Ciudad y Fecha</label>
-                    <input type="text" class="form-control" id="ciudadFecha" value="CABA, <%=data.fecha%>" readonly>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend>AUTOMÓVIL USADO</legend>
-                <legend>Detalles del automóvil cero kilómetros seleccionado para su compra.</legend>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="marca">MARCA</label>
-                    <input type="text" class="form-control" id="marca" value="<%=data.marca%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="modelo">MODELO</label>
-                    <input type="text" class="form-control" id="modelo" value="<%=data.modelo%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="precio">PRECIO</label>
-                    <input type="text" class="form-control" id="precio" value="<%=data.precio%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="color">COLOR</label>
-                    <input type="text" class="form-control" id="color" value="<%=data.color%>" readonly>
-                  </div>
-                </div>
-                <legend>La compra corresponde a 1 (uno) solo automóvil de la marca y modelos especificados (CANTIDAD:1).
-                  Refiere al contrato <%=data.contrato%>.
-                </legend>
-              </fieldset>
-
-              <fieldset>
-                <legend>Propietario Actual</legend>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="tipoDocumentoActual">Tipo de Documento</label>
-                    <input type="text" class="form-control" id="tipoDocumentoActual" value="<%=data.tdocProp%>"
-                      readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="numDocumentoActual">Número de Documento</label>
-                    <input type="text" class="form-control" id="numDocumentoActual" value="<%=data.ndocProp%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="nombreActual">Nombre</label>
-                    <input type="text" class="form-control" id="nombreActual" value="<%=data.nomProp%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="apellidoActual">Apellido</label>
-                    <input type="text" class="form-control" id="apellidoActual" value="<%=data.apeProp%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="teléfonoActual">Teléfono</label>
-                    <input type="text" class="form-control" id="teléfonoActual" value="<%=data.telProp%>" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="mailActual">Mail</label>
-                    <input type="text" class="form-control" id="mailActual" value="<%=data.mailProp%>" readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="direcciónActual">Dirección</label>
-                    <input type="text" class="form-control" id="direcciónActual" value="<%=data.direcProp%>" readonly>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset>
-                <legend>Datos empresa</legend>
-                <div class="form-row">
-                  <div class="form-group col-md-12">
-                    <label for="observaciones">Observaciones</label>
-                    <textarea class="form-control" id="observaciones" cols="65" rows="2" placeholder=" "
-                      pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="349"></textarea>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="fechaDespacho">Fecha de despacho</label>
-                    <input type="text" class="form-control" id="fechaDespacho" readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="aprobado">Aprobado por</label>
-                    <input type="text" class="form-control" id="aprobado" placeholder=" " readonly>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="aceptado">Aceptado</label>
-                    <input type="text" class="form-control" id="aceptado" placeholder=" " readonly>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="elaborado">Elaborado por</label>
-                    <input type="text" class="form-control" id="elaborado" placeholder=" " readonly>
-                  </div>
-                </div>
-              </fieldset>
-              <div style="text-align: center;">
-                <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
-                <a href="/c6" class="btn btn-success btn-lg ">Finalizar Operacion</a>
-              </div>
-              <script>
-                function printOrDownload() {
-                  window.print();
-                }
-                document.getElementById('printButton').addEventListener('click', printOrDownload);
-              </script>
-            </form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="teléfono">Teléfono</label>
+              <input type="text" class="form-control" id="teléfono" value="<%=data.tel%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="mail">Email</label>
+              <input type="text" class="form-control" id="mail" value="<%=data.mail%>" readonly>
+            </div>
           </div>
-        </div>
-        <!-- Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-          crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-          crossorigin="anonymous"></script>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="tipoDocumento">Tipo de Documento</label>
+              <input type="text" class="form-control" id="tipoDocumento" value="<%=data.tdoc%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numDocumento">Número de Documento</label>
+              <input type="text" class="form-control" id="numDocumento" value="<%=data.ndoc%>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="dirección">Dirección</label>
+              <input type="text" class="form-control" id="dirección" value="<%=data.direc%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="ciudadFecha">Ciudad y Fecha</label>
+              <input type="text" class="form-control" id="ciudadFecha" value="CABA, <%=data.fecha%>" readonly>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>AUTOMÓVIL USADO</legend>
+          <legend>Detalles del automóvil cero kilómetros seleccionado para su compra.</legend>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="marca">MARCA</label>
+              <input type="text" class="form-control" id="marca" value="<%=data.marca%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="modelo">MODELO</label>
+              <input type="text" class="form-control" id="modelo" value="<%=data.modelo%>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="precio">PRECIO</label>
+              <input type="text" class="form-control" id="precio" value="<%=data.precio%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="color">COLOR</label>
+              <input type="text" class="form-control" id="color" value="<%=data.color%>" readonly>
+            </div>
+          </div>
+          <legend>La compra corresponde a 1 (uno) automóvil de la marca y modelos especificados. Contrato:
+            <%=data.contrato%>.
+          </legend>
+        </fieldset>
+
+        <fieldset>
+          <legend>Propietario Actual</legend>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="tipoDocumentoActual">Tipo de Documento</label>
+              <input type="text" class="form-control" id="tipoDocumentoActual" value="<%=data.tdocProp%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="numDocumentoActual">Número de Documento</label>
+              <input type="text" class="form-control" id="numDocumentoActual" value="<%=data.ndocProp%>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="nombreActual">Nombre</label>
+              <input type="text" class="form-control" id="nombreActual" value="<%=data.nomProp%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="apellidoActual">Apellido</label>
+              <input type="text" class="form-control" id="apellidoActual" value="<%=data.apeProp%>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="teléfonoActual">Teléfono</label>
+              <input type="text" class="form-control" id="teléfonoActual" value="<%=data.telProp%>" readonly>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="mailActual">Email</label>
+              <input type="text" class="form-control" id="mailActual" value="<%=data.mailProp%>" readonly>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="direcciónActual">Dirección</label>
+              <input type="text" class="form-control" id="direcciónActual" value="<%=data.direcProp%>" readonly>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Datos empresa</legend>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <label for="observaciones">Observaciones</label>
+              <textarea class="form-control" id="observaciones" cols="65" rows="2" placeholder=" "
+                pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="349"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="fechaDespacho">Fecha de despacho</label>
+              <input type="text" class="form-control" id="fechaDespacho">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="aprobado">Aprobado por</label>
+              <input type="text" class="form-control" id="aprobado" placeholder=" ">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="aceptado">Aceptado</label>
+              <input type="text" class="form-control" id="aceptado" placeholder=" ">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="elaborado">Elaborado por</label>
+              <input type="text" class="form-control" id="elaborado" placeholder=" ">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <div class="botones" style="text-align: center;">
+    <button id="printButton" class=" btn btn-danger btn-lg btn">Imprimir o Descargar</button>
+    <a id="finalizar" href="/c6" class="btn btn-danger btn-lg btn">Finalizar Operación</a>
+  </div>
+
+  </form>
+  </div>
+  </div>
+  <style>
+    .btn-group-lg>.btn,
+    .btn-lg {
+      --bs-btn-padding-y: 0.5rem;
+      --bs-btn-padding-x: 1rem;
+      --bs-btn-font-size: 1.25rem;
+      --bs-btn-border-radius: var(--bs-border-radius-lg);
+    }
+
+    .btn-danger {
+      --bs-btn-color: #fff;
+      --bs-btn-bg: #dc3545;
+      --bs-btn-border-color: #dc3545;
+      --bs-btn-hover-color: #fff;
+      --bs-btn-hover-bg: #bb2d3b;
+      --bs-btn-hover-border-color: #b02a37;
+      --bs-btn-focus-shadow-rgb: 225, 83, 97;
+      --bs-btn-active-color: #fff;
+      --bs-btn-active-bg: #b02a37;
+      --bs-btn-active-border-color: #a52834;
+      --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+      --bs-btn-disabled-color: #fff;
+      --bs-btn-disabled-bg: #dc3545;
+      --bs-btn-disabled-border-color: #dc3545;
+    }
+
+    .btn {
+      --bs-btn-padding-x: 0.75rem;
+      --bs-btn-padding-y: 0.375rem;
+      --bs-btn-font-family: ;
+      --bs-btn-font-size: 1rem;
+      --bs-btn-font-weight: 400;
+      --bs-btn-line-height: 1.5;
+      --bs-btn-color: var(--bs-body-color);
+      --bs-btn-bg: transparent;
+      --bs-btn-border-width: var(--bs-border-width);
+      --bs-btn-border-color: transparent;
+      --bs-btn-border-radius: var(--bs-border-radius);
+      --bs-btn-hover-border-color: transparent;
+      --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+      --bs-btn-disabled-opacity: 0.65;
+      --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+      display: inline-block;
+      padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+      font-family: var(--bs-btn-font-family);
+      font-size: var(--bs-btn-font-size);
+      font-weight: var(--bs-btn-font-weight);
+      line-height: var(--bs-btn-line-height);
+      color: var(--bs-btn-color);
+      text-align: center;
+      text-decoration: none;
+      vertical-align: middle;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+      border-radius: var(--bs-btn-border-radius);
+      background-color: var(--bs-btn-bg);
+      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    a {
+      color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+      text-decoration: underline;
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    user agent stylesheet a:-webkit-any-link {
+      color: -webkit-link;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    style attribute {
+      text-align: center;
+    }
+
+    body {
+      font-family: sans-serif !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    #img-1,
+    #img-2 {
+      position: relative !important;
+      text-align: left !important;
+    }
+
+    body {
+      background: #202020;
+      color: white;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--bs-body-font-family);
+      font-size: var(--bs-body-font-size);
+      font-weight: var(--bs-body-font-weight);
+      line-height: var(--bs-body-line-height);
+      color: var(--bs-body-color);
+      text-align: var(--bs-body-text-align);
+      background-color: var(--bs-body-bg);
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .titulo {
+      color: black !important;
+    }
+
+    nav {
+      display: none !important;
+    }
+
+    .botones {
+      text-align: center;
+      margin: auto !important;
+    }
+
+    #printButton,
+    #finalizar {
+      margin-bottom: 20px !important;
+    }
+
+    html {
+      height: 100% !important;
+    }
+
+    body {
+      display: flex !important;
+      flex-direction: column !important;
+      min-height: 100% !important;
+    }
+
+    #footer {
+      margin-top: auto !important;
+      background-color: rgba(33, 37, 41, 1) !important;
+      padding: 40px;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      text-align: center;
+    }
+
+    .input-group-text {
+      width: 300px !important;
+      margin: 70px auto 20px auto;
+      border: 0;
+      border-radius: 5px !important;
+      background-color: #e0e0e0;
+    }
+
+
+    #principal-description {
+      text-align: center !important;
+      margin: 50px;
+    }
+
+    html,
+    body {
+      background: #e0e0e0;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    header {
+      background-color: black !important;
+      height: 100px !important;
+    }
+
+    body {
+      font-family: sans-serif !important;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      color: black !important;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .card {
+      width: 25%;
+      margin: 10px;
+      border: 0;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(to bottom, rgb(64, 64, 238), rgb(243, 33, 33));
+    }
+
+
+
+    .btn-danger {
+      width: 300px;
+      margin: 0 auto;
+      border: 0;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: black;
+      opacity: 1 !important;
+      color: white;
+    }
+
+    .btn-danger:active {
+      background-color: white !important;
+      color: black !important;
+    }
+
+    .btn-danger:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .btn-dark {
+      font-size: 15px;
+      color: white !important
+    }
+
+    button[class=btn-dark] {
+      font-size: 16px !important;
+    }
+
+    /* Responsiveness */
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        width: 100%;
+      }
+    }
+
+    #printButton,
+    #finalizar {
+      margin-bottom: 20px !important;
+    }
+  </style>
+  <!-- Bootstrap JS -->
+  <script>
+    function printOrDownload() {
+      window.print();
+    }
+    document.getElementById('printButton').addEventListener('click', printOrDownload);
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

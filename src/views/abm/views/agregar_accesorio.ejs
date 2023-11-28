@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="agregar_accesorio.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Agregar Accesorio - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Agrega un accesorio de autos a tu inventario</p>
+                <p id="description">Accesorio a cargar:</p>
+                <label for="nombre" id="nombre-label">Nombre</label>
+                <input type="text" id="nombre" placeholder="Nombre del accesorio">
+                <label for="precio" id="precio-label">Precio Unitario</label>
+                <input type="number" id="precio" placeholder="Precio por unidad">
+                <label for="stock" id="stock-label">Stock</label>
+                <input type="number" id="stock" placeholder="Cantidad del producto">
+                <button type="submit" class="submit">Agregar Accesorio</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const form = document.getElementById('survey-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const PU = document.getElementById('precio').value;
+            const stock = document.getElementById('stock').value;
+
+            if (nombre.trim() === '' || PU.trim() === '' || stock.trim() === '') {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const data = {
+                nombre: nombre,
+                PU: PU,
+                stock: stock
+            };
+
+            try {
+                const response = await fetch('/agregar-accesorio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const message = 'Accesorio cargado:' +
+                        '\nNombre: ' + nombre +
+                        '\nPrecio Unitario: ' + "$" + PU +
+                        '\nStock: ' + stock;
+
+                    alert('Accesorio agregado exitosamente.' + '\n\n' + message);
+                    form.reset();
+                } else {
+                    alert('Hubo un error al agregar el accesorio. Por favor, inténtalo nuevamente.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al agregar el accesorio. Por favor, inténtalo nuevamente.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

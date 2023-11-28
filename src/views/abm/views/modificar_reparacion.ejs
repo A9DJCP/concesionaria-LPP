@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="modificar_reparacion.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Modificar Reparación Disponible - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Actualiza los campos de tu reparación</p>
+                <p id="description">Reparación a modificar:</p>
+                <label for="busqueda-nombre" class="nombre-label">Busqueda por Nombre</label>
+                <input type="text" id="busqueda-nombre" class="nombre" placeholder="Nombre de la Reparación">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-reparaciones">
+                                <!-- La lista de reparaciones se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="nombre" class="nombre-label">Nombre</label>
+                <input type="text" id="nombre" class="nombre" placeholder="Nombre Reparación" disabled>
+                <label for="precio" id="precio-label">Precio Unitario</label>
+                <input type="number" id="precio" class="precio" placeholder="Precio Reparación" disabled>
+                <label for="detalle" id="detalle-label">Detalle</label>
+                <textarea id="detalle" class="detalle" placeholder="Escriba aquí el detalle" disabled></textarea>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const nombreInput = document.getElementById('nombre');
+        const precioInput = document.getElementById('precio');
+        const detalleInput = document.getElementById('detalle');
+        const busquedaNombreInput = document.getElementById('busqueda-nombre');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let reparacionSeleccionadaId = null;
+        let reparacionSeleccionadaNombre = null;
+        let reparacionSeleccionadaPrecio = null;
+        let reparacionSeleccionadaDetalle = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaReparaciones = document.getElementById('lista-reparaciones');
+        listaReparaciones.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const reparacionId = targetRow.getAttribute('data-reparacion-id');
+                const nombre = targetRow.querySelector('.nombre').innerText;
+                const precio = targetRow.querySelector('.precio').innerText;
+                const detalle = targetRow.querySelector('.detalle').innerText;
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('precio').value = precio;
+                document.getElementById('detalle').value = detalle;
+                reparacionSeleccionadaId = reparacionId;
+                reparacionSeleccionadaNombre = nombre;
+                reparacionSeleccionadaPrecio = precio;
+                reparacionSeleccionadaDetalle = detalle;
+            }
+        });
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const reparacionId = reparacionSeleccionadaId;
+
+            if (!reparacionId) {
+                alert('Debes seleccionar una reparación para modificar.');
+                return;
+            }
+
+            const nombre = document.getElementById('nombre').value;
+            const precio = document.getElementById('precio').value;
+            const detalle = document.getElementById('detalle').value;
+
+            if (nombre === reparacionSeleccionadaNombre && precio === reparacionSeleccionadaPrecio && detalle === reparacionSeleccionadaDetalle) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codRDISP: reparacionId,
+                nombre: nombre,
+                precio: precio,
+                detalle: detalle
+            };
+
+            console.log(data);
+
+            fetch('/modificar-reparacion', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nNombre: ' + nombre +
+                            '\nPrecio: ' + "$" + precio +
+                            '\nDetalle: ' + detalle;
+                        alert(message);
+
+                        // Restablecer el estado de edición
+                        edicionHabilitada = false;
+                        // Actualizar los campos solo en caso de éxito
+                        document.getElementById('nombre').value = '';
+                        document.getElementById('precio').value = '';
+                        document.getElementById('detalle').value = '';
+
+                        // Limpiar la selección
+                        deselectRows();
+                        reparacionSeleccionadaId = null;
+                        reparacionSeleccionadaNombre = null;
+                        reparacionSeleccionadaPrecio = null;
+                        reparacionSeleccionadaDetalle = null;
+
+                        // Limpiar la tabla
+                        listaReparaciones.innerHTML = '';
+
+                        // Limpiar el input de búsqueda
+                        document.getElementById('busqueda-nombre').value = '';
+
+                        // Deshabilitar la edición y restaurar los campos
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        nombreInput.disabled = true;
+                        precioInput.disabled = true;
+                        detalleInput.disabled = true;
+
+                        // Aquí puedes redirigir al usuario a otra página si lo deseas.
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            nombreInput.disabled = !edicionHabilitada;
+            precioInput.disabled = !edicionHabilitada;
+            detalleInput.disabled = !edicionHabilitada;
+
+            if (!edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaNombre = document.getElementById('busqueda-nombre');
+        busquedaNombre.addEventListener('input', () => {
+            const nombre = busquedaNombre.value;
+            loadReparacionesByNombre(nombre);
+        });
+
+        function loadReparacionesByNombre(nombre) {
+            // Limpiar la tabla al cargar nuevos datos
+            listaReparaciones.innerHTML = '';
+
+            fetch(`/obtener-reparaciones-por-nombre?nombre=${nombre}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(reparacion => {
+                        if (reparacion.borrado === 0) {  // Verifica si la reparación está marcada como borrada
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-reparacion-id', reparacion.codRDISP);
+                            tableRow.innerHTML = `
+                                <td class="nombre">${reparacion.nombre}</td>
+                                <td class="precio">${reparacion.PU}</td>
+                                <td class="detalle">${reparacion.detalles}</td>
+                            `;
+                            listaReparaciones.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

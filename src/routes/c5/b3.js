@@ -18,7 +18,7 @@ router.post("/c5/b3/regFirma", isLoggedIn, async (req, res) => {
 		if (!nom || !ape || !tdoc || !ndoc || !codAU || !femision) {
 			msg =
 				"Debe completar todos los datos para poder procesar la informacion.";
-			res.render("./contratos/c5/b3", { msg });
+			res.render("./contratos/c5/regFirma", { msg });
 		} else {
 			sql = `SELECT COUNT(*) cont, codC FROM persona Per, propietario P, autousado A, contrato C 
             WHERE C.codAU=A.codAU AND A.codP=P.codP AND P.codper=Per.Codper AND nom='${nom}' 
@@ -35,7 +35,7 @@ router.post("/c5/b3/regFirma", isLoggedIn, async (req, res) => {
 				await pool.query(sql);
 				msg = "Se ha registrado la firma del contrato.";
 			}
-			res.render("./contratos/c5", { msg });
+			res.render("./contratos/c5/index", { msg });
 		}
 	} catch (err) {
 		console.log(err);

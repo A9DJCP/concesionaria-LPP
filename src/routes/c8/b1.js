@@ -12,7 +12,7 @@ router.get("/c8/b1", isLoggedIn, async (req, res) => {
 	rs = await pool.query(sql);
 	if ((await pool.query(sql))[0].cont === 0) {
 		res.render("./contratos/c8", {
-			msg: "No hay ningun contrato vencido sin actualizar.",
+			msg: "No hay ningún contrato vencido sin actualizar.",
 		});
 	} else {
 		sql = `SELECT dayname(curdate()) dia`;

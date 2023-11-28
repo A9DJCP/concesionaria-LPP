@@ -1,38 +1,19 @@
 html {
-    background-image: url(/img/fondo.jpg);
-    background-attachment: fixed;
-    background-position: right center;
     max-width: 100%;
-    background-repeat: no-repeat;
     color: black;
-    font-family: monospace, calibri !important;
 }
 
 a:link, a:visited, a:active {
     text-decoration: none;
-    font-family: calibri, monospace;
     border: 0;
   }
 
-  #submit {
-    display: inline-block;
-    background-color: red;
-    padding: 20px 6px;
-    border: 0;
-    border-radius: 5px;
-    color: white;
-    min-width: 20px;
-    margin: 5px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-  }
 
   #submit:hover {
     transform: scale(0.95); 
   }
 
 body {
-    font-family: monospace, calibri;
     text-align: center;
     margin: 0;
 }
@@ -58,7 +39,7 @@ h2 {
     margin-top: 25px;
 }
 #footer {
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
@@ -172,7 +153,7 @@ p {
     bottom: 0;
     left: 0;
     background-color: black;
-    padding: 28px;
+    padding: 40px !important;
     right: 0;
     text-align: center;
 }
@@ -203,20 +184,36 @@ img {
     padding: 12px; /* Ajusta el espaciado interno según tus preferencias */
 }
 
+.add-button {
+    border-radius: 10px !important;
+    padding: 10px !important;
+    border: 0;
+}
+
+.add-button:hover {
+    background-color: black !important;
+    color: white !important;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: black !important;
+    background-color: white !important;
+}
+
 #tabla-original th {
     background-color: white;
     color: black;
-    text-align: left;
+    text-align: center;
 }
 
 #tabla-original td {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: black;
+    color: white !important;
+    width: 600px !important;
+    margin: 20px auto !important;
 }
-
 .table-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Utiliza min-height para asegurarte de que la tabla esté centrada verticalmente incluso si no hay suficiente contenido para ocupar toda la altura de la ventana. */
+  margin-top: 60px !important;
+  height: auto !important;
 }

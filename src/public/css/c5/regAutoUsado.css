@@ -1,7 +1,6 @@
 /* Estilos generales */
 body {
     margin: 0;
-    background-image: url("fondo.jpg");
     background-attachment: fixed;
     background-position: center center;
     max-width: 100%;
@@ -29,7 +28,6 @@ body {
 /* Etiquetas y entradas de formulario */
 label {
     display: block;
-    font-family: monospace;
     font-weight: bold;
     margin-bottom: 5px;
     color: #333;
@@ -110,11 +108,12 @@ input[type="date"] {
     background-color: black;
     color: white;
     text-align: center;
-    padding: 20px;
-    position: absolute;
+    padding: 20px !important;
+    position: relative !important;
     bottom: 0;
     right: 0;
     left: 0;
+    margin-top: 40px !important;
 }
 
 .copyright {

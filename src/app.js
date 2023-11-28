@@ -1,9 +1,10 @@
+
 import express from "express";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import authentication from "./routes/authentication.js";
 import links from "./routes/links.js";
-
+import abmApp from "./views/ABM/app.js";
 //IMPORTS DE mysql-nodejs
 import morgan from "morgan";
 import session from "express-session";
@@ -72,7 +73,7 @@ const app = express();
 
 //Settings
 const __dirname = dirname(fileURLToPath(import.meta.url)); //Guardo la ruta absoluta de direccion actual
-app.set("port", process.env.PORT || 3000);
+//app.set("port", process.env.PORT || 3000);
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "ejs");
 
@@ -151,6 +152,7 @@ app.use(routesc8b3);
 app.use(routesc9b1);
 app.use(routesc9b2);
 
+
 // Global variables
 app.use((req, res, next) => {
 	app.locals.message = req.flash("message");
@@ -162,7 +164,13 @@ app.use((req, res, next) => {
 // Public
 app.use(express.static(join(__dirname, "public")));
 
-// Starting
-app.listen(app.get("port"), () => {
-	console.log("Server is in port", app.get("port"));
+// Utiliza el mismo puerto o elige uno diferente si es necesario
+const PORT = process.env.PORT || 3000;
+
+// Combine los middlewares y rutas del subsistema con el sistema principal
+app.use(abmApp);
+
+// Iniciar el servidor
+app.listen(PORT, () => {
+  console.log(`Sistema Principal en ejecución en http://localhost:${PORT}`);
 });

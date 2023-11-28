@@ -42,81 +42,373 @@
                 alert('<%= msg %>');
             </script>
             <% } %>
-                <header>
-                    <div id="encabezado">
-                        <h1 id="titulo">LPP Concesionaria de Autos</h1>
-                        <img src="/img/logo.png" alt="logo" height="100px">
-                        <img src="/img/logoLPP.png" alt="logo" height="100px">
-                    </div>
-                </header>
                 <div id="pago">
-                    <fieldset>
+                    <div class="titulos col-12 col-xl-6">
+                        <label class="prestamo" for="Número de préstamo">Número de Préstamo: </label>
                         <b>
-                            <h2>
-                                <div>
-                                    <li>
-                                        <label for="Número de préstamo">Número de Préstamo: </label>
-                                        <b>
-                                            <%=codPRE%>
-                                        </b>
-                                    </li>
-                                </div>
-                            </h2>
-                            <div class="col-12 col-xl-6">
-                                <h2>Cuotas del Préstamo Pendientes</h2>
-                                <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
-                                    <tr style="background-color:white; color:black">
-                                        <th>Número de Cuota</th>
-                                        <th>Pagada</th>
-                                        <th>Fecha de Cobro</th>
-                                        <th>Fecha Vto.</th>
-                                        <th>Accion</th>
-                                    </tr>
-
-                                    <% for (let i=0; i < cuotas.length; i++) { %>
-                                        <tr>
-                                            <td>
-                                                <%= cuotas[i].nroCuota %>
-                                            </td>
-                                            <td>
-                                                <%= cuotas[i].pagada %>
-                                            </td>
-                                            <td class="fecha">
-                                                <%= cuotas[i].fcobro %>
-                                            </td>
-                                            <td class="fecha">
-                                                <%= cuotas[i].fvto%>
-                                            </td>
-                                            <td class="button-cell">
-                                                <button class="add-button">Seleccionar</button>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                </table>
-                            </div>
+                            <%=codPRE%>
                         </b>
-                        <br>
-                        <br>
-                        <form method="POST" action="/c9/b2/elegirCuota">
-                            <div class="center">
-                                <h2> Número de Cuota Seleccionada </h2>
-                                <div id="chosenCuota" class="data-display">Número de cuota...</div>
-                                <input type="hidden" id="chosenCuotaInput" name="codCuota" value="">
-                                <input type="hidden" name="codPRE" value="<%=codPRE%>">
-                                <br>
-                                <br>
-                                <input id="submit" type="submit" value="Pagar Cuota">
+                        <h2>Cuotas del Préstamo Pendientes</h2>
+                    </div>
+                    <div class="col-12 col-xl-6">
+                        <table id="tabla-original" class="caja w-95 border border-light" style="height: 400px;">
+                            <tr style="background-color:white; color:black">
+                                <th>Número de Cuota</th>
+                                <th>Pagada</th>
+                                <th>Fecha de Cobro</th>
+                                <th>Fecha Vto.</th>
+                                <th>Accion</th>
+                            </tr>
 
+                            <% for (let i=0; i < cuotas.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= cuotas[i].nroCuota %>
+                                    </td>
+                                    <td>
+                                        <%= cuotas[i].pagada %>
+                                    </td>
+                                    <td class="fecha">
+                                        <%= cuotas[i].fcobro %>
+                                    </td>
+                                    <td class="fecha">
+                                        <%= cuotas[i].fvto%>
+                                    </td>
+                                    <td class="button-cell">
+                                        <button class="add-button">Seleccionar</button>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </table>
+                    </div>
+                    </b>
+                    <br>
+                    <br>
+                    <form method="POST" action="/c9/b2/elegirCuota">
+                        <div class="center">
+                            <h2> Número de Cuota Seleccionada </h2>
+                            <div id="chosenCuota" class="data-display">Número de cuota...</div>
+                            <input type="hidden" id="chosenCuotaInput" name="codCuota" value="">
+                            <input type="hidden" name="codPRE" value="<%=codPRE%>">
+                            <br>
+                            <br>
+                            <div class="botones">
+                                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top:1%"
+                                    value="Ingresar Cliente">
+                                <a id="backButton" href="/c9" class="btn btn-danger" style="margin-top:1%"> Regresar
+                                </a>
                             </div>
-                        </form>
-
-                        <a class="btn regresar" href="/c9">Regresar</a>
-
+                        </div>
+                    </form>
 
                     </fieldset>
+                </div>
+                <footer id="footer">
+                    <p class="footer-text">LPP Concesionario</p>
+                    <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+                </footer>
+                <style>
+                    .prestamo,
+                    b {
+                        font-weight: bold !important;
+                        font-size: 24px !important;
+                        color: black !important;
+                        text-align: center !important;
+                        width: 100% !important;
+                        margin: 0 auto !important;
+                        display: block !important;
+                    }
+
+                    .col-xl-6 {
+                        margin: 0 auto !important;
+                        width: 70% !important;
+                    }
 
 
-                    <script src="/js/c9/selecCuota.js"></script>
+                    .add-button {
+                        background-color: black !important;
+                    }
+
+
+                    .botones {
+                        margin: 0 auto !important;
+                        text-align: center !important;
+                    }
+
+                    #chosenCuota {
+                        margin: 0 auto !important;
+                        padding: 30px;
+                        width: 400px !important;
+                        height: 100px !important;
+                        color: white;
+                        font-size: 24px !important;
+                    }
+
+                    .titulos {
+                        margin: 0 auto !important;
+                    }
+
+                    h2 {
+                        text-align: center !important;
+                        width: 100% !important;
+                    }
+
+                    #footer {
+                        background-color: rgba(33, 37, 41, 1) !important;
+                        padding: 50px !important;
+                        text-align: center;
+                        font-family: sans-serif !important;
+                        clear: both !important;
+                        /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+                        text-align: center !important;
+                        /* Centra el contenido del footer */
+                        /* Agrega espacio alrededor del contenido del footer */
+                        background-color: rgba(33, 37, 41, 1);
+                        color: white;
+                        position: relative !important;
+                    }
+
+                    #pago {
+                        background: none !important;
+                        border: none !important;
+                        border-radius: 0 !important;
+                        box-shadow: none !important;
+                    }
+
+                    table[id="tabla-original"] {
+                        border: solid black 5px !important;
+                        border-radius: 10px !important;
+                        width: 450px !important;
+                    }
+
+                    .survey-form {
+                        display: block !important;
+                        margin: 50px auto 70px !important;
+                        font-family: sans-serif !important;
+                        color: white !important;
+                        background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                        opacity: 1 !important;
+                        border-radius: 20px;
+                        border: 0;
+                    }
+
+                    input[type="text"],
+                    input[type="email"] {
+                        margin-top: -5px !important;
+                        display: block;
+                        width: 200px !important;
+                        margin: 0 auto 30px !important;
+                        border: 0;
+                        height: 25px;
+                        border-radius: 5px !important;
+                        text-align: center !important;
+                    }
+
+                    select[id="tipo-documento"] {
+                        width: 200px !important;
+                        margin-top: -5px !important;
+                        display: block;
+                        margin: 0 auto 30px !important;
+                        border: 0;
+                        height: 25px;
+                        border-radius: 5px !important;
+                        text-align: center !important;
+                    }
+
+
+                    .navbar {
+                        z-index: 100;
+                    }
+
+
+                    h2 {
+                        width: 60%;
+                        font-size: 24px !important;
+                        font-family: sans-serif !important;
+                        margin: 30px auto 20px !important;
+                        font-weight: bold !important;
+                        color: black !important;
+                    }
+
+                    .add-button {
+                        border: 0;
+                        border-radius: 5px;
+                        margin: 5px;
+
+                    }
+
+                    .add-button:hover {
+                        background-color: white !important;
+                        color: black !important;
+                    }
+
+                    .data-display {
+                        background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                        padding: 30px;
+                        border-radius: 10px !important;
+                    }
+
+                    .add-button:hover {
+                        background-color: black;
+                        color: white;
+                    }
+
+                    .side-section {
+                        margin-top: 50px !important;
+                    }
+
+                    td {
+                        color: black;
+                    }
+
+                    tr {
+                        margin: 10px !important;
+                        border: solid 2px black;
+                    }
+
+                    table {
+                        margin-top: 20px !important;
+                        margin: 0 auto !important;
+                    }
+
+                    .text-light {
+                        font-weight: bold !important;
+                        margin-bottom: 50px !important;
+                        color: black !important;
+                    }
+
+                    #principal-description {
+                        color: white !important;
+                        text-align: center !important;
+                        margin: 20px;
+                        font-family: sans-serif !important;
+                    }
+
+                    label,
+                    #description {
+                        color: white !important;
+                        font-family: sans-serif !important;
+                    }
+
+
+                    html {
+                        width: 100% !important;
+                    }
+
+                    body {
+                        font-family: sans-serif !important;
+                        background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        position: relative !important;
+                    }
+
+                    h1 {
+                        color: black;
+                        font-weight: bold;
+                        text-align: center;
+                        font-size: 30px;
+                        margin-top: 20px;
+                        font-family: sans-serif !important;
+                    }
+
+                    .container-fluid {
+                        width: 100%;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                    }
+
+                    .container-fluid {
+                        width: 100% !important;
+                    }
+
+
+                    .btn-danger,
+                    #submit {
+                        width: 300px;
+                        margin: 30px auto;
+                        border: 0;
+                        border-radius: 10px;
+                        padding: 20px;
+                        opacity: 1 !important;
+                        background-color: black !important;
+                        color: white;
+                        font-size: 18px;
+                        text-decoration: none !important;
+                    }
+
+                    .payment-methods {
+                        margin-bottom: 20px;
+                    }
+
+                    .btn-danger:hover,
+                    #submit:hover {
+                        transition: none;
+                        transform: none;
+                        padding: 20px !important;
+                        background-color: white !important;
+                        color: black !important;
+                    }
+
+                    .btn-danger:active {
+                        background-color: white !important;
+                        color: black !important;
+                    }
+
+                    .btn-dark {
+                        font-size: 15px !important;
+                        color: white !important
+                    }
+
+                    button[class=btn-dark] {
+                        background-color: black !important;
+                        font-size: 16px !important;
+                    }
+
+                    /* Responsiveness */
+
+                    .bg-pan-left {
+                        -webkit-animation: bg-pan-left 8s both;
+                        animation: bg-pan-left 8s both
+                    }
+
+                    /* ----------------------------------------------
+* Generated by Animista on 2023-9-8 19:42:4
+* Licensed under FreeBSD License.
+* See http://animista.net/license for more info. 
+* w: http://animista.net, t: @cssanimista
+* ---------------------------------------------- */
+
+                    @-webkit-keyframes bg-pan-left {
+                        0% {
+                            background-position: 100% 50%
+                        }
+
+                        100% {
+                            background-position: 0 50%
+                        }
+                    }
+
+                    @keyframes bg-pan-left {
+                        0% {
+                            background-position: 100% 50%
+                        }
+
+                        100% {
+                            background-position: 0 50%
+                        }
+                    }
+
+                    @media (max-width: 576px) {
+                        .survey-form {
+                            width: 100%;
+                        }
+                    }
+                </style>
+                <script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+                <script src="/js/c9/selecCuota.js"></script>
+                <script src="/js/c9/selecCuota.js"></script>
 </body>
 
 </html>

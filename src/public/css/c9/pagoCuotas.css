@@ -53,15 +53,6 @@ header {
     margin: 0;
 }
 
-#pago input {
-    font-size: 14px;
-    background-color: #f1f3f1;
-    border: 1px solid #161616;
-    border-radius: 3px;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
 
 #pago li {
     line-height: 25px;

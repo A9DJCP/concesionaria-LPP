@@ -60,21 +60,21 @@ router.post("/verReclamosDisponibles", isLoggedIn, async (req, res) => {
 			} else {
 				res.render("./posventa/c2/formularioReparacion", {
 					enable: false,
-					msg: "El seguro esta vencido por lo que no se puede realizar el reclamo",
+					msg: "El seguro está vencido por lo que no se puede realizar el reclamo",
 					block: false,
 				});
 			}
 		} else {
 			res.render("./posventa/c2/formularioReparacion", {
 				enable: false,
-				msg: "El automovil ingresado no esta registrado",
+				msg: "El automóvil ingresado no esta registrado",
 				block: false,
 			});
 		}
 	} catch (error) {
 		res.render("./posventa/c2/formularioReparacion", {
 			enable: false,
-			msg: "Los Datos ingresados son invalidos",
+			msg: "Los Datos ingresados son inválidos",
 			block: false,
 		});
 	}
@@ -98,7 +98,7 @@ router.post("/posventa/c2/ingresarAuto", async (req, res) => {
 	} catch (error) {
 		res.render("./posventa/c2/formularioReparacion", {
 			enable: false,
-			msg: "Sucedio un error inesperado",
+			msg: "Sucedió un error inesperado",
 			block: false,
 		});
 	}

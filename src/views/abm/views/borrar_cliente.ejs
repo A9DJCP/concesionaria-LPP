@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/borrar_cliente.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Borrar Cliente - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form">
+                <p id="principal-description">Elimina un cliente del sistema</p>
+                <p id="description">Cliente a borrar:</p>
+                <label for="busqueda-documento" id="documento-label">Búsqueda por Documento</label>
+                <input type="text" id="busqueda-documento" placeholder="Nro de Documento">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>CodPer</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Documento</th>
+                                    <th>Email</th>
+                                    <th>Requisitos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-clientes">
+                                <!-- La lista de clientes se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaClientes = document.getElementById('lista-clientes');
+        listaClientes.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const clienteId = targetRow.getAttribute('data-cliente-id');
+                // Resto del código para mostrar los detalles del cliente seleccionado (si es necesario)
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un cliente para borrar.');
+                return;
+            }
+
+            const clienteId = selectedRow.getAttribute('data-cliente-id');
+            const codPer = selectedRow.children[0].innerText;
+            const nom = selectedRow.children[1].innerText;
+            const ape = selectedRow.children[2].innerText;
+            const nrodoc = selectedRow.children[3].innerText;
+            const mail = selectedRow.children[4].innerText;
+            const requisitosText = selectedRow.children[5].innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este cliente?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-cliente/${clienteId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nCliente eliminado:' +
+                            '\nCódigo de Persona: ' + codPer +
+                            '\nNombre: ' + nom +
+                            '\nApellido: ' + ape +
+                            '\nDocumento: ' + nrodoc +
+                            '\nEmail: ' + mail +
+                            '\nRequisitos: ' + requisitosText;
+                        alert(message);
+
+                        // Actualizar la tabla de clientes (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadClientesByDocumento(nrodoc) {
+            fetch(`/obtener-clientes-por-nrodoc?nrodoc=${nrodoc}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Datos recibidos:', data);
+                    const listaClientes = document.getElementById('lista-clientes');
+                    listaClientes.innerHTML = '';
+
+                    data.forEach(cliente => {
+                        const requisitosText = cliente.requisitos === 1 ? 'Si' : 'No';
+                        const tableRow = document.createElement('tr');
+                        tableRow.setAttribute('data-cliente-id', cliente.codPer);
+                        tableRow.innerHTML = `
+                            <td>${cliente.codPer}</td>
+                            <td>${cliente.nom}</td>
+                            <td>${cliente.ape}</td>
+                            <td>${cliente.nrodoc}</td>
+                            <td>${cliente.mail}</td>
+                            <td>${requisitosText}</td>
+                            `;
+                        listaClientes.appendChild(tableRow);
+                        //}
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaDocumento = document.getElementById('busqueda-documento');
+        busquedaDocumento.addEventListener('input', () => {
+            const nrodoc = busquedaDocumento.value;
+            loadClientesByDocumento(nrodoc);
+        });
+    </script>
+</body>
+
+</html>

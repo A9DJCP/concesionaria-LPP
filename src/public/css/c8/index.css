@@ -91,6 +91,14 @@
     border-radius: 50%;
     border: 0;
   }
+
+  h1 {
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 40px !important;
+  }
   
   #principal-description {
     margin: 0;
@@ -127,7 +135,6 @@
 
   a:link, a:visited, a:active {
     text-decoration: none;
-    font-family: calibri, monospace;
     border: 0;
   }
 

@@ -5,233 +5,242 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mi sitio web de autos</title>
+  <title>LPP Concesionaria de Autos</title>
   <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- Activa el dark mode-->
-  <%- include('../../partials/head') %>
 </head>
 
 <body>
+  <style>
+    .row {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
 
-  <%- include('../../partials/navigation') %>
+    .btn-danger {
+      background-color: black !important;
+      color: white;
+      border: 0 !important;
+      padding: 10px !important;
+      border-radius: 5px !important;
+    }
 
-    <style>
-      @media only screen and (min-width: 360px) and (max-width: 768px) {
+    .btn-danger:hover {
+      background-color: white !important;
+      color: black !important;
+    }
 
-        .containerFactura {
-          width: 95%;
+    body {
+      background-color: #e0e0e0 !important;
+    }
 
-        }
-      }
+    .containerFactura {
+      background-color: white !important;
+    }
 
-      @media only screen and (min-width: 800px) and (max-width: 2000px) {
-
-        .containerFactura {
-          width: 65%;
-
-        }
-      }
+    @media only screen and (min-width: 360px) and (max-width: 768px) {
 
       .containerFactura {
-        background-color: aliceblue;
-        color: black;
-        padding: 10px 20px;
+        width: 95%;
       }
+    }
 
-      .containerFactura .row {
-        border: #202020e8 1px solid;
+    @media only screen and (min-width: 800px) and (max-width: 2000px) {
+
+      .containerFactura {
+        width: 65%;
+
       }
+    }
 
-      .containerFactura .col {
-        border: #202020e8 1px solid;
-      }
+    .containerFactura {
+      background-color: aliceblue;
+      color: black;
+      padding: 10px 20px;
 
-      .col-data {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+    }
 
-      .table-title {
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 10px;
-      }
-    </style>
+    .containerFactura .row {
+      border: #202020e8 1px solid;
 
-    <!-- Contenido principal -->
-    <div class="container-fluid h-100" style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center;">
+    }
 
-      <div class="containerFactura    mx-auto">
+    .row .col-1 h5 {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      border: #000000e8 1px solid;
+      padding: 10px;
+    }
+  </style>
 
-        <div class="row align-items-center  h-100 ">
+  <!-- Contenido principal -->
+  <div class="container-fluid h-100" style="height: calc(100vh); padding: 40px;">
 
-          <div style="display: flex;" class="col-5 p-1 m-0 col-xl-2">
-            <img src="/img/logo.png" alt="logo" height="100px">
-            <img src="/img/logoLPP.png" alt="logo" height="100px">
-          </div>
+    <div class="containerFactura    mx-auto">
 
-          <div class="col-7 col-xl-5  d-flex justify-content-center flex-column   align-items-center">
+      <div class="row align-items-center  h-100 ">
 
-            <Strong class="text-center ">
-              LPP consecionaria de autos
-            </Strong>
-          </div>
-
-          <div class="col-xl-5 align-items-center  d-flex flex-column  m-0">
-
-            <div class="col-xl-12  d-flex p-0 m-0 mt-xl-2 mt-xl-0">
-              <div class="col p-1 m-0  border border-dark">
-                <p>Factura de Reparaciones:</p>
-                <hr class="w-100 m-0 bg-dark">
-                <p>NRO: <span>
-                    <%=data.codFREP%>
-                  </span></p>
-              </div>
-              <div class="col p-1 m-0 border border-dark">
-                <p>Refiere al Presupuesto de Reparacion:</p>
-                <hr class="m-0 bg-dark">
-                <p>NRO: <%=data.codPREP%>
-                </p>
-              </div>
-            </div>
-
-            <div class="col-12 col-xl-6 d-flex m-2 justify-content-center p-0 " style="height: 50px;">
-              <div class="col border border-dark" style="height: 30px;">FECHA</div>
-              <div id="dia" class="col border border-dark" style="height: 30px;">.</div>
-              <div id="mes" class="col border border-dark" style="height: 30px;">.</div>
-              <div id="anio" class="col border border-dark" style="height: 30px;">.</div>
-            </div>
-            <script>
-              // Obtiene la fecha actual
-              var fechaActual = new Date();
-
-              // Obtiene el día, mes y año por separado
-              var dia = fechaActual.getDate();
-              var mes = fechaActual.getMonth() + 1; // Los meses van de 0 a 11, se suma 1 para obtener el número correcto
-              var anio = fechaActual.getFullYear();
-
-              // Muestra la fecha actual y sus componentes en los elementos del HTML
-              document.getElementById("dia").textContent = dia;
-              document.getElementById("mes").textContent = mes;
-              document.getElementById("anio").textContent = anio;
-            </script>
-          </div>
-
-
+        <div style="display: flex;" class="col-5 p-1 m-0 col-xl-2">
+          <img src="/img/logo.png" alt="logo" height="100px">
+          <img src="/img/logoLPP.png" alt="logo" height="100px">
         </div>
 
-        <div class="row ">
+        <div class="col-7 col-xl-5  d-flex justify-content-center flex-column   align-items-center">
 
-          <div class="col-12   col-xl-11 py-2 ">
-            <strong>Cliente: <span>
-                <%=data.nom%>
-              </span> <span>
-                <%=data.ape%>
-              </span></strong>
+          <Strong class="text-center ">
+            LPP Concesionaria de Autos
+          </Strong>
+        </div>
 
+        <div class="col-xl-5 align-items-center  d-flex flex-column  m-0">
 
+          <div class="col-xl-12  d-flex p-0 m-0 mt-xl-2 mt-xl-0">
+            <div class="col p-1 m-0  border border-dark">
+              <p>Factura de Reparaciones:</p>
+              <hr class="w-100 m-0 bg-dark">
+              <p>NRO: <span>
+                  <%=data.codFREP%>
+                </span></p>
+            </div>
+            <div class="col p-1 m-0 border border-dark">
+              <p>Refiere al Presupuesto de Reparacion:</p>
+              <hr class="m-0 bg-dark">
+              <p>NRO: <%=data.codPREP%>
+              </p>
+            </div>
           </div>
-          <div class="col-12   col-xl-11 py-2"> <strong>Direccion: <span>
-                <%=data.direc%>
-              </span></strong></div>
 
-          <div class="col-6 mx-auto border border-dark p-0 m-0 text-center"><strong>Condiciones de Venta: Pago al
-              contado</strong></div>
+          <div class="col-12 col-xl-6 d-flex m-2 justify-content-center p-0 " style="height: 50px;">
+            <div class="col border border-dark" style="height: 30px;">FECHA</div>
+            <div id="dia" class="col border border-dark" style="height: 30px;">.</div>
+            <div id="mes" class="col border border-dark" style="height: 30px;">.</div>
+            <div id="anio" class="col border border-dark" style="height: 30px;">.</div>
+          </div>
+          <script>
+            // Obtiene la fecha actual
+            var fechaActual = new Date();
+
+            // Obtiene el día, mes y año por separado
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1; // Los meses van de 0 a 11, se suma 1 para obtener el número correcto
+            var anio = fechaActual.getFullYear();
+
+            // Muestra la fecha actual y sus componentes en los elementos del HTML
+            document.getElementById("dia").textContent = dia;
+            document.getElementById("mes").textContent = mes;
+            document.getElementById("anio").textContent = anio;
+          </script>
         </div>
 
 
+      </div>
+
+      <div class="row ">
+
+        <div class="col-12   col-xl-11 py-2 ">
+          <strong>Cliente: <span>
+              <%=data.nom%>
+            </span> <span>
+              <%=data.ape%>
+            </span></strong>
 
 
-        <div class="row ">
-          <h5 class="col-12 justify-content-center py-2 m-0 border border-dark text-center  ">DETALLE DE FACTURA</h5>
+        </div>
+        <div class="col-12   col-xl-11 py-2"> <strong>Direccion: <span>
+              <%=data.direc%>
+            </span></strong></div>
+
+        <div class="col-6 mx-auto border border-dark p-0 m-0 text-center"><strong>Condiciones de Venta: Pago al
+            contado</strong></div>
+      </div>
+
+
+
+
+      <div class="row ">
+        <h5 class="col-12 justify-content-center py-2 m-0 border border-dark text-center  ">DETALLE DE FACTURA</h5>
+        <div class="row">
+          <div class="col-6 text-center py-2">
+            <strong>REPARACION</strong>
+          </div>
+          <div class="col-6 text-center py-2">
+            <strong>PRECIO</strong>
+          </div>
+        </div>
+        <% for (let i=0; i < reparaciones.length; i++) { %>
           <div class="row">
-            <div class="col-6 text-center py-2">
-              <strong>REPARACION</strong>
+            <div class="col-6 col-data">
+              <%= reparaciones[i].nombre %>
             </div>
-            <div class="col-6 text-center py-2">
-              <strong>PRECIO</strong>
+            <div class="col-6 col-data">
+              <%= reparaciones[i].PU %>
             </div>
           </div>
-          <% for (let i=0; i < reparaciones.length; i++) { %>
-            <div class="row">
-              <div class="col-6 col-data">
-                <%= reparaciones[i].nombre %>
-              </div>
-              <div class="col-6 col-data">
-                <%= reparaciones[i].PU %>
-              </div>
-            </div>
-            <% } %>
+          <% } %>
 
+      </div>
+
+      <div class="row pt-2 px-4 ">
+        <div class="col-12 col-xl-6 py-1  p-0 ">
+          <div class="">
+            <div class="col-12 text-center" style="height: 40px;">Codigo QR</div>
+            <div class="col-12">
+              <p class="m-0 p-0 text-" style="font-size: 12px;">147 telefono gratuito C.A.B.A <br> Area de defensa y
+                proteccion al consumidor</p>
+            </div>
+          </div>
         </div>
 
-        <div class="row pt-2 px-4 ">
-          <div class="col-12 col-xl-6 py-1  p-0 ">
-            <div class="">
-              <div class="col-12 text-center" style="height: 40px;">Codigo QR</div>
-              <div class="col-12">
-                <p class="m-0 p-0 text-" style="font-size: 12px;">147 telefono gratuito C.A.B.A <br> Area de defensa y
-                  proteccion al consumidor</p>
-              </div>
+        <div class="col-12 col-xl-6 ">
+          <div class="row mt-1">
+            <div class="col "> Sub total($)</div>
+            <div class="col">
+              <%=data.submonto%>
             </div>
           </div>
-
-          <div class="col-12 col-xl-6 ">
-            <div class="row mt-1">
-              <div class="col "> Sub total($)</div>
-              <div class="col">
-                <%=data.submonto%>
-              </div>
+          <div class="row my-2">
+            <div class="col"> I.V.A. Inscripto(%)</div>
+            <div class="col">
+              <%=data.iva%>%
             </div>
-            <div class="row my-2">
-              <div class="col"> I.V.A. Inscripto(%)</div>
-              <div class="col">
-                <%=data.iva%>%
-              </div>
-            </div>
-            <div class="row my-2">
-              <div class="col"> Total Final Resultante</div>
-              <div class="col">
-                <%=data.montototal%>
-              </div>
+          </div>
+          <div class="row my-2">
+            <div class="col"> Total Final Resultante</div>
+            <div class="col">
+              <%=data.montototal%>
             </div>
           </div>
         </div>
       </div>
-
     </div>
 
-    <div style="text-align: center;">
-      <button id="printButton" class="btn-warning btn-lg btn">Imprimir o Descargar</button>
-      <a href="/c4" class="btn btn-success btn-lg ">Finalizar Operacion</a>
-    </div>
-    <script>
-      function printOrDownload() {
-        window.print();
-      }
-      document.getElementById('printButton').addEventListener('click', printOrDownload);
-    </script>
+  </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
+  <div style="text-align: center;">
+    <button id="printButton" class="btn btn-danger">Imprimir o Descargar</button>
+    <a href="/c4" class="btn btn-danger">Finalizar Operacion</a>
+  </div>
+  <script>
+    function printOrDownload() {
+      window.print();
+    }
+    document.getElementById('printButton').addEventListener('click', printOrDownload);
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

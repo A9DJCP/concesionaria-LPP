@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="borrar_reparacion.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Borrar Reparación Disponible - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Elimina una reparación del sistema</p>
+                <p id="description">Reparación a borrar:</p>
+                <label for="busqueda-nombre" id="nombre-label">Busqueda por Nombre</label>
+                <input type="text" id="busqueda-nombre" placeholder="Nombre de la Reparación">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th>Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-reparaciones">
+                                <!-- La lista de reparaciones se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaReparaciones = document.getElementById('lista-reparaciones');
+        listaReparaciones.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const reparacionId = targetRow.getAttribute('data-reparacion-id');
+                // Resto del código para mostrar los detalles de la reparación seleccionada
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar una reparación para borrar.');
+                return;
+            }
+
+            const reparacionId = selectedRow.getAttribute('data-reparacion-id');
+
+            // Obtener el nombre, precio y detalle de la reparación seleccionada
+            const nombre = selectedRow.querySelector('td:nth-child(1)').innerText;
+            const precio = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const detalle = selectedRow.querySelector('td:nth-child(3)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar esta reparación?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-reparacion/${reparacionId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nReparación eliminada:' +
+                            '\nNombre: ' + nombre +
+                            '\nPrecio: ' + "$" + precio +
+                            '\nDetalle: ' + detalle;
+                        alert(message);
+
+                        // Actualizar la tabla de reparaciones (borrar las reparaciones)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadReparacionesByNombre(nombre) {
+            fetch(`/obtener-reparaciones-por-nombre?nombre=${nombre}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaReparaciones = document.getElementById('lista-reparaciones');
+                    listaReparaciones.innerHTML = '';
+
+                    data.forEach(reparacion => {
+                        if (reparacion.borrado === 0) {  // Verifica si la reparación está marcada como borrada
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-reparacion-id', reparacion.codRDISP);
+                            tableRow.innerHTML = `
+                                            <td>${reparacion.nombre}</td>
+                                            <td>${reparacion.PU}</td>
+                                            <td>${reparacion.detalles}</td>
+                                        `;
+                            listaReparaciones.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaNombre = document.getElementById('busqueda-nombre');
+        busquedaNombre.addEventListener('input', () => {
+            const nombre = busquedaNombre.value;
+            loadReparacionesByNombre(nombre);
+        });
+    </script>
+</body>
+
+
+</html>

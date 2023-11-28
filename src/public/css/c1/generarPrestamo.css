@@ -113,7 +113,6 @@ input[type='number']::-webkit-outer-spin-button {
 
   a:link, a:visited, a:active {
     text-decoration: none;
-    font-family: calibri, monospace;
     border: 0;
   }
 
@@ -122,18 +121,13 @@ input[type='number']::-webkit-outer-spin-button {
     background-color: red;
     padding: 20px 10px;
     border: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     color: white;
-    font-weight: bold;
     min-width: 20px;
     margin: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
   }
 
-  #submit:hover {
-    transform: scale(0.95); 
-  }
   .copyright {
     bottom: 0;
     left: 0;

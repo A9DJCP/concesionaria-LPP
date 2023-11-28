@@ -15,7 +15,7 @@ router.get("/c9/b1", isLoggedIn, async (req, res) => {
 		var usuarioActual = "Administrador";
 		if (rs[0].day === "Friday") {
 			await ejecutarProceso(msg);
-			sql = `select count(*) cont, codPRE, cant, monto , tipo FROM RevisionPrestamoTemporal`;
+			sql = `select count(*) cont, codPRE, cant, monto, tipo FROM RevisionPrestamoTemporal`;
 			rs = await pool.query(sql);
 			var deudas = [];
 			rs.forEach((d) => deudas.push(d.codPRE, d.cant, d.monto, d.tipo));
@@ -31,7 +31,7 @@ router.get("/c9/b1", isLoggedIn, async (req, res) => {
 				"Advertencia: Este no es un dia de ejecución rutinaria para este proceso (viernes). Se ejecutará de todas formas.";
 			await ejecutarProceso(msg);
 
-			sql = `select codPRE, cant, monto , tipo FROM RevisionPrestamoTemporal`;
+			sql = `select codPRE, cant, monto, tipo FROM RevisionPrestamoTemporal`;
 			rs = await pool.query(sql);
 			var deudas = [];
 			rs.forEach((d) =>
@@ -67,17 +67,17 @@ async function ejecutarProceso() {
 	if (rs[0].cont === 0) {
 		return [];
 	} else {
-		sql = `select A.codPRE codPRE,Cant,Precio*Cant precCant 
+		sql = `select A.codPRE codPRE,cant,Precio*cant precCant 
         FROM (select codPRE,precioXCuota 'Precio' FROM prestamo) A,
-        (select codPRE,COUNT(*) 'Cant' FROM cuota where pagada=0 
+        (select codPRE,COUNT(*) 'cant' FROM cuota where pagada=0 
         AND fvto<curdate() AND codPRE IN (select codPRE FROM prestamo WHERE pagado=0) 
         GROUP BY codPRE) B WHERE A.codPRE=B.codPRE`;
 		var array = await pool.query(sql);
 		var deudas = [];
-		array.forEach((d) => deudas.push(d.codPRE, d.Cant, d.precCant));
+		array.forEach((d) => deudas.push(d.codPRE, d.cant, d.precCant));
 		var cant, codPRE, precCant;
 		for (let i = 0; i < array.length; i++) {
-			cant = array[i].Cant;
+			cant = array[i].cant;
 			codPRE = array[i].codPRE;
 			precCant = array[i].precCant;
 			if (cant >= 6) {
@@ -107,6 +107,8 @@ router.post("/c9/b1/imprimirInforme", isLoggedIn, async (req, res) => {
 			rs = await pool.query(sql);
 			var cant = parseInt(rs[0].cant);
 			var monto = rs[0].monto;
+    console.log('Valor de monto:', monto);
+	console.log("Valor de cant")
 			var tipo = rs[0].tipo;
 			if (tipo === "Moroso") {
 				sql = `select codCL from prestamo P, ordendecompra O where O.codODC=P.codODC and codPRE=${codPRE}`;
@@ -131,9 +133,12 @@ router.post("/c9/b1/imprimirInforme", isLoggedIn, async (req, res) => {
 					" (Matricula: " +
 					rs[0].matricula +
 					")";
+
+				var labelDoc = rs[0].tdoc + ": " + rs[0].ndoc;
 				var data = {
 					codMOR: rs[0].codMOR,
-					fechaMoroso: rs[0].fecha,
+					cant: cant,
+					fecha: rs[0].fecha,
 					codPRE: rs[0].codPRE,
 					labelCliente: labelCliente,
 					labelDoc: labelDoc,
@@ -161,9 +166,8 @@ router.post("/c9/b1/imprimirInforme", isLoggedIn, async (req, res) => {
 				const year = fechaObjeto.getFullYear();
 				const mes = fechaObjeto.getMonth() + 1;
 				const dia = fechaObjeto.getDate();
-				const fechaFormateada = `${year}/${mes < 10 ? "0" : ""}${mes}/${
-					dia < 10 ? "0" : ""
-				}${dia}`;
+				const fechaFormateada = `${year}/${mes < 10 ? "0" : ""}${mes}/${dia < 10 ? "0" : ""
+					}${dia}`;
 				sql =
 					"select porcentaje from porcentaje where descripcion='Interes Cuotas Préstamo'";
 				rs = await pool.query(sql);

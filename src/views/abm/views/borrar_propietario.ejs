@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="borrar_propietario.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Borrar Propietario - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Borra un propietario del registro</p>
+                <p id="description">Propietario a borrar:</p>
+                <label for="busqueda-apellido" id="apellido-label">Busqueda por Apellido</label>
+                <input type="text" id="busqueda-apellido" placeholder="Apellido del propietario">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Cod Persona</th>
+                                    <th>Tipo Doc.</th>
+                                    <th>Nro Doc.</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-propietarios">
+                                <!-- La lista de propietarios se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaPropietarios = document.getElementById('lista-propietarios');
+        listaPropietarios.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const propietarioId = targetRow.getAttribute('data-propietario-id');
+                // Resto del código para mostrar los detalles del propietario seleccionado
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un propietario para borrar.');
+                return;
+            }
+
+            const propietarioId = selectedRow.getAttribute('data-propietario-id');
+
+            // Obtener el nombre, tipo de documento, número de documento del propietario seleccionado
+            const nombre = selectedRow.querySelector('td:nth-child(4)').innerText;
+            const tipoDoc = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const nroDoc = selectedRow.querySelector('td:nth-child(3)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este propietario?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-propietario/${propietarioId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nPropietario eliminado:' +
+                            '\nNombre: ' + nombre +
+                            '\nTipo de Doc.: ' + tipoDoc +
+                            '\nNro. de Doc.: ' + nroDoc;
+                        alert(message);
+
+                        // Actualizar la tabla de propietarios (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadPropietariosByApellido(apellido) {
+            fetch(`/obtener-propietarios-por-apellido?apellido=${apellido}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaPropietarios = document.getElementById('lista-propietarios');
+                    listaPropietarios.innerHTML = '';
+
+                    data.forEach(propietario => {
+                        if (propietario.borrado === 0) {
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-propietario-id', propietario.codPer);
+                            tableRow.innerHTML = `
+                                <td>${propietario.codPer}</td>
+                                <td>${propietario.tipodoc}</td>
+                                <td>${propietario.nrodoc}</td>
+                                <td>${propietario.nom}</td>
+                                <td>${propietario.ape}</td>
+                                <td>${propietario.direc}</td>
+                                <td>${propietario.tel}</td>
+                                <td>${propietario.mail}</td>
+                            `;
+                            listaPropietarios.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaApellido = document.getElementById('busqueda-apellido');
+        busquedaApellido.addEventListener('input', () => {
+            const apellido = busquedaApellido.value;
+            loadPropietariosByApellido(apellido);
+        });
+    </script>
+</body>
+
+</html>

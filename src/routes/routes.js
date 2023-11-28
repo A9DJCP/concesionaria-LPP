@@ -13,6 +13,10 @@ router.get("/", (req, res) => res.render("logIn")); //Al no añadirle la extensi
 
 router.get("/menu", isLoggedIn, (req, res) => res.render("mainMenu"));
 
+router.get('/abm_menu', (req, res) => {
+	res.render('ABM/views/abm_menu');
+  });
+
 router.get("/about", isLoggedIn, (req, res) =>
 	res.render("about", { title: "Sobre Nosotros" })
 );

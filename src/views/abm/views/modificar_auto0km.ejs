@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/modificar_auto0km.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Modificar Auto OKM - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form">
+                <input type="hidden" name="_method" value="PUT">
+                <p id="principal-description">Modifica los datos de un auto OKM cargado en el sistema</p>
+                <p id="description">Auto a modificar:</p>
+                <label for="busqueda-marca" id="marca-label">Búsqueda por Marca</label>
+                <input type="text" id="busqueda-marca" placeholder="Marca del Auto">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Precio</th>
+                                    <th>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-autos">
+                                <!-- La lista de autos se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="marca" id="marca-label">Marca</label>
+                <input type="text" id="marca" placeholder="Marca del Auto" disabled>
+                <label for="modelo" id="modelo-label">Modelo</label>
+                <input type="text" id="modelo" placeholder="Modelo del Auto" disabled>
+                <label for="precio" id="precio-label">Precio</label>
+                <input type="number" id="precio" placeholder="Precio del Auto" disabled>
+                <label for="color" id="color-label">Color</label>
+                <input type="text" id="color" placeholder="Color del Auto" disabled>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const marcaInput = document.getElementById('marca');
+        const modeloInput = document.getElementById('modelo');
+        const precioInput = document.getElementById('precio');
+        const colorInput = document.getElementById('color');
+        const busquedaMarcaInput = document.getElementById('busqueda-marca');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let autoSeleccionadoId = null;
+        let autoSeleccionadoMarca = null;
+        let autoSeleccionadoModelo = null;
+        let autoSeleccionadoPrecio = null;
+        let autoSeleccionadoColor = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaAutos = document.getElementById('lista-autos');
+        listaAutos.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const autoId = targetRow.getAttribute('data-auto-id');
+                const marca = targetRow.querySelector('.marca').innerText;
+                const modelo = targetRow.querySelector('.modelo').innerText;
+                const precio = targetRow.querySelector('.precio').innerText;
+                const color = targetRow.querySelector('.color').innerText;
+                document.getElementById('marca').value = marca;
+                document.getElementById('modelo').value = modelo;
+                document.getElementById('precio').value = precio;
+                document.getElementById('color').value = color;
+                autoSeleccionadoId = autoId;
+                autoSeleccionadoMarca = marca;
+                autoSeleccionadoModelo = modelo;
+                autoSeleccionadoPrecio = precio;
+                autoSeleccionadoColor = color;
+            }
+        });
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const autoId = autoSeleccionadoId;
+
+            if (!autoId) {
+                alert('Debes seleccionar un auto para modificar.');
+                return;
+            }
+
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const precio = document.getElementById('precio').value;
+            const color = document.getElementById('color').value;
+
+            if (marca === autoSeleccionadoMarca && modelo === autoSeleccionadoModelo && precio === autoSeleccionadoPrecio && color === autoSeleccionadoColor) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codAD0KM: autoId,
+                marca: marca,
+                modelo: modelo,
+                precio: precio,
+                color: color
+            };
+
+            console.log(data);
+
+            fetch('/modificar-auto-0km', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nMarca: ' + marca +
+                            '\nModelo: ' + modelo +
+                            '\nPrecio: ' + "$" + precio +
+                            '\nColor: ' + color;
+                        alert(message);
+                        edicionHabilitada = false; // Asegúrate de que la edición se deshabilite
+                        // Actualizar los campos solo en caso de éxito
+                        document.getElementById('marca').value = '';
+                        document.getElementById('modelo').value = '';
+                        document.getElementById('precio').value = '';
+                        document.getElementById('color').value = '';
+
+                        // Limpiar la selección
+                        deselectRows();
+                        autoSeleccionadoId = null;
+                        autoSeleccionadoMarca = null;
+                        autoSeleccionadoModelo = null;
+                        autoSeleccionadoPrecio = null;
+                        autoSeleccionadoColor = null;
+
+                        // Limpiar la tabla
+                        listaAutos.innerHTML = '';
+
+                        // Limpiar el input de búsqueda
+                        document.getElementById('busqueda-marca').value = '';
+
+                        // Deshabilitar la edición y restaurar los campos
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        marcaInput.disabled = true;
+                        modeloInput.disabled = true;
+                        precioInput.disabled = true;
+                        colorInput.disabled = true;
+                        busquedaMarcaInput.disabled = false;
+
+                        // Aquí puedes redirigir al usuario a otra página si lo deseas.
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            const marcaInput = document.getElementById('marca');
+            const modeloInput = document.getElementById('modelo');
+            const precioInput = document.getElementById('precio');
+            const colorInput = document.getElementById('color');
+            const busquedaMarcaInput = document.getElementById('busqueda-marca');
+
+            marcaInput.disabled = !edicionHabilitada;
+            modeloInput.disabled = !edicionHabilitada;
+            precioInput.disabled = !edicionHabilitada;
+            colorInput.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaMarca = document.getElementById('busqueda-marca');
+        busquedaMarca.addEventListener('input', () => {
+            const marca = busquedaMarca.value;
+            loadAutosByMarca(marca);
+        });
+
+        function loadAutosByMarca(marca) {
+            // Limpiar la tabla al cargar nuevos datos
+            listaAutos.innerHTML = '';
+
+            fetch(`/obtener-autos-por-marca?marca=${marca}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(auto => {
+                        if (auto.borrado === 0) {  // Verifica si el auto está marcado como borrado
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-auto-id', auto.codAD0KM);
+                            tableRow.innerHTML = `
+                                            <td class="marca">${auto.marca}</td>
+                                            <td class="modelo">${auto.modelo}</td>
+                                            <td class="precio">${auto.precio}</td>
+                                            <td class="color">${auto.color}</td>
+                                        `;
+                            listaAutos.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

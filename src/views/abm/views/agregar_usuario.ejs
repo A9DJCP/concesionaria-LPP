@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="agregar_usuario.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Agregar Usuario - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Registra un usuario en el sistema</p>
+                <p id="description">Usuario a cargar:</p>
+                <label for="nickname" id="nickname-label">Nick del Usuario</label>
+                <input type="text" id="nickname" name="nickname" placeholder="Username">
+                <label for="password" id="password-label">Contraseña (30 Max.)</label>
+                <input type="password" id="password" name="password" placeholder="Contraseña">
+                <label for="password-2" id="password-label-2">Confirmar Contraseña</label>
+                <input type="password" id="password-2" name="password-2" placeholder="Confirmar Contraseña">
+                <div class="contenedor-checkbox">
+                    <div class="contenedor-label">
+                        <label for="pass" class="pass">Mostrar Contraseña</label><input type="checkbox" class="pass"
+                            id="pass">
+                    </div>
+                </div>
+                <p id="description">Permisos:</p>
+                <div class="contenedor-checkbox">
+                    <div class="contenedor-label">
+                        <label class="permisoAdmin"><input type="checkbox" name="PermisoAdmin" id="permisoAdmin"
+                                class="permisos"><span>Permisos
+                                de
+                                Administrador</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="abm"><input type="checkbox" name="ABM" id="abm" class="permisos"><span>Permisos de
+                                ABM</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="compras"><input type="checkbox" name="Compras" id="compras"
+                                class="permisos"><span>Permisos de
+                                Acceso a los
+                                circuitos de
+                                Compras</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="posventa"><input type="checkbox" name="Posventa" id="posventa"
+                                class="permisos"><span>Permisos de
+                                Acceso a los
+                                circuitos de
+                                Posventa</span></label>
+                    </div>
+                    <div class="contenedor-label">
+                        <label class="contratos"><input type="checkbox" name="Contratos" id="contratos"
+                                class="permisos"><span>Permisos de
+                                Acceso a los
+                                circuitos de
+                                Contrataciones</span></label>
+                    </div>
+                </div>
+                <div class="botones">
+                    <button type="submit" class="submit" id="habilitarBtn">Agregar Usuario</button>
+                    <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const mostrarContraseniaCheckbox = document.getElementById('pass');
+        const passwordInput = document.getElementById('password');
+        const password2Input = document.getElementById('password-2');
+
+        mostrarContraseniaCheckbox.addEventListener('change', () => {
+            if (mostrarContraseniaCheckbox.checked) {
+                passwordInput.type = 'text';
+                password2Input.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+                password2Input.type = 'password';
+            }
+        });
+
+        const regresarBtn = document.getElementById('regresarBtn');
+
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function convertirASiNo(valor) {
+            return valor === 1 ? 'Sí' : 'No';
+        }
+
+        const form = document.getElementById('survey-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const nickname = document.getElementById('nickname').value;
+            const password = document.getElementById('password').value;
+            const password2 = document.getElementById('password-2').value;
+            const permisoAdmin = document.getElementById('permisoAdmin').checked ? 1 : 0;
+            const abm = document.getElementById('abm').checked ? 1 : 0;
+            const compras = document.getElementById('compras').checked ? 1 : 0;
+            const posventa = document.getElementById('posventa').checked ? 1 : 0;
+            const contratos = document.getElementById('contratos').checked ? 1 : 0;
+
+            if (nickname.trim() === '' || password.trim() === '' || password2.trim() === '') {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const data = {
+                nickname: nickname,
+                password: password,
+                permisoAdmin: permisoAdmin,
+                abm: abm,
+                compras: compras,
+                posventa: posventa,
+                contratos: contratos
+            };
+
+            if (password !== password2) {
+                alert('Error: Las credenciales deben ser idénticas. Vuelva a intentarlo.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/agregar-usuario', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const responseBody = await response.json();
+                    if (responseBody.success) {
+                        const message = 'Usuario agregado exitosamente.' +
+                            '\n\nDatos Cargados:' +
+                            '\nNickname: ' + nickname +
+                            '\nPassword: ' + "******" +
+                            '\nPermiso de Admin: ' + convertirASiNo(permisoAdmin) +
+                            '\nPermiso de ABM: ' + convertirASiNo(abm) +
+                            '\nPermiso de Acceso Compras: ' + convertirASiNo(compras) +
+                            '\nPermiso de Acceso Posventa: ' + convertirASiNo(posventa) +
+                            '\nPermiso de Acceso Contrataciones: ' + convertirASiNo(contratos);
+                        alert(message);
+                        form.reset();
+                    } else {
+                        if (responseBody.message === 'El usuario ya existe en la base de datos.') {
+                            alert('El usuario ya existe en la base de datos. Por favor, elige otro username.');
+                        } else {
+                            const errorMessage = responseBody.message || 'Hubo un error al agregar el usuario.';
+                            alert('Hubo un error al agregar el usuario: ' + errorMessage);
+                        }
+                    }
+                } else {
+                    alert('Hubo un error al agregar el usuario. Por favor, inténtalo nuevamente.');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al agregar el usuario. Por favor, inténtalo nuevamente.');
+            }
+        });
+    </script>
+</body>
+
+
+</html>

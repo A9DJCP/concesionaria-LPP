@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modificar_persona.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Modificar Persona - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Modifica los datos de una persona registrada en el sistema</p>
+                <p id="description">Persona a modificar:</p>
+                <label for="busqueda-ape" id="ape-label">Búsqueda por Apellido</label>
+                <input type="text" id="busqueda-ape" placeholder="Apellido de la Persona">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>CodPersona</th>
+                                    <th>TipoDoc</th>
+                                    <th>NroDoc</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-personas">
+                                <!-- Aquí se mostrarán los datos de la persona -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="tipo-nrodoc" id="tipo-nrodoc-label">Tipo de Documento</label>
+                <input type="text" id="tipo-nrodoc" placeholder="Tipo de Documento" disabled>
+                <label for="nrodoc" id="nrodoc-label">Nro Documento</label>
+                <input type="number" id="nrodoc" placeholder="Número de Documento" disabled>
+                <label for="nom" id="nom-label">Nombre</label>
+                <input type="text" id="nom" placeholder="Nombre de la Persona" disabled>
+                <label for="ape" id="ape-label">Apellido</label>
+                <input type="text" id="ape" placeholder="Apellido de la Persona" disabled>
+                <label for="direc" id="direc-label">Dirección</label>
+                <input type="text" id="direc" placeholder="Dirección de domicilio" disabled>
+                <label for="tel" id="tel-label">Teléfono</label>
+                <input type="text" id="tel" placeholder="Teléfono particular" disabled>
+                <label for="direc-mail" id="direc-mail-label">Dirección de Email</label>
+                <input type="email" id="direc-mail" placeholder="Correo Electrónico" disabled>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const tipodocInput = document.getElementById('tipo-nrodoc');
+        const nrodocInput = document.getElementById('nrodoc');
+        const nomInput = document.getElementById('nom');
+        const apeInput = document.getElementById('ape');
+        const direcInput = document.getElementById('direc');
+        const telInput = document.getElementById('tel');
+        const mailInput = document.getElementById('direc-mail');
+        const busquedaApellidoInput = document.getElementById('busqueda-ape');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let personaSeleccionadaId = null;
+        let personaSeleccionadaTipoDocumento = null;
+        let personaSeleccionadaDocumento = null;
+        let personaSeleccionadaNombre = null;
+        let personaSeleccionadaApellido = null;
+        let personaSeleccionadaDireccion = null;
+        let personaSeleccionadaTelefono = null;
+        let personaSeleccionadaEmail = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaPersonas = document.getElementById('lista-personas');
+        listaPersonas.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const personaId = targetRow.getAttribute('data-persona-id');
+                const tipodoc = targetRow.querySelector('.tipo-nrodoc').innerText;
+                const nrodoc = targetRow.querySelector('.nrodoc').innerText;
+                const nom = targetRow.querySelector('.nom').innerText;
+                const ape = targetRow.querySelector('.ape').innerText;
+                const direc = targetRow.querySelector('.direc').innerText;
+                const tel = targetRow.querySelector('.tel').innerText;
+                const mail = targetRow.querySelector('.mail').innerText;
+                document.getElementById('tipo-nrodoc').value = tipodoc;
+                document.getElementById('nrodoc').value = nrodoc;
+                document.getElementById('nom').value = nom;
+                document.getElementById('ape').value = ape;
+                document.getElementById('direc').value = direc;
+                document.getElementById('tel').value = tel;
+                document.getElementById('direc-mail').value = mail;
+                personaSeleccionadaId = personaId;
+                personaSeleccionadaTipoDocumento = tipodoc;
+                personaSeleccionadaDocumento = nrodoc;
+                personaSeleccionadaNombre = nom;
+                personaSeleccionadaApellido = ape;
+                personaSeleccionadaDireccion = direc;
+                personaSeleccionadaTelefono = tel;
+                personaSeleccionadaEmail = mail;
+            }
+        });
+
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const personaId = personaSeleccionadaId;
+
+            if (!personaId) {
+                alert('Debes seleccionar una persona para modificar.');
+                return;
+            }
+
+            const tipodoc = tipodocInput.value;
+            const nrodoc = nrodocInput.value;
+            const nom = nomInput.value;
+            const ape = apeInput.value;
+            const direc = direcInput.value;
+            const tel = telInput.value;
+            const mail = mailInput.value;
+
+            if (
+                tipodoc === personaSeleccionadaTipoDocumento &&
+                nrodoc === personaSeleccionadaDocumento &&
+                nom === personaSeleccionadaNombre &&
+                ape === personaSeleccionadaApellido &&
+                direc === personaSeleccionadaDireccion &&
+                tel === personaSeleccionadaTelefono &&
+                mail === personaSeleccionadaEmail
+            ) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codPer: personaId,
+                tipodoc: tipodoc,
+                nrodoc: nrodoc,
+                nom: nom,
+                ape: ape,
+                direc: direc,
+                tel: tel,
+                mail: mail
+            };
+
+            console.log(data);
+
+            fetch('/modificar-persona', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nTipo de Documento: ' + tipodoc +
+                            '\nNro Documento: ' + nrodoc +
+                            '\nNombre: ' + nom +
+                            '\nApellido: ' + ape +
+                            '\nDirección: ' + direc +
+                            '\nTeléfono: ' + tel +
+                            '\nEmail: ' + mail;
+                        alert(message);
+
+                        tipodocInput.value = '';
+                        nrodocInput.value = '';
+                        nomInput.value = '';
+                        apeInput.value = '';
+                        direcInput.value = '';
+                        telInput.value = '';
+                        mailInput.value = '';
+
+                        deselectRows();
+                        personaSeleccionadaId = null;
+                        personaSeleccionadaTipoDocumento = null;
+                        personaSeleccionadaDocumento = null;
+                        personaSeleccionadaNombre = null;
+                        personaSeleccionadaApellido = null;
+                        personaSeleccionadaDireccion = null;
+                        personaSeleccionadaTelefono = null;
+                        personaSeleccionadaEmail = null;
+
+                        listaPersonas.innerHTML = '';
+
+                        busquedaApellidoInput.value = '';
+                        edicionHabilitada = false;
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        tipodocInput.disabled = true;
+                        nrodocInput.disabled = true;
+                        nomInput.disabled = true;
+                        apeInput.disabled = true;
+                        direcInput.disabled = true;
+                        telInput.disabled = true;
+                        mailInput.disabled = true;
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            tipodocInput.disabled = !edicionHabilitada;
+            nrodocInput.disabled = !edicionHabilitada;
+            nomInput.disabled = !edicionHabilitada;
+            apeInput.disabled = !edicionHabilitada;
+            direcInput.disabled = !edicionHabilitada;
+            telInput.disabled = !edicionHabilitada;
+            mailInput.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaApellido = document.getElementById('busqueda-ape');
+        busquedaApellido.addEventListener('input', () => {
+            const ape = busquedaApellido.value;
+            loadPersonasByApellido(ape);
+        });
+
+        function loadPersonasByApellido(ape) {
+            listaPersonas.innerHTML = '';
+
+            fetch(`/obtener-personas-por-ape?ape=${ape}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(persona => {
+                        if (persona.borrado === 0) {
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-persona-id', persona.codPer);
+                            tableRow.innerHTML = `
+                                    <td>${persona.codPer}</td>
+                                    <td class="tipo-nrodoc">${persona.tipodoc}</td>
+                                    <td class="nrodoc">${persona.nrodoc}</td>
+                                    <td class="nom">${persona.nom}</td>
+                                    <td class="ape">${persona.ape}</td>
+                                    <td class="direc">${persona.direc}</td>
+                                    <td class="tel">${persona.tel}</td>
+                                    <td class="mail">${persona.mail}</td>
+                                `;
+                            listaPersonas.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>

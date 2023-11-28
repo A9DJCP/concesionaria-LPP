@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modificar_auto_usado.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Modificar Auto Usado - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Modifica los datos de un auto usado disponible para comprar</p>
+                <p id="description">Auto a modificar:</p>
+                <label for="busqueda-marca" id="marca-label">Búsqueda por Marca</label>
+                <input type="text" id="busqueda-marca" placeholder="Marca del Auto">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Matricula</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Precio</th>
+                                    <th>Código Prop.</th>
+                                    <th>Uso</th>
+                                    <th>Motor</th>
+                                    <th>Chasis</th>
+                                    <th>Fecha de Fabricación</th>
+                                    <th>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-autos">
+                                <!-- La lista de autos usados se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="max">
+                    <div class="part1">
+                        <label for="matricula" id="matricula-label">Matricula</label>
+                        <input type="text" id="matricula" placeholder="Matricula del Auto" disabled>
+                        <label for="marca" id="marca-label">Marca</label>
+                        <input type="text" id="marca" placeholder="Marca del Auto" disabled>
+                        <label for="modelo" id="modelo-label">Modelo</label>
+                        <input type="text" id="modelo" placeholder="Modelo del Auto" disabled>
+                        <label for="precioventa" id="precioventa-label">Precio</label>
+                        <input type="number" id="precioventa" placeholder="Precio de Venta" disabled>
+                        <label for="codigo-propietario" id="codigo-propietario-label">Código Prop.</label>
+                        <input type="text" id="codigo-propietario" placeholder="Código del Propietario" disabled>
+                    </div>
+                    <div class="part2">
+                        <label for="uso" id="uso-label">Uso</label>
+                        <input type="text" id="uso" placeholder="Uso del Auto" disabled>
+                        <label for="motor" id="motor-label">Motor</label>
+                        <input type="text" id="motor" placeholder="Motor del Auto" disabled>
+                        <label for="chasis" id="chasis-label">Chasis</label>
+                        <input type="text" id="chasis" placeholder="Chasis del Auto" disabled>
+                        <label for="fecha-fabricacion" id="fecha-fabricacion-label">Fecha de Fabricación</label>
+                        <input type="date" id="fecha-fabricacion" disabled>
+                        <label for="color" id="color-label">Color</label>
+                        <input type="text" id="color" placeholder="Color del Auto" disabled>
+                    </div>
+                </div>
+                <div class="part3">
+                    <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                    <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                    <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const matriculaInput = document.getElementById('matricula');
+            const marcaInput = document.getElementById('marca');
+            const modeloInput = document.getElementById('modelo');
+            const precioventaInput = document.getElementById('precioventa');
+            const codPInput = document.getElementById('codigo-propietario');
+            const usoInput = document.getElementById('uso');
+            const motorInput = document.getElementById('motor');
+            const chasisInput = document.getElementById('chasis');
+            const fechaInput = document.getElementById('fecha-fabricacion');
+            const colorInput = document.getElementById('color');
+            const busquedaMarcaInput = document.getElementById('busqueda-marca');
+            const listaAutos = document.getElementById('lista-autos');
+            let edicionHabilitada = false;
+            let cambiosRealizados = false;
+            let autoSeleccionadoId = null;
+            let autoSeleccionadoMatricula = null;
+            let autoSeleccionadoMarca = null;
+            let autoSeleccionadoModelo = null;
+            let autoSeleccionadoPrecio = null;
+            let autoSeleccionadoCodigoPropietario = null;
+            let autoSeleccionadoUso = null;
+            let autoSeleccionadoMotor = null;
+            let autoSeleccionadoChasis = null;
+            let autoSeleccionadoFechaFabricacion = null;
+            let autoSeleccionadoColor = null;
+
+            const regresarBtn = document.getElementById('regresarBtn');
+            regresarBtn.addEventListener('click', () => {
+                window.location.href = '/abm_menu';
+            });
+
+
+            function deselectRows() {
+                const rows = document.querySelectorAll('tr');
+                rows.forEach(row => row.classList.remove('selected'));
+            }
+
+            // Función para formatear una fecha a "YYYY-MM-DD"
+            function formatDateToInputFormat(date) {
+                const d = new Date(date);
+                const year = d.getFullYear();
+                const month = String(d.getMonth() + 1).padStart(2, '0');
+                const day = String(d.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
+
+            // Función para formatear una fecha de "YYYY-MM-DD" a objeto Date
+            function parseInputDateToJSDate(inputDate) {
+                const [year, month, day] = inputDate.split('-').map(Number);
+                return new Date(year, month - 1, day);
+            }
+
+
+            listaAutos.addEventListener('click', (event) => {
+                const targetRow = event.target.closest('tr');
+                if (targetRow) {
+                    deselectRows();
+                    targetRow.classList.add('selected');
+                    const autoId = targetRow.getAttribute('data-auto-id');
+                    const matricula = targetRow.querySelector('.matricula').innerText;
+                    const marca = targetRow.querySelector('.marca').innerText;
+                    const modelo = targetRow.querySelector('.modelo').innerText;
+                    const precioventa = targetRow.querySelector('.precioventa').innerText;
+                    const codP = targetRow.querySelector('.codigo-propietario').innerText;
+                    const uso = targetRow.querySelector('.uso').innerText;
+                    const motor = targetRow.querySelector('.motor').innerText;
+                    const chasis = targetRow.querySelector('.chasis').innerText;
+                    const fechafabricacion = targetRow.querySelector('.fecha-fabricacion').innerText;
+                    const color = targetRow.querySelector('.color').innerText;
+                    matriculaInput.value = matricula;
+                    marcaInput.value = marca;
+                    modeloInput.value = modelo;
+                    precioventaInput.value = precioventa;
+                    codPInput.value = codP;
+                    usoInput.value = uso;
+                    motorInput.value = motor;
+                    chasisInput.value = chasis;
+                    fechaInput.value = fechafabricacion;
+                    colorInput.value = color;
+                    autoSeleccionadoId = autoId;
+                    autoSeleccionadoMatricula = matricula;
+                    autoSeleccionadoMarca = marca;
+                    autoSeleccionadoModelo = modelo;
+                    autoSeleccionadoPrecio = precioventa;
+                    autoSeleccionadoCodigoPropietario = codP;
+                    autoSeleccionadoUso = uso;
+                    autoSeleccionadoMotor = motor;
+                    autoSeleccionadoChasis = chasis;
+                    autoSeleccionadoFechaFabricacion = fechafabricacion;
+                    autoSeleccionadoColor = color;
+                }
+            });
+
+            const modificarBtn = document.getElementById('modificarBtn');
+            modificarBtn.addEventListener('click', () => {
+                if (!edicionHabilitada) {
+                    alert('Debes habilitar la edición antes de modificar el registro.');
+                    return;
+                }
+                const autoId = autoSeleccionadoId;
+
+                if (!autoId) {
+                    alert('Debes seleccionar un auto para modificar.');
+                    return;
+                }
+
+                const matricula = matriculaInput.value;
+                const marca = marcaInput.value;
+                const modelo = modeloInput.value;
+                const precioventa = precioventaInput.value;
+                const codP = codPInput.value;
+                const uso = usoInput.value;
+                const motor = motorInput.value;
+                const chasis = chasisInput.value;
+                const fechafabricacion = parseInputDateToJSDate(fechaInput.value); // Parsea la fecha al objeto Date
+                const color = colorInput.value;
+
+                const fechaFabricacionFormateada = formatDateToInputFormat(fechafabricacion);
+
+
+                if (matricula === autoSeleccionadoMatricula && marca === autoSeleccionadoMarca && modelo === autoSeleccionadoModelo && precioventa === autoSeleccionadoPrecio && codP === autoSeleccionadoCodigoPropietario && uso === autoSeleccionadoUso && motor === autoSeleccionadoMotor && chasis === autoSeleccionadoChasis && fechaFabricacionFormateada === autoSeleccionadoFechaFabricacion && color === autoSeleccionadoColor) {
+                    alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                    return;
+                }
+
+                const data = {
+                    codAU: autoId,
+                    matricula: matricula,
+                    marca: marca,
+                    modelo: modelo,
+                    precioventa: precioventa,
+                    codP: codP,
+                    uso: uso,
+                    motor: motor,
+                    chasis: chasis,
+                    fechafabricacion: fechaFabricacionFormateada,
+                    color: color
+                };
+
+                fetch('/modificar-auto-usado', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            const message = 'Registro modificado exitosamente.' +
+                                '\n\nCampos actualizados:' +
+                                '\nMatrícula: ' + matricula +
+                                '\nMarca: ' + marca +
+                                '\nModelo: ' + modelo +
+                                '\nPrecio Venta: ' + "$" + precioventa +
+                                '\nFecha Fabricación: ' + fechaInput.value +
+                                '\nUso: ' + uso +
+                                '\nChasis: ' + chasis +
+                                '\nMotor: ' + motor +
+                                '\nColor: ' + color;
+                            alert(message);
+                            edicionHabilitada = false; // Asegúrate de que la edición se deshabilite
+                            // Restablecer los campos después de la modificación
+                            deselectRows();
+                            cambiosRealizados = false;
+
+                            // Actualizar los campos solo en caso de éxito
+                            document.getElementById('matricula').value = '';
+                            document.getElementById('marca').value = '';
+                            document.getElementById('modelo').value = '';
+                            document.getElementById('precioventa').value = '';
+                            document.getElementById('codigo-propietario').value = '';
+                            document.getElementById('uso').value = '';
+                            document.getElementById('motor').value = '';
+                            document.getElementById('chasis').value = '';
+                            document.getElementById('fecha-fabricacion').value = '';
+                            document.getElementById('color').value = '';
+                            document.getElementById('busqueda-marca').value = '';
+                            document.getElementById('lista-autos').value = '';
+
+                            // Limpiar la selección
+                            autoSeleccionadoMatricula = null;
+                            autoSeleccionadoId = null;
+                            autoSeleccionadoMarca = null;
+                            autoSeleccionadoModelo = null;
+                            autoSeleccionadoPrecio = null;
+                            autoSeleccionadoCodigoPropietario = null;
+                            autoSeleccionadoUso = null;
+                            autoSeleccionadoMotor = null;
+                            autoSeleccionadoChasis = null;
+                            autoSeleccionadoFechaFabricacion = null;
+                            autoSeleccionadoColor = null;
+
+                            // Limpiar la tabla
+                            listaAutos.innerHTML = '';
+
+                            // Limpiar el input de búsqueda
+                            document.getElementById('busqueda-marca').value = '';
+
+                            // Deshabilitar la edición y restaurar los campos
+                            habilitarBtn.textContent = 'Habilitar Edición';
+                            matriculaInput.disabled = true;
+                            marcaInput.disabled = true;
+                            modeloInput.disabled = true;
+                            precioventaInput.disabled = true;
+                            codPInput.disabled = true;
+                            usoInput.disabled = true;
+                            motorInput.disabled = true;
+                            chasisInput.disabled = true;
+                            fechaInput.disabled = true;
+                            colorInput.disabled = true;
+
+
+                        } else {
+                            console.error('Error al modificar el registro:', response.statusText);
+                            alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    });
+            });
+
+            const habilitarBtn = document.getElementById('habilitarBtn');
+            habilitarBtn.addEventListener('click', () => {
+                edicionHabilitada = !edicionHabilitada;
+                habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+                matriculaInput.disabled = !edicionHabilitada;
+                marcaInput.disabled = !edicionHabilitada;
+                modeloInput.disabled = !edicionHabilitada;
+                precioventaInput.disabled = !edicionHabilitada;
+                codPInput.disabled = !edicionHabilitada;
+                usoInput.disabled = !edicionHabilitada;
+                motorInput.disabled = !edicionHabilitada;
+                chasisInput.disabled = !edicionHabilitada;
+                fechaInput.disabled = !edicionHabilitada;
+                colorInput.disabled = !edicionHabilitada;
+
+                if (edicionHabilitada) {
+                    deselectRows();
+                    cambiosRealizados = false;
+                }
+            });
+
+            const busquedaMarca = document.getElementById('busqueda-marca');
+            busquedaMarca.addEventListener('input', () => {
+                const marca = busquedaMarca.value;
+                loadAutosByMarca(marca);
+            });
+
+            function loadAutosByMarca(marca) {
+                fetch(`/obtener-autos-usados-por-marca?marca=${marca}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        listaAutos.innerHTML = ''; // Limpiar la lista actual de autos
+
+                        data.forEach(auto => {
+                            if (auto.borrado === 0) {
+                                const tableRow = document.createElement('tr');
+                                tableRow.setAttribute('data-auto-id', auto.codAU);
+                                tableRow.innerHTML = `
+                        <td class="matricula">${auto.matricula}</td>
+                        <td class="marca">${auto.marca}</td>
+                        <td class="modelo">${auto.modelo}</td>
+                        <td class="precioventa">${auto.precioventa}</td>
+                        <td class="codigo-propietario">${auto.codP}</td>
+                        <td class="uso">${auto.uso}</td>
+                        <td class="motor">${auto.motor}</td>
+                        <td class="chasis">${auto.chasis}</td>
+                        <td class="fecha-fabricacion">${formatDateToInputFormat(auto.fechafabricacion)}</td>
+                        <td class="color">${auto.color}</td>
+                    `;
+                                listaAutos.appendChild(tableRow);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

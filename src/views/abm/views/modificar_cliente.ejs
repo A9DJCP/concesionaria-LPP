@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="modificar_cliente.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Modificar Cliente - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Modifica los datos de un cliente ya creado en el sistema</p>
+                <p id="description">Cliente a modificar:</p>
+                <label for="busqueda-nrodoc" id="nrodoc-label">Búsqueda por número de Documento</label>
+                <input type="text" id="busqueda-nrodoc" placeholder="Número de Documento">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Documento</th>
+                                    <th>Email</th>
+                                    <th>Requisitos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-clientes">
+                                <!-- La lista de clientes se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <label for="nombre" id="nombre-label">Nombre</label>
+                <input type="text" id="nombre" placeholder="Nombre del cliente" disabled>
+                <label for="apellido" id="apellido-label">Apellido</label>
+                <input type="text" id="apellido" placeholder="Apellido del cliente" disabled>
+                <label for="email" id="email-label">Email</label>
+                <input type="email" id="email" placeholder="Correo electrónico del cliente" disabled>
+                <label id="requisitos-label">Cumple con los Requisitos</label>
+                <div id="div-requisitos">
+                    <label for="si">
+                        <input type="radio" id="si" value="1" name="grupo" disabled>
+                        Si
+                    </label>
+                    <label for="no">
+                        <input type="radio" id="no" value="0" name="grupo" disabled>
+                        No
+                    </label>
+                </div>
+                <button type="button" class="submit" id="modificarBtn">Modificar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+                <button type="button" class="submit" id="habilitarBtn">Habilitar Edición</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const emailInput = document.getElementById('email');
+        const busquedaDocumentoInput = document.getElementById('busqueda-nrodoc');
+        const requisitosSi = document.getElementById('si');
+        const requisitosNo = document.getElementById('no');
+        let edicionHabilitada = false;
+        let cambiosRealizados = false;
+        let clienteSeleccionadoId = null;
+        let clienteSeleccionadoNombre = null;
+        let clienteSeleccionadoApellido = null;
+        let clienteSeleccionadoEmail = null;
+        let clienteSeleccionadoNrodoc = null;
+        let requisitosAnterior = null;
+
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        const listaClientes = document.getElementById('lista-clientes');
+        listaClientes.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const clienteId = targetRow.getAttribute('data-cliente-id');
+                const nombre = targetRow.querySelector('.nombre').innerText;
+                const apellido = targetRow.querySelector('.apellido').innerText;
+                const email = targetRow.querySelector('.email').innerText;
+                const nrodoc = targetRow.querySelector('.nrodoc').innerText;
+                const requisitosText = targetRow.querySelector('.requisitos').innerText;
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('apellido').value = apellido;
+                document.getElementById('email').value = email;
+                clienteSeleccionadoId = clienteId;
+                clienteSeleccionadoNombre = nombre;
+                clienteSeleccionadoApellido = apellido
+                clienteSeleccionadoEmail = email;
+                clienteSeleccionadoNrodoc = nrodoc;
+                // Actualizar el estado de los botones de radio
+                if (requisitosText === 'Si') {
+                    requisitosSi.checked = true;
+                } else {
+                    requisitosNo.checked = true;
+                }
+            }
+        });
+        const modificarBtn = document.getElementById('modificarBtn');
+        modificarBtn.addEventListener('click', () => {
+            if (!edicionHabilitada) {
+                alert('Debes habilitar la edición antes de modificar el registro.');
+                return;
+            }
+
+            const clienteId = clienteSeleccionadoId;
+
+            if (!clienteId) {
+                alert('Debes seleccionar un cliente para modificar.');
+                return;
+            }
+
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const email = document.getElementById('email').value;
+            const nrodoc = clienteSeleccionadoNrodoc;
+            const requisitos = requisitosSi.checked ? 1 : 0; // 1 si se selecciona "Si", 0 si se selecciona "No"
+
+            if (nombre === clienteSeleccionadoNombre && apellido === clienteSeleccionadoApellido && email === clienteSeleccionadoEmail && requisitosAnterior === (requisitos === 1 ? 'Si' : 'No')) {
+                alert('Debes realizar al menos un cambio antes de modificar el registro.');
+                return;
+            }
+
+            const data = {
+                codPer: clienteId,
+                nom: nombre,
+                ape: apellido,
+                nrodoc: nrodoc,
+                mail: email,
+                requisitos: requisitos
+            };
+
+            console.log(data);
+
+            fetch('/modificar-cliente', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro modificado exitosamente.' +
+                            '\n\nCampos actualizados:' +
+                            '\nNombre: ' + nombre +
+                            '\nApellido: ' + apellido +
+                            '\nDocumento: ' + nrodoc +
+                            '\nEmail: ' + email +
+                            '\nRequisitos: ' + (requisitos === 1 ? 'Si' : 'No');
+                        alert(message);
+
+                        edicionHabilitada = false; // Asegúrate de que la edición se deshabilite
+
+                        // Actualizar los campos solo en caso de éxito
+                        document.getElementById('nombre').value = '';
+                        document.getElementById('apellido').value = '';
+                        document.getElementById('email').value = '';
+                        requisitosSi.checked = false;
+                        requisitosNo.checked = false;
+
+                        // Limpiar la selección
+                        deselectRows();
+                        clienteSeleccionadoNombre = null;
+                        clienteSeleccionadoId = null;
+                        clienteSeleccionadoApellido = null;
+                        clienteSeleccionadoEmail = null;
+
+                        // Limpiar la tabla
+                        listaClientes.innerHTML = '';
+
+                        // Limpiar el input de búsqueda
+                        document.getElementById('busqueda-nrodoc').value = '';
+
+                        // Deshabilitar la edición y restaurar los campos
+                        habilitarBtn.textContent = 'Habilitar Edición';
+                        nombreInput.disabled = true;
+                        apellidoInput.disabled = true;
+                        emailInput.disabled = true;
+                        requisitosSi.disabled = true;
+                        requisitosNo.disabled = true;
+
+                        // Aquí puedes redirigir al usuario a otra página si lo deseas.
+                    } else if (response.status === 500) {
+                        console.error('Error al modificar el registro:', response.statusText);
+                        alert('Error al modificar el registro. Por favor, inténtalo nuevamente');
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        const habilitarBtn = document.getElementById('habilitarBtn');
+        habilitarBtn.addEventListener('click', () => {
+            edicionHabilitada = !edicionHabilitada;
+            habilitarBtn.textContent = edicionHabilitada ? 'Deshabilitar Edición' : 'Habilitar Edición';
+
+            nombreInput.disabled = !edicionHabilitada;
+            apellidoInput.disabled = !edicionHabilitada;
+            emailInput.disabled = !edicionHabilitada;
+            requisitosSi.disabled = !edicionHabilitada;
+            requisitosNo.disabled = !edicionHabilitada;
+
+            if (edicionHabilitada) {
+                deselectRows();
+                cambiosRealizados = false;
+            }
+        });
+
+        const busquedaDocumento = document.getElementById('busqueda-nrodoc');
+        busquedaDocumento.addEventListener('input', () => {
+            const nrodoc = busquedaDocumento.value;
+            loadClientesByDocumento(nrodoc);
+        });
+
+        function loadClientesByDocumento(nrodoc) {
+            // Limpiar la tabla al cargar nuevos datos
+            listaClientes.innerHTML = '';
+
+            fetch(`/obtener-clientes-por-nrodoc?nrodoc=${nrodoc}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(cliente => {
+                        const requisitosText = cliente.requisitos === 1 ? 'Si' : 'No';
+                        const tableRow = document.createElement('tr');
+                        tableRow.setAttribute('data-cliente-id', cliente.codPer);
+                        tableRow.innerHTML = `
+                                        <td class="nombre">${cliente.nom}</td>
+                                        <td class="apellido">${cliente.ape}</td>
+                                        <td class="nrodoc">${cliente.nrodoc}</td>
+                                        <td class="email">${cliente.mail}</td>
+                                        <td class="requisitos">${requisitosText}</td>
+                                    `;
+                        listaClientes.appendChild(tableRow);
+                        if (cliente.requisitos === 1) {
+                            requisitosSi.checked = true;
+                        } else {
+                            requisitosNo.checked = true;
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>

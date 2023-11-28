@@ -103,8 +103,7 @@
   }
   
   #survey-form {
-    opacity: 0.7;
-    background-color: black;
+    background: linear-gradient(black, red) !important;
     width: 50%;
     margin: auto;
     margin-bottom: 120px;
@@ -117,7 +116,10 @@
   }
   
   #footer {
-    position: relative;
+    position: relative !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
     margin-top: 50px;
     bottom: 0;
     left: 0;

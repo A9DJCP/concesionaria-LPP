@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="agregar_auto0km.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Agregar Auto 0KM - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Agrega un auto 0KM para la compra</p>
+                <p id="description">Auto a cargar:</p>
+                <label for="marca" id="marca-label">Marca</label>
+                <input type="text" id="marca" name="marca" placeholder="Marca del Auto">
+                <label for="modelo" id="modelo-label">Modelo</label>
+                <input type="text" id="modelo" name="modelo" placeholder="Modelo Del Auto">
+                <label for="precio" id="precio-label">Precio</label>
+                <input type="number" id="precio" name="precio" placeholder="Precio del Auto">
+                <label for="color" id="color-label">Color</label>
+                <input type="text" id="color" name="color" placeholder="Color del Auto">
+                <button type="submit" class="submit">Agregar Auto Disponible 0KM</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="footer-text">LPP Concesionario</p>
+        <p class="footer-text" ;>&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const form = document.getElementById('survey-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const precio = document.getElementById('precio').value;
+            const color = document.getElementById('color').value;
+
+            if (marca.trim() === '' || modelo.trim() === '' || precio.trim() === '' || color.trim() === '') {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            const data = {
+                marca: marca,
+                modelo: modelo,
+                precio: precio,
+                color: color
+            };
+
+            try {
+                const response = await fetch('/agregar-auto-0km', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const message = 'Auto cargado:' +
+                        '\nMarca: ' + marca +
+                        '\nModelo: ' + modelo +
+                        '\nPrecio: ' + "$" + precio +
+                        '\nColor: ' + color;
+
+                    alert('Auto agregado exitosamente.' + '\n\n' + message);
+                    form.reset();
+                } else {
+                    alert('Hubo un error al agregar el auto. Por favor, inténtalo nuevamente.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un error al agregar el auto. Por favor, inténtalo nuevamente.');
+            }
+        });
+    </script>
+</body>
+
+</html>

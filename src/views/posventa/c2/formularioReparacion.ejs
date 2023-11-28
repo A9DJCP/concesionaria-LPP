@@ -30,95 +30,62 @@
       }
     </style>
     <!-- Contenido principal -->
-    <div class="container-fluid h-100 " style="background-image: url(/background.jpg); height: calc(100vh); padding: 40px; background-attachment: scroll;
- background-repeat: no-repeat;
- background-size: cover;
- background-position: center;">
-
-      <a class="btn btn-danger mx-2 mt-2" href="/c2">Regresar</a>
-
+    <div class="container-fluid h-100 " style="height: calc(100vh); padding: 40px;">
 
       <div class="col">
 
-        <form name="myForm" action="/verReclamosDisponibles" method="post"
-          class="container mx-auto justify-content-center p-5 text-center mx-auto text-light"
-          style="background-color: rgba(0, 0, 0, 0.671); ">
-          <h1>Datos del automovil</h1>
+        <form name="myForm" class="survey-form" action="/verReclamosDisponibles" method="post"
+          class="container mx-auto justify-content-center p-5 text-center mx-auto text-light">
+          <h1>Datos del Automóvil</h1>
+          <label for="inputMatricula3" class="col-sm-6 col-xl-4  col-form-label">Matricula</label>
+          <input type="text" name="matricula" class="form-control" id="inputMatricula" placeholder="Matricula">
+
+          <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Marca</label>
+          <input type="text" name="marca" class="form-control" id="inputMarca" placeholder="Marca">
+
+          <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Modelo</label>
+          <input type="text" class="form-control" id="inputModelo" name="modelo" placeholder="Modelo">
+
+          <label for="input" class="col-sm-6 col-xl-4 col-form-label">Código de fabrica</label>
+          <input type="text" class="form-control" id="inputCodF" name="codfabrica" placeholder="Codigo fabrica">
+
+
+          <h1>Datos del Seguro</h1>
           <br>
-          <div class="form-group row ">
-            <label for="inputMatricula3" class="col-sm-6 col-xl-4  col-form-label">Matricula</label>
-            <div class="col-sm-6 col-xl-8  ">
-              <input type="text" name="matricula" class="form-control" id="inputMatricula" placeholder="Matricula">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Marca</label>
-            <div class="col-sm-6 col-xl-8">
-              <input type="text" name="marca" class="form-control" id="inputMarca" placeholder="Marca">
-            </div>
-          </div>
+          <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Número seguro</label>
+          <input type="text" class="form-control" id="inputNumSeguro" name="numseguro" placeholder="Numero de seguro">
 
-          <div class="form-group row">
-            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Modelo</label>
-            <div class="col-sm-6 col-xl-8">
-              <input type="text" class="form-control" id="inputModelo" name="modelo" placeholder="Modelo">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="input" class="col-sm-6 col-xl-4 col-form-label">Codigo de fabrica</label>
-            <div class="col-sm-6 col-xl-8">
-              <input type="text" class="form-control" id="inputCodF" name="codfabrica" placeholder="Codigo fabrica">
-            </div>
-          </div>
-
-          <br>
-
-          <h1>Datos del seguro</h1>
-          <br>
-          <div class="form-group row">
-            <label for="inputMarca3" class="col-sm-6 col-xl-4 col-form-label">Numero seguro</label>
-            <div class="col-sm-6 col-xl-8">
-              <input type="text" class="form-control" id="inputNumSeguro" name="numseguro"
-                placeholder="Numero de seguro">
-            </div>
-          </div>
-
-          <div class="form-group text-center py-4">
-            <div class="col-sm-12 ">
-              <input id="botonVerReclamos" type="submit" class="btn btn-warning mx-2 mt-2"
-                value="Ver Reclamos disponibles" />
-            </div>
-          </div>
+          <input id="botonVerReclamos" type="submit" class="btn btn-danger mx-2 mt-2"
+            value="Ver Reclamos disponibles" />
+          <a class="btn btn-danger mx-2 mt-2" href="/c2">Regresar</a>
         </form>
       </div>
     </div>
 
     <% if(enable===true) {%>
 
-      <div class="col">
-        <div class="container  py-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
-          <h3 class="text-center text-light">Condiciones de reclamo disponibles para el tipo de seguro</h3>
-          <ol>
-            <% for(let i=0; i<desc.length; i++) {%>
-
-              <li>
-                <%= desc[i] %>
-              </li>
-              <% } %>
-          </ol>
-        </div>
-      </div>
-
       <div class="col" style="align-items:center; text-align:center;">
-        <div class="container  py-4 my-4 " style=" background-color: rgba(0, 0, 0, 0.603);">
-          <form name="myForm" action="/posventa/c2/ingresarAuto" method="post">
-            <input type="submit" class="btn btn-success mx-2 mt-2" value="Registrar ingreso del automóvil para
+        <form name="myForm" class="survey-form2" action="/posventa/c2/ingresarAuto" method="post">
+          <div class="col">
+            <div class="container  py-4 my-4 ">
+              <h1 class="text-center">Condiciones de reclamo disponibles para el tipo de seguro</h1>
+              <ol>
+                <% for(let i=0; i<desc.length; i++) {%>
+
+                  <li>
+                    <%= desc[i] %>
+                  </li>
+                  <% } %>
+              </ol>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-danger mx-2 mt-2" value="Registrar ingreso para
             su
             análisis">
-            </input>
-          </form>
-        </div>
+          </input>
+          <a class="btn btn-danger mx-2 mt-2" href="/c2">Regresar</a>
+        </form>
+      </div>
       </div>
       <% } %>
 
@@ -149,16 +116,179 @@
               </script>
               <% }%>
 
-                <!-- Bootstrap JS -->
-                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                  crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                  crossorigin="anonymous"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                  crossorigin="anonymous"></script>
+                <footer id="footer">
+                  <p class="footer-text">LPP Concesionario</p>
+                  <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+                </footer>
+                <style>
+                  h1 {
+                    color: white !important;
+                    padding-top: 30px !important;
+                  }
+
+                  html {
+                    height: 100% !important;
+                  }
+
+                  body {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    min-height: 100% !important;
+
+                  }
+
+                  #footer {
+                    background-color: rgba(33, 37, 41, 1) !important;
+                    padding: 40px !important;
+                    text-align: center;
+                    font-family: sans-serif !important;
+                    text-align: center !important;
+                    background-color: rgba(33, 37, 41, 1);
+                    color: white;
+                    margin-top: auto !important;
+                  }
+
+                  .survey-form {
+                    text-align: center !important;
+                    display: block !important;
+                    margin: 50px auto 70px !important;
+                    font-family: sans-serif !important;
+                    color: white !important;
+                    background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                    opacity: 1 !important;
+                    border-radius: 20px;
+                    border: 0;
+                    width: 700px !important;
+                    height: 750px !important;
+
+                  }
+
+                  .survey-form2 {
+                    text-align: center !important;
+                    display: block !important;
+                    margin: 50px auto 70px !important;
+                    font-family: sans-serif !important;
+                    color: white !important;
+                    background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                    opacity: 1 !important;
+                    border-radius: 20px;
+                    border: 0;
+                    width: 700px !important;
+                    height: auto !important;
+                    padding-bottom: 20px;
+                  }
+
+                  input[type="text"],
+                  input[type="email"] {
+                    margin-top: -5px !important;
+                    display: block;
+                    width: 200px !important;
+                    margin: 0 auto 30px !important;
+                    border: 0;
+                    height: 25px;
+                    border-radius: 5px !important;
+                    text-align: center !important;
+                  }
+
+                  select[id="tipo-documento"] {
+                    width: 200px !important;
+                    margin-top: -5px !important;
+                    display: block;
+                    margin: 0 auto 30px !important;
+                    border: 0;
+                    height: 25px;
+                    border-radius: 5px !important;
+                    text-align: center !important;
+                  }
+
+
+                  .navbar {
+                    z-index: 100;
+                  }
+
+                  #principal-description {
+                    color: white !important;
+                    text-align: center !important;
+                    margin: 20px;
+                    font-family: sans-serif !important;
+                  }
+
+                  label,
+                  #description {
+                    color: white !important;
+                    font-family: sans-serif !important;
+                  }
+
+
+                  html {
+                    width: 100% !important;
+                  }
+
+                  body {
+                    font-family: sans-serif !important;
+                    background: #e0e0e0;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    position: relative !important;
+                  }
+
+                  h1 {
+                    color: black;
+                    font-weight: bold;
+                    text-align: center;
+                    font-size: 30px;
+                    margin-top: 20px;
+                    font-family: sans-serif !important;
+                  }
+
+                  .container-fluid {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                  }
+
+                  .container-fluid {
+                    width: 100% !important;
+                  }
+
+                  .btn-danger {
+                    width: 300px;
+                    margin: 0 auto;
+                    border: 0;
+                    border-radius: 10px;
+                    padding: 20px;
+                    opacity: 1 !important;
+                    background-color: black !important;
+                    color: white;
+                    font-size: 18px;
+                  }
+
+
+                  .btn-danger:hover {
+                    background-color: white !important;
+                    color: black !important;
+                  }
+
+                  .btn-danger:active {
+                    background-color: white !important;
+                    color: black !important;
+                  }
+
+                  .btn-dark {
+                    font-size: 15px !important;
+                    color: white !important
+                  }
+
+                  button[class=btn-dark] {
+                    background-color: black !important;
+                    font-size: 16px !important;
+                  }
+
+                  /* Responsiveness */
+                </style>
+                <script
+                  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>

@@ -25,7 +25,7 @@ router.post("/c6/b5", isLoggedIn, async (req, res) => {
 			data = {
 				contrato,
 				cliente: rs[0].nom + " " + rs[0].ape,
-				documento: rs[0].tdoc + " " + rs[0].ndoc,
+				documento: rs[0].tipodoc + " " + rs[0].nrodoc,
 				codCL: rs[0].codCL,
 				ganancia,
 				total,

@@ -167,7 +167,7 @@
         </div>
         <div id="contratos" class="componenteMenu">
             <div class="d-flex align-items-center component-div">
-                <h1>Contrataciones de Automóviles Usados</h1>
+                <h1>CONTRATACIONES DE AUTOMÓVILES USADOS</h1>
                 <div class="accordion vh-80 w-75" id="accordionPanelsStayOpenExample" data-bs-theme="dark">
                     <div class="accordion-item ">
                         <h2 class="accordion-header">
@@ -220,7 +220,8 @@
                     <p class="card-text">La sección de ABM permite realizar cambios a los datos registrados en forma
                         asincrónica e independiente a los circuitos principales.</p>
                     <div style="text-align:center">
-                        <a href="/abm" class="btn btn-primary">Ir al menú principal del ABM</a>
+                        <a href="/abm_menu" class="btn btn-primary">Ir al menú principal del ABM</a>
+
                     </div>
                 </div>
             </div>
@@ -228,6 +229,187 @@
 
 
         <%- include('partials/footer') %>
+            <style>
+                .navbar {
+                    z-index: 100 !important;
+                }
+
+                footer {
+                    padding: 20px !important;
+                    margin-top: 40px !important;
+                }
+
+                .accordion-button collapsed {
+                    z-index: 1 !important;
+                }
+
+                #footer {
+                    background-color: rgba(33, 37, 41, 1) !important;
+                    padding: 50px !important;
+                    text-align: center;
+                    font-family: sans-serif !important;
+                    clear: both !important;
+                    /* Limpia ambos lados, asegurando que el footer esté debajo de otros elementos */
+                    text-align: center !important;
+                    /* Centra el contenido del footer */
+                    /* Agrega espacio alrededor del contenido del footer */
+                    background-color: rgba(33, 37, 41, 1);
+                    color: white;
+                    position: relative !important;
+                }
+
+
+                table[id="tabla-original"] {
+                    border: solid black 5px !important;
+                    border-radius: 10px !important;
+                    width: 450px !important;
+                }
+
+                .navbar {
+                    z-index: 100;
+                }
+
+                .add-button {
+                    border: 0;
+                    border-radius: 5px;
+                    margin: 5px;
+                }
+
+                .side-section {
+                    margin-top: 50px !important;
+                }
+
+
+                table {
+                    margin-top: 20px !important;
+                    margin: 0 auto !important;
+                }
+
+
+                #principal-description {
+                    color: white !important;
+                    text-align: center !important;
+                    margin: 20px;
+                    font-family: sans-serif !important;
+                }
+
+                label,
+                #description {
+                    color: white !important;
+                    font-family: sans-serif !important;
+                }
+
+
+                html {
+                    width: 100% !important;
+                }
+
+                body {
+                    font-family: sans-serif !important;
+                    background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    position: relative !important;
+                }
+
+
+                .container-fluid {
+                    width: 100%;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .container-fluid {
+                    width: 100% !important;
+                }
+
+
+                .btn-danger,
+                #submit {
+                    width: 300px;
+                    margin: 30px auto;
+                    border: 0;
+                    border-radius: 10px;
+                    padding: 20px;
+                    opacity: 1 !important;
+                    background-color: black !important;
+                    color: white;
+                    font-size: 18px;
+                    text-decoration: none !important;
+                }
+
+                .payment-methods {
+                    margin-bottom: 20px;
+                }
+
+                .btn-danger:hover,
+                #submit:hover {
+                    transition: none;
+                    transform: none;
+                    padding: 20px !important;
+                    background-color: white !important;
+                    color: black !important;
+                }
+
+                .btn-danger:active {
+                    background-color: white !important;
+                    color: black !important;
+                }
+
+                .btn-dark {
+                    font-size: 15px !important;
+                    color: white !important
+                }
+
+                button[class=btn-dark] {
+                    background-color: black !important;
+                    font-size: 16px !important;
+                }
+
+                /* Responsiveness */
+
+                .bg-pan-left {
+                    -webkit-animation: bg-pan-left 8s both;
+                    animation: bg-pan-left 8s both
+                }
+
+                body {
+                    font-family: sans-serif !important;
+                }
+
+                /* ----------------------------------------------
+ * Generated by Animista on 2023-9-8 19:42:4
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+                @-webkit-keyframes bg-pan-left {
+                    0% {
+                        background-position: 100% 50%
+                    }
+
+                    100% {
+                        background-position: 0 50%
+                    }
+                }
+
+                @keyframes bg-pan-left {
+                    0% {
+                        background-position: 100% 50%
+                    }
+
+                    100% {
+                        background-position: 0 50%
+                    }
+                }
+
+                @media (max-width: 576px) {
+                    .survey-form {
+                        width: 100%;
+                    }
+                }
+            </style>
 </body>
 
 </html>

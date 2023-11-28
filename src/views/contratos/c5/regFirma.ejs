@@ -10,46 +10,191 @@
 
 <body>
     <%- include('../../partials/navigation') %>
-        <% if (typeof msg !=='undefined' ) { %>
-            <script>
-                alert('<%= msg %>');
-            </script>
-            <% } %>
-                <div class="container">
-                    <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Regresar</a>
-                    <div class="margin">
-                        <form id="survey-form" action="/c5/b3/regFirma" method="POST" required>
-                            <p id="principal-description">Ingrese los datos del contrato cuya firma de propietario se va
-                                a registrar:</p>
-                            <label for="nombre-label" id="nombre-label">Nombre del Propietario</label>
-                            <input type="text" id="nombre" placeholder="Nombre del Propietario" name="nom" required>
-                            <label for="apellido-label" id="apellido-label">Apellido del Propietario</label>
-                            <input type="text" id="apellido" placeholder="Apellido del Propietario" name="ape" required>
-                            <label for="tipo-documento-label" id="tipo-documento-label">Tipo de Documento del
-                                Propietario</label>
-                            <br>
-                            <select id="dropdown" name="tdoc">
-                                <option disable selected value>Elige una opción</option>
-                                <option value="dni">DNI</option>
-                                <option value="dni-extranjero">DNI Extranjero</option>
-                            </select>
-                            <br>
-                            <label for="ndoc-label" id="ndoc-label">Número de Documento del
-                                Propietario</label>
-                            <input type="number" id="ndoc" name="ndoc" required>
-                            <label for="codAU-label" id="codAU-label">Número de Auto Usado</label>
-                            <input type="number" id="codAU" name="codAU" required>
+        <div class="container">
+            <div class="margin">
+                <form id="survey-form" action="/c5/b3/regFirma" method="POST" required>
+                    <p id="principal-description">Ingrese los datos del contrato cuya firma de propietario se va
+                        a registrar:</p>
+                    <label for="nombre-label" id="nombre-label">Nombre del Propietario</label>
+                    <input type="text" id="nombre" placeholder="Nombre del Propietario" name="nom" required>
+                    <label for="apellido-label" id="apellido-label">Apellido del Propietario</label>
+                    <input type="text" id="apellido" placeholder="Apellido del Propietario" name="ape" required>
+                    <label for="tipo-documento-label" id="tipo-documento-label">Tipo de Documento del
+                        Propietario</label>
+                    <br>
+                    <select id="dropdown" name="tdoc">
+                        <option disable selected value>Elige una opción</option>
+                        <option value="dni">DNI</option>
+                        <option value="dni-extranjero">DNI Extranjero</option>
+                    </select>
+                    <br>
+                    <label for="ndoc-label" id="ndoc-label">Número de Documento del
+                        Propietario</label>
+                    <input type="text" placeholder="Nro Doc. Propietario" id="ndoc" name="ndoc" required>
+                    <label for="codAU-label" id="codAU-label">Número de Auto Usado</label>
+                    <input type="text" placeholder="Num. Auto Usado" id="codAU" name="codAU" required>
 
-                            <label for="femision-label" id="femision-label">Fecha de Emision del Contrato</label>
-                            <input type="date" id="femision" name="femision" required>
+                    <label for="femision-label" id="femision-label">Fecha de Emision del Contrato</label>
+                    <input type="date" id="femision" name="femision" required>
 
-                            <div class="botones">
-                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
-                                    style="margin-top: 1%" value="Registrar Contrato">
-                            </div>
-                        </form>
+                    <div class="botones">
+                        <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top: 1%"
+                            value="Registrar Contrato">
+                        <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Regresar</a>
                     </div>
-                </div>
+                </form>
+            </div>
+        </div>
+        <footer id="footer">
+            <p class="footer-text">LPP Concesionario</p>
+            <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+        </footer>
+        <style>
+            html {
+                height: 100% !important;
+            }
+
+            body {
+                display: flex !important;
+                flex-direction: column !important;
+                min-height: 100% !important;
+
+            }
+
+            #footer {
+                background-color: rgba(33, 37, 41, 1) !important;
+                padding: 40px auto !important;
+                text-align: center;
+                font-family: sans-serif !important;
+                text-align: center !important;
+                background-color: rgba(33, 37, 41, 1);
+                color: white;
+                margin-top: auto !important;
+            }
+
+            .survey-form {
+                display: block !important;
+                margin: 50px auto 70px !important;
+                font-family: sans-serif !important;
+                color: white !important;
+                background: linear-gradient(rgb(0, 0, 0), rgb(243, 33, 33)) !important;
+                opacity: 1 !important;
+                border-radius: 20px;
+                border: 0;
+                height: 100% !important;
+
+            }
+
+            input[type="text"],
+            input[type="email"] {
+                margin-top: -5px !important;
+                display: block;
+                width: 200px !important;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+            select[id="tipo-documento"] {
+                width: 200px !important;
+                margin-top: -5px !important;
+                display: block;
+                margin: 0 auto 30px !important;
+                border: 0;
+                height: 25px;
+                border-radius: 5px !important;
+                text-align: center !important;
+            }
+
+
+            .navbar {
+                z-index: 100;
+            }
+
+            #principal-description {
+                color: white !important;
+                text-align: center !important;
+                margin: 20px;
+                font-family: sans-serif !important;
+            }
+
+            label,
+            #description {
+                color: white !important;
+                font-family: sans-serif !important;
+            }
+
+
+            html {
+                width: 100% !important;
+            }
+
+            body {
+                font-family: sans-serif !important;
+                background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative !important;
+            }
+
+            h1 {
+                color: black;
+                font-weight: bold;
+                text-align: center;
+                font-size: 30px;
+                margin-top: 20px;
+                font-family: sans-serif !important;
+            }
+
+            .container-fluid {
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .container-fluid {
+                width: 100% !important;
+            }
+
+            .btn-danger {
+                width: 300px;
+                margin: 0 auto;
+                border: 0;
+                border-radius: 10px;
+                padding: 20px;
+                opacity: 1 !important;
+                background-color: black !important;
+                color: white;
+                font-size: 18px;
+            }
+
+
+            .btn-danger:hover {
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-danger:active {
+                background-color: white !important;
+                color: black !important;
+            }
+
+            .btn-dark {
+                font-size: 15px !important;
+                color: white !important
+            }
+
+            button[class=btn-dark] {
+                background-color: black !important;
+                font-size: 16px !important;
+            }
+
+            /* Responsiveness */
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 
 </html>

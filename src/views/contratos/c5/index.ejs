@@ -19,27 +19,246 @@
             <% } %>
 
                 <div class="container">
-                    <div id="espaciado"></div>
+                    <h1>Menú de Contratación de Autos Usados</h1>
                     <div class="margin">
                         <form id="survey-form" required>
-                            <p id="principal-description"> Menu de Contratacion de Autos Usados:</p>
                             <!--<p id="description">Secciones - Autos Usados </p>-->
                             <div class="bloque-1">
-                                <a id="submit" href="/c5/b1">Procesar Solicitud de Contrato</a>
+                                <a class="btn btn-danger" href="/c5/b1">1. Procesar Solicitud de Contrato</a>
                             </div>
                             <div class="bloque-2">
-                                <a id="submit" href="/c5/b2">Procesar Registro de Contrato</a>
-                                <a id="submit" href="/c5/b3">Procesar Contrato Firmado</a>
+                                <a class="btn btn-danger" href="/c5/b2">2. Procesar Registro de Contrato</a>
+                                <a class="btn btn-danger" href="/c5/b3">3. Procesar Contrato Firmado</a>
                             </div>
-                            <div class="bloque-1"><a id="submit" href="/menu">Regresar</a> </div>
+                            <div class="bloque-1"><a class="btn btn-danger" href="/menu">Regresar</a> </div>
 
                         </form>
                     </div>
                 </div>
 </body>
 <footer id="footer">
-    <p class="copyright">LPP Concesionario</p>
-    <p class="copyright">&copy 2023 Todos los derechos reservados</p>
+    <p class="footer-text">LPP Concesionario</p>
+    <p class="footer-text" ;>&copy; 2023 Todos los derechos reservados</p>
 </footer>
+<style>
+    html {
+        height: 100% !important;
+    }
+
+    body {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: 100% !important;
+    }
+
+    #footer {
+        margin-top: auto !important;
+        background-color: rgba(33, 37, 41, 1) !important;
+        padding: 40px;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        text-align: center;
+    }
+
+    .input-group-text {
+        width: 300px !important;
+        margin: 70px auto 20px auto;
+        border: 0;
+        border-radius: 5px !important;
+        background-color: #e0e0e0;
+    }
+
+    #survey-form {
+        opacity: 1 !important;
+        width: 650px !important;
+        height: auto !important;
+        padding: 50px 0 !important;
+        margin-top: 50px !important;
+        background: linear-gradient(to bottom, rgb(64, 64, 238), rgb(243, 33, 33));
+    }
+
+    input[type="text"] {
+        margin-top: -5px !important;
+        display: block;
+        width: 300px !important;
+        margin: 0 auto 30px !important;
+        border: 0;
+        border-radius: 5px !important;
+        border-top-left-radius: 0% !important;
+        border-top-right-radius: 0% !important;
+        text-align: center !important;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        /* Ajusta la altura mínima según sea necesario */
+    }
+
+    .navbar {
+        z-index: 100;
+    }
+
+    .card.text-center.text-light {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 200px !important;
+        /* Ajusta la altura mínima según sea necesario */
+    }
+
+    #principal-description {
+        text-align: center !important;
+        margin: 50px;
+    }
+
+    html,
+    body {
+        background: linear-gradient(#e0e0e0, gray, #f0f0f0);
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .card {
+        display: flex;
+        width: 500px !important;
+        height: 500px !important;
+        margin: 30px auto !important;
+        padding: 0;
+    }
+
+
+    body {
+        font-family: sans-serif !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        font-size: 30px;
+        margin-top: 20px;
+    }
+
+    .container-fluid {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 25%;
+        margin: 10px;
+        border: 0;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(to bottom, rgb(64, 64, 238), rgb(243, 33, 33));
+    }
+
+    .card-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .card-body {
+        padding: 10px;
+        background: rgba(0, 0, 0, 0);
+        margin-top: 50px;
+    }
+
+    .row input,
+    .row div {
+        display: block !important;
+    }
+
+    .container-fluid {
+        width: 100% !important;
+    }
+
+    .btn-danger {
+        width: 300px;
+        margin: 0 auto;
+        border: 0;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+        opacity: 1 !important;
+        color: black;
+        margin: 10px 10px !important;
+        font-weight: bold !important;
+    }
+
+    .btn-danger:hover {
+        background-color: black !important;
+        color: white !important;
+    }
+
+    .card-title {
+        font-size: 24px;
+        width: 70%;
+        margin: 0 auto;
+        font-weight: bold;
+        color: white;
+    }
+
+    .card-text {
+        width: 60%;
+        margin: 20px auto;
+        color: white;
+    }
+
+    .input-group-text {
+        width: 60%;
+        margin: 20px auto 0;
+        overflow: auto;
+        white-space: normal;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0% !important;
+        font-weight: bold;
+    }
+
+    .btn-danger:hover {
+        background-color: black;
+        color: white;
+    }
+
+    .btn-dark {
+        font-size: 15px;
+        color: white !important
+    }
+
+    button[class=btn-dark] {
+        font-size: 16px !important;
+    }
+
+    /* Responsiveness */
+
+    @media (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            width: 100%;
+        }
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

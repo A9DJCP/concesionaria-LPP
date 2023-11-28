@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="borrar_moroso.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Borrar Moroso - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Elimina un cliente moroso de tu registro</p>
+                <p id="description">Moroso a borrar:</p>
+                <label for="busqueda-apellido" id="apellido-label">Búsqueda por Apellido</label>
+                <input type="text" id="busqueda-apellido" placeholder="Apellido del Moroso">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Cod Persona</th>
+                                    <th>Tipo Doc.</th>
+                                    <th>Nro Doc.</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-morosos">
+                                <!-- La lista de morosos se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaMorosos = document.getElementById('lista-morosos');
+        listaMorosos.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const morosoId = targetRow.getAttribute('data-moroso-id');
+                // Resto del código para mostrar los detalles del moroso seleccionado
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un moroso para borrar.');
+                return;
+            }
+
+            const morosoId = selectedRow.getAttribute('data-moroso-id');
+
+            // Obtener los datos del moroso seleccionado
+            const nombre = selectedRow.querySelector('td:nth-child(4)').innerText;
+            const tipoDoc = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const nroDoc = selectedRow.querySelector('td:nth-child(3)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este moroso?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-moroso/${morosoId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nMoroso eliminado:' +
+                            '\nNombre: ' + nombre +
+                            '\nTipo de Doc.: ' + tipoDoc +
+                            '\nNro. de Doc.: ' + nroDoc;
+                        alert(message);
+
+                        // Actualizar la tabla de morosos (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadMorososByApellido(apellido) {
+            fetch(`/obtener-morosos-por-apellido?apellido=${apellido}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaMorosos = document.getElementById('lista-morosos');
+                    listaMorosos.innerHTML = '';
+
+                    data.forEach(moroso => {
+                        if (moroso.borrado === 0) {  // Verifica si el moroso está marcado como borrado
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-moroso-id', moroso.codMOR);
+                            tableRow.innerHTML = `
+                            <td>${moroso.codPer}</td>
+                            <td>${moroso.tipodoc}</td>
+                                <td>${moroso.nrodoc}</td>
+                                <td>${moroso.nom}</td>
+                                <td>${moroso.ape}</td>
+                                <td>${moroso.direc}</td>
+                                <td>${moroso.tel}</td>
+                                <td>${moroso.mail}</td>
+                            `;
+                            listaMorosos.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaApellido = document.getElementById('busqueda-apellido');
+        busquedaApellido.addEventListener('input', () => {
+            const apellido = busquedaApellido.value;
+            loadMorososByApellido(apellido);
+        });
+    </script>
+</body>
+
+</html>

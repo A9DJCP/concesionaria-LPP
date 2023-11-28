@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="borrar_persona.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="./images/logo.png" class="logo">
+            <h1 id="title">Borrar Persona - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Elimina una persona registrada en el sistema</p>
+                <p id="description">Persona a borrar:</p>
+                <label for="busqueda-apellido" id="apellido-label">Búsqueda por Apellido</label>
+                <input type="text" id="busqueda-apellido" placeholder="Apellido de la Persona">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Cod Persona</th>
+                                    <th>Tipo Doc.</th>
+                                    <th>Nro Doc.</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-personas">
+                                <!-- La lista de personas se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaPersonas = document.getElementById('lista-personas');
+        listaPersonas.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const personaId = targetRow.getAttribute('data-persona-id');
+                // Resto del código para mostrar los detalles de la persona seleccionada
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar una persona para borrar.');
+                return;
+            }
+
+            const personaId = selectedRow.getAttribute('data-persona-id');
+
+            const codPer = selectedRow.querySelector('td:nth-child(1)').innerText;
+            const tipodoc = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const nrodoc = selectedRow.querySelector('td:nth-child(3)').innerText;
+            const nom = selectedRow.querySelector('td:nth-child(4)').innerText;
+            const ape = selectedRow.querySelector('td:nth-child(5)').innerText;
+            const direc = selectedRow.querySelector('td:nth-child(6)').innerText;
+            const tel = selectedRow.querySelector('td:nth-child(7)').innerText;
+            const mail = selectedRow.querySelector('td:nth-child(8)').innerText;
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar esta persona?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-persona/${personaId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nPersona eliminada:' +
+                            '\n:Cod Persona: ' + codPer +
+                            '\nTipo Doc: ' + tipodoc +
+                            '\nNro Doc: ' + nrodoc +
+                            '\nNombre: ' + nom +
+                            '\nApellido: ' + ape +
+                            '\nDirección: ' + direc +
+                            '\nTeléfono: ' + tel +
+                            '\nEmail: ' + mail;
+                        alert(message);
+
+                        // Actualizar la tabla de personas (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadPersonasByApellido(ape) {
+            fetch(`/obtener-personas-por-ape?ape=${ape}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaPersonas = document.getElementById('lista-personas');
+                    listaPersonas.innerHTML = '';
+
+                    data.forEach(persona => {
+                        if (persona.borrado === 0) {  // Verifica si la persona está marcada como borrada
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-persona-id', persona.codPer);
+                            tableRow.innerHTML = `
+                                            <td>${persona.codPer}</td>
+                                            <td>${persona.tipodoc}</td>
+                                            <td>${persona.nrodoc}</td>
+                                            <td>${persona.nom}</td>
+                                            <td>${persona.ape}</td>
+                                            <td>${persona.direc}</td>
+                                            <td>${persona.tel}</td>
+                                            <td>${persona.mail}</td>
+                                        `;
+                            listaPersonas.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaApellido = document.getElementById('busqueda-apellido');
+        busquedaApellido.addEventListener('input', () => {
+            const ape = busquedaApellido.value;
+            loadPersonasByApellido(ape);
+        });
+    </script>
+</body>
+
+</html>

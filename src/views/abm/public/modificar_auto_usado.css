@@ -1,0 +1,356 @@
+/* Estilo para el input de tipo date */
+input[type="date"] {
+  width: 60% !important; /* Ajusta el ancho según tus necesidades */
+  margin-bottom: 10px !important;
+  box-sizing: border-box !important; /* Incluir el padding en el ancho total */
+  -webkit-appearance: none !important; /* Oculta el control de fecha predeterminado en Safari */
+  appearance: none !important; /* Oculta el control de fecha predeterminado en otros navegadores */
+}
+
+/* Elimina el control de flecha en Chrome */
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+
+/* Nueva regla de estilo para alinear los inputs y labels en dos columnas */
+.max {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Cambiamos 'center' por 'flex-start' para que los elementos se alineen en la parte superior */
+  flex-wrap: wrap; /* Permitimos que los elementos se envuelvan en una nueva fila si no caben en el ancho de la pantalla */
+}
+
+/* Estilo para cada parte (div) */
+.part1, .part2 {
+  flex: 1; /* Hace que ocupen el mismo espacio dentro del contenedor 'max' */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Alineamos el texto al centro */
+  width: 45%; /* Definimos el ancho para cada parte */
+  margin: 5px -20px !important;
+  text-align: center;
+}
+
+/* Estilo para los labels */
+.part1 label, .part2 label {
+  display: block; /* Hacemos que los labels sean elementos de bloque */
+  margin-bottom: 5px; /* Agregamos un margen inferior a los labels */
+}
+
+/* Estilo para los inputs */
+.part1 input, .part2 input {
+  width: 60%; /* Los inputs ocupan todo el ancho disponible */
+  margin-bottom: 10px; /* Agregamos un margen inferior a los inputs */
+}
+
+
+.header-row {
+  position: sticky;
+  top: 0;
+  background-color: #f5f5f5; /* Puedes ajustar el color de fondo según tus preferencias */
+  z-index: 2; /* Para asegurarse de que el encabezado esté por encima del contenido */
+}
+table {
+  width: 100%;
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+.submit {
+  display: inline-block;
+  background-color: red;
+  padding: 20px 10px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  min-width: 20px;
+  margin: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilos para los campos de edición */
+input[type="text"],
+input[type="number"], input[type="password"], input[type="date"] {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 0;
+  margin-bottom: 10px;
+}
+
+/* Estilos para los campos deshabilitados */
+input[type="text"]:disabled,
+input[type="number"]:disabled, input[type="password"]:disabled, input[type="date"]:disabled {
+  background-color: #f2f2f2;
+  color: #555; /* Color de la fuente para campos deshabilitados */
+  opacity: 0.8; /* Reducir la opacidad para que se vean menos oscuros */
+}
+
+/* Estilos para la tabla y las columnas */
+.table-container {
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll !important; /* Mostrar siempre la barra de desplazamiento vertical */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  /* Fijar el ancho de las columnas */
+  width: 25%; /* Puedes ajustar este valor según tus necesidades */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para la tabla cuando se selecciona una fila */
+tr.selected {
+  background-color: #dcdcdc;
+  cursor: pointer;
+}
+
+.pantalla {
+  width: 350px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 200px;
+  margin: 10px auto;
+  overflow: auto; /* Agregamos esta propiedad para mostrar la barra de desplazamiento si el contenido es más grande */
+}
+
+
+/* Estilos para el borde inferior de la última fila */
+tbody tr:last-child td {
+  border-bottom: none; /* Eliminamos el borde inferior de la última fila */
+}
+
+
+/* Estilos para la tabla */
+.table-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para la tabla cuando se selecciona una fila */
+tr.selected {
+  background-color: #c0b9b9;
+  cursor: pointer;
+}
+
+/* Estilos para el botón "Habilitar Edición" */
+#habilitarBtn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Otros estilos */
+#header {
+  display: flex;
+  align-items: center;
+}
+
+
+input[type="date"] {
+  /* Ajustar el tamaño del campo */
+  font-size: 14px;
+  width: 100%;
+  /* Eliminar el icono de calendario */
+  background-image: none;
+  /* Eliminar el estilo del borde al hacer foco */
+  outline: none;
+  /* Eliminar la flecha de desplegable en navegadores webkit */
+  -webkit-appearance: none;
+  /* Eliminar la flecha de desplegable en navegadores Gecko */
+  -moz-appearance: none;
+  /* Eliminar la flecha de desplegable en navegadores Blink */
+  appearance: none;
+  
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Incluir el padding en el ancho total */
+  
+}
+
+.pantalla {
+  width: 350px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 200px;
+  margin: 10px auto;
+}
+
+#header {
+    background-color: black;
+    top: 0;
+    text-align: center;
+    position: fixed;
+    z-index: 100;
+    color: white;
+    padding: 25px;
+    right: 0;
+    left: 0;
+  }
+  
+  #espaciado {
+   margin-bottom: 150px;
+  }
+  
+  #description {
+    font-size: 15px;
+    margin: 15px;
+    color: white;
+    font-family: monospace, Calibri;
+    font-weight: bold;
+  }
+  
+  label {
+    font-family: monospace;
+  }
+  
+  #busqueda-marca, #marca, #matricula, #modelo, #precioventa, #uso, #motor, #chasis, #color, #fecha-fabricacion, #codigo-propietario {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 14px;
+  }
+  
+  body {
+    margin: 0;
+    background-image: url("/images/fondo.png");
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover; /* Añade esta propiedad para que la imagen de fondo se ajuste y cubra todo el fondo */
+    display: flex; /* Asegúrate de que el cuerpo use flexbox para ocupar todo el espacio verticalmente */
+    flex-direction: column;
+    min-height: 100vh; /* Establece la altura mínima del cuerpo como 100% del viewport height (vh) */
+  }
+  
+  
+  #title {
+    font-family: Calibri, Sans-Serif;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  .logo {
+    position: absolute;
+    font-size: 0.5em;
+    width: 100px;
+    margin: -3px;
+    left: 30px;
+    top: -10px;
+    border-radius: 50%;
+    border: 0;
+  }
+  
+  #principal-description {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    color:#F9ea6e;
+    font-family: monospace, Calibri;
+  }
+  
+  #survey-form {
+    opacity: 0.9;
+    background-color: black;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 120px;
+    min-width: 250px;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+  }
+  
+  #footer {
+    position: relative;
+    margin-top: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    padding: 28px;
+    right: 0;
+    text-align: center;
+  }
+  
+  
+  a:link, a:visited, a:active {
+    text-decoration: none;
+    font-family: calibri, monospace;
+    border: 0;
+  }
+
+  .submit {
+    display: inline-block;
+    background-color: red;
+    padding: 20px 10px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    min-width: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .submit:hover {
+    transform: scale(0.95);
+  }
+  .copyright {
+    bottom: 0;
+    left: 0;
+    color: white;
+    padding: 10px;
+  }
+  
+  label {
+    color: #F9ea6e;
+    font-weight: bold;
+  }

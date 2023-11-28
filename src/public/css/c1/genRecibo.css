@@ -3,7 +3,6 @@ body{
 }
 #titulo {
     text-align: center;
-    font-size: 3.5em;
 }
 
 body {
@@ -82,7 +81,7 @@ td {
 
 table[id="factura"] input {
     text-indent: 3px;
-    width: 75%;
+    width: 82%;
     border: 0;
     text-align: center;
     padding: 10px;
@@ -96,7 +95,7 @@ table[id="fecha"] input {
 }
 
 table[id="cliente"] input {
-    width: 85%;
+    width: 82%;
     border: 0;
     text-align: center;
     padding: 10px;
@@ -111,7 +110,7 @@ table[id="condiciones"] input {
 
 table[id="producto"] input {
     margin-left: 5px;
-    width: 75%;
+    width: 82%;
     border: 0;
     text-align: center;
     padding: 10px;
@@ -125,14 +124,14 @@ table[id="estado"] input {
 }
 
 table[id="compra"] input {
-    width: 60%;
+    width: 82%;
     border: 0;
     text-align: center;
     padding: 10px;
 }
 
 table[id="factura"] {
-    width: 100%;
+    width: 82%;
     margin: 30px auto;
     display: flex;
     justify-content: center;
@@ -189,6 +188,7 @@ table[id="compra"] {
 }
 
 #titulo {
+    font-size: 24px;
     text-align: center;
     margin-top: 0px; 
     margin-bottom: -20px;
@@ -214,6 +214,7 @@ table[id="compra"] {
 .espacio {
     visibility: collapse;
 }
+
 
 #cod-barras {
     position: absolute;

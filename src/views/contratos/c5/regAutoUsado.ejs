@@ -19,7 +19,7 @@
                     <a id="backButton" href="/c5" class="btn btn-danger" style="margin-top: 1%">Abortar Proceso</a>
                     <div class="margin">
                         <form id="survey-form" action="/c5/b1/regAutoUsado" method="POST" required>
-                            <p id="principal-description">Información del Automóvil usado a Registrar para su venta en
+                            <p id="principal-description">Información del Automóvil usado a registrar para su venta en
                                 el contrato:</p>
                             <label for="mat-label" id="mat-label">Matrícula</label>
                             <input type="text" id="mat" placeholder="Matrícula del automóvil" name="mat" required>
@@ -50,12 +50,57 @@
                             <input type="text" id="color" placeholder="Color principal del automóvil" name="color"
                                 required>
                             <div class="botones">
-                                <input id="continueB2Button" type="submit" class="submit btn btn-danger"
-                                    style="margin-top: 1%" value="Registrar Automóvil">
+                                <input id="continueB2Button" type="submit" class="btn btn-danger" style="margin-top: 1%"
+                                    value="Registrar Automóvil">
                             </div>
                         </form>
                     </div>
                 </div>
+                <footer id="footer">
+                    <p class="footer-text">LPP Concesionario</p>
+                    <p class="footer-text">&copy; 2023 Todos los derechos reservados</p>
+                </footer>
+                <style>
+                    .container-fluid {
+                        width: 100%;
+                        max-width: 1200px;
+                        margin: 0 auto;
+                    }
+
+                    .container-fluid {
+                        width: 100% !important;
+                    }
+
+                    .navbar-dark {
+                        z-index: 100;
+                    }
+
+                    #survey-form {
+                        position: relative !important;
+                        z-index: 10 !important;
+                    }
+
+                    body {
+                        background: #e0e0e0 !important;
+                    }
+
+                    #continueB2Button {
+                        background-color: black !important;
+                        border: 2px solid black;
+                    }
+
+                    #continueB2Button:hover {
+                        background-color: white !important;
+                        color: black !important;
+                    }
+
+                    #backButton {
+                        border: black solid 2px !important;
+                    }
+                </style>
+                <script
+                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>

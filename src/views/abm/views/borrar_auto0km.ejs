@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>L.P.P Concesionario</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/borrar_auto0km.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="/images/logo.png" class="logo">
+            <h1 id="title">Borrar Auto 0KM - ABM</h1>
+        </div>
+        <div id="espaciado"></div>
+        <div class="margin">
+            <form id="survey-form" required>
+                <p id="principal-description">Elimina un auto 0KM del sistema</p>
+                <p id="description">Auto a borrar:</p>
+                <label for="busqueda-marca" id="marca-label">Búsqueda por Marca</label>
+                <input type="text" id="busqueda-marca" placeholder="Marca del Auto">
+                <div class="pantalla">
+                    <div class="table-container">
+                        <table>
+                            <thead class="header-row">
+                                <tr>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Precio</th>
+                                    <th>Color</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-autos">
+                                <!-- La lista de autos se mostrará aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="submit" id="borrarBtn">Borrar Registro</button>
+                <button type="button" class="submit" id="regresarBtn">Regresar</button>
+            </form>
+        </div>
+    </div>
+    <footer id="footer">
+        <p class="copyright">LPP Concesionario</p>
+        <p class="copyright">&copy; 2023 Todos los derechos reservados</p>
+    </footer>
+    <script>
+        const regresarBtn = document.getElementById('regresarBtn');
+        regresarBtn.addEventListener('click', () => {
+            window.location.href = '/abm_menu';
+        });
+
+        const listaAutos = document.getElementById('lista-autos');
+        listaAutos.addEventListener('click', (event) => {
+            const targetRow = event.target.closest('tr');
+            if (targetRow) {
+                deselectRows();
+                targetRow.classList.add('selected');
+                const autoId = targetRow.getAttribute('data-auto-id');
+                // Resto del código para mostrar los detalles del auto seleccionado
+            }
+        });
+
+        const borrarBtn = document.getElementById('borrarBtn');
+        borrarBtn.addEventListener('click', () => {
+            const selectedRow = document.querySelector('.selected');
+            if (!selectedRow) {
+                alert('Debes seleccionar un auto para borrar.');
+                return;
+            }
+
+            const autoId = selectedRow.getAttribute('data-auto-id');
+
+            // Obtener la marca, modelo, precio y color del auto seleccionado
+            const marca = selectedRow.querySelector('td:nth-child(1)').innerText;
+            const modelo = selectedRow.querySelector('td:nth-child(2)').innerText;
+            const precio = selectedRow.querySelector('td:nth-child(3)').innerText;
+            const color = selectedRow.querySelector('td:nth-child(4)').innerText;
+
+
+            // Agregar una ventana de confirmación
+            const confirmacion = confirm('¿Estás seguro de que deseas borrar este auto?');
+            if (!confirmacion) {
+                return; // Si el usuario cancela, no se realiza la eliminación
+            }
+
+
+            // Utiliza AJAX para enviar la solicitud DELETE al servidor
+            fetch(`/borrar-auto-0km/${autoId}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const message = 'Registro eliminado exitosamente.' +
+                            '\n\nAuto eliminado:' +
+                            '\nMarca: ' + marca +
+                            '\nModelo: ' + modelo +
+                            '\nPrecio: ' + "$" + precio +
+                            '\nColor: ' + color;
+                        alert(message);
+
+                        // Actualizar la tabla de autos (borrar los datos)
+                        selectedRow.remove();
+                    } else {
+                        console.error('Error en la solicitud:', response.statusText);
+                        alert('Error al marcar como borrado el registro. Por favor, inténtalo nuevamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en la solicitud:', error);
+                    alert('Error en la solicitud. Por favor, inténtalo nuevamente.');
+                });
+        });
+
+        function deselectRows() {
+            const rows = document.querySelectorAll('tr');
+            rows.forEach(row => row.classList.remove('selected'));
+        }
+
+        function loadAutosByMarca(marca) {
+            fetch(`/obtener-autos-por-marca?marca=${marca}`)
+                .then(response => response.json())
+                .then(data => {
+                    const listaAutos = document.getElementById('lista-autos');
+                    listaAutos.innerHTML = '';
+
+                    data.forEach(auto => {
+                        if (auto.borrado === 0) {  // Verifica si el auto está marcado como borrado
+                            const tableRow = document.createElement('tr');
+                            tableRow.setAttribute('data-auto-id', auto.codAD0KM);
+                            tableRow.innerHTML = `
+                                            <td>${auto.marca}</td>
+                                            <td>${auto.modelo}</td>
+                                            <td>${auto.precio}</td>
+                                            <td>${auto.color}</td>
+                                        `;
+                            listaAutos.appendChild(tableRow);
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        const busquedaMarca = document.getElementById('busqueda-marca');
+        busquedaMarca.addEventListener('input', () => {
+            const marca = busquedaMarca.value;
+            loadAutosByMarca(marca);
+        });
+    </script>
+</body>
+
+</html>
